@@ -9,6 +9,7 @@ body {
     backdrop-filter: blur(10px);
 }
 
+
 .cover {
     object-fit: cover;
     width: 100%;
