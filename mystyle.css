@@ -74,9 +74,25 @@ body {
     color: rgb(86, 235, 255);
 }
 
-/* .navbar-brand {
-    transform: translateX(-50%);
-    left: 50%;
-    position: absolute;
-  } */
+.navbar-brand {
+    /* transform: translateX(-50%); */
+    /* left: 50%; */
+    position: absolute center;
+    /* padding-left: auto;
+    padding-right: auto;
+    margin-right: auto;
+    margin-left: auto; */
+  }
 
+.navbar-collapse{
+    width:10rem;
+}
+.navbar{
+    /* position: absolute;
+    left: 0px;
+    height: 40px;
+    background-color: #2C64B4; */
+    
+    display: flex;
+    justify-content: center;
+}
