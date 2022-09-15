@@ -9,7 +9,9 @@ body {
     backdrop-filter: blur(10px);
 }
 
-
+.card-style {
+    overflow: auto;
+}
 .cover {
     object-fit: cover;
     width: 100%;
