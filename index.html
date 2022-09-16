@@ -156,13 +156,11 @@
         </div>
       </div>
     </nav>
-
     <!--Carousel-->
     <div>
       <div
         id="carouselExampleIndicators"
         class="carousel slide"
-        data-bs-ride="carousel"
       >
         <div class="carousel-indicators">
           <button
@@ -187,123 +185,135 @@
           ></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="4000">
+          <div class="carousel-content">
+            <h1 class="fw-bold secondary-color">
+              Book unique and <br/>luxurious places with us.
+            </h1>
+            <h2>
+              #1 platform to find drippin' houses
+            </h2>
+          </div>
+          <div class="carousel-item active" data-bs-interval="5000">
             <img
               src="img/house1.jpg"
-              class="d-block cover"
+              class="d-block cover darken"
               alt="..."
               style="width: 100%; height: 700px"
             />
             <div style="position: absolute">Text</div>
           </div>
-          <div class="carousel-item" data-bs-interval="4000">
+          <div class="carousel-item" data-bs-interval="5000">
             <img
               src="img/house2.jpg"
-              class="d-block cover"
+              class="d-block cover darken"
               alt="..."
               style="width: 100%; height: 700px"
             />
           </div>
-          <div class="carousel-item" data-bs-interval="4000">
+          <div class="carousel-item" data-bs-interval="5000">
             <img
               src="img/house3.jpg"
-              class="d-block cover"
+              class="d-block cover darken"
               alt="..."
               style="width: 100%; height: 700px"
             />
           </div>
         </div>
-        <button
-          class="carousel-control-prev grow"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next grow"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
 
-    <section class="bg-dark text-light pt-3 pb-0">
-      <div class="container">
-        <div class="d-flex flex-column align-items-center">
-          <div class="text-center">
-            <p>
-              <span class="text-white-50">New</span><br />
-              <span class="fs-5">Listings</span><br />
-              <span class="text-warning fs-1 fw-bold">Luxury Homes.</span><br />
-              <span class="fs-5">Starting at $50.00/night</span><br />
-              <span class="text-white-50 fs-5">Available now</span>
-            </p>
-            <div class="d-flex justify-content-center p-3 text-center">
-              <button class="btn btn-primary btn-lg mx-3 grow">Book now</button>
-              <button class="btn btn-warning btn-lg mx-3 text-primary grow">
-                Learn more
-              </button>
-            </div>
-          </div>
-          <img
-            src="img/housePng.png"
-            alt=""
-            class="img-fluid w-75"
-            style="mix-blend-mode: lighten"
-          />
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-light text-black p-5 m-5 text-center">
+    <!--About-->
+    <section class="bg-light text-black p-5 mb-5 text-center">
       <div class="container">
         <div
           class="row d-sm-flex align-items-center justify-content-center g-5"
         >
           <div class="col-md">
+            <div
+              class="p-3 img-hover img-fluid d-none d-sm-block rounded shadow-5-strong"
+            >
+              <img
+                src="img/house5.jpg"
+                alt=""
+                class="img-fluid rounded-5"
+                style="mix-blend-mode: darken"
+              />
+            </div>
+          </div>
+          <div class="col-md">
             <h1>
-              Search for millions of <span class="text-primary">Homes</span>
+              Plan your next trip with
+              <span class="primary-color fw-bold fs-1">Drip</span
+              ><span class="secondary-color fw-bold fs-1">Realty</span>
             </h1>
+            <br />
+            <h2>
+              Search for millions of <span class="primary-color">Homes</span>
+            </h2>
             <p>
-              <span class="text-warning fs-1 fw-bold">It's luxurious.</span
+              <span class="secondary-color fs-1 fw-bold">It's luxurious.</span
               ><br />
-              <span class="text-warning fs-1 fw-bold">It's affordable.</span
+              <span class="secondary-color fs-1 fw-bold">It's affordable.</span
               ><br />
             </p>
             <p>
               From every <span class="fs-5 fst-italic">country</span><br />
               From every <span class="fs-5 fst-italic">host</span>
             </p>
-            <button class="btn btn-primary btn-lg mx-3 grow">Buy</button>
-          </div>
-          <div class="col-md img-hover">
-            <img
-              src="img/house5.jpg"
-              alt=""
-              class="img-fluid"
-              style="mix-blend-mode: darken"
-            />
+            <button class="btn btn-primary btn-lg mx-3 grow">Search Now</button>
           </div>
         </div>
       </div>
     </section>
 
+    <!--CARDS-->
     <section class="bg-dark p-5">
       <div class="container">
         <div class="row text-center g-4">
           <div class="col-md">
             <div class="card">
+              <div class="card-body">
+                <h1 class="card-title"><i class="bi bi-house-door primary-color"></i></h1>
+                <p class="card-text">
+                  Discovering your dream vacation <br/> home has never been easier. 
+                </p>
+                <button type="button" class="btn btn-primary grow">Search</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="card">
+              <div class="card-body">
+                <h1 class="card-title"><i class="bi bi-person-fill primary-color"></i></h1>
+                <p class="card-text">
+                  Become a host and earn <br/> through our rewards program.
+                </p>
+                <button type="button" class="btn btn-primary grow">Join</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="card">
+              <div class="card-body">
+                <h1 class="card-title"><i class="bi bi-info-square primary-color"></i></i></h1>
+                <p class="card-text">
+                  Learn more about us and <br/>who we are.
+                </p>
+                <button type="button" class="btn btn-primary grow">More</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-light p-5">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md">
+            <div class="card">
               <div
-                id="carouselExampleControls"
+                id="carousel1"
                 class="carousel slide"
-                data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -345,7 +355,7 @@
                 <button
                   class="carousel-control-prev"
                   type="button"
-                  data-bs-target="#carouselExampleControls"
+                  data-bs-target="#carousel1"
                   data-bs-slide="prev"
                 >
                   <span
@@ -357,7 +367,7 @@
                 <button
                   class="carousel-control-next"
                   type="button"
-                  data-bs-target="#carouselExampleControls"
+                  data-bs-target="#carousel1"
                   data-bs-slide="next"
                 >
                   <span
@@ -384,9 +394,8 @@
           <div class="col-md">
             <div class="card">
               <div
-                id="carouselExampleControls"
+                id="carousel2"
                 class="carousel slide"
-                data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -428,7 +437,7 @@
                 <button
                   class="carousel-control-prev"
                   type="button"
-                  data-bs-target="#carouselExampleControls"
+                  data-bs-target="#carousel2"
                   data-bs-slide="prev"
                 >
                   <span
@@ -440,7 +449,7 @@
                 <button
                   class="carousel-control-next"
                   type="button"
-                  data-bs-target="#carouselExampleControls"
+                  data-bs-target="#carousel2"
                   data-bs-slide="next"
                 >
                   <span
@@ -467,9 +476,8 @@
           <div class="col-md">
             <div class="card">
               <div
-                id="carouselExampleControls"
+                id="carousel3"
                 class="carousel slide"
-                data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -511,7 +519,7 @@
                 <button
                   class="carousel-control-prev"
                   type="button"
-                  data-bs-target="#carouselExampleControls"
+                  data-bs-target="#carousel3"
                   data-bs-slide="prev"
                 >
                   <span
@@ -523,7 +531,7 @@
                 <button
                   class="carousel-control-next"
                   type="button"
-                  data-bs-target="#carouselExampleControls"
+                  data-bs-target="#carousel3"
                   data-bs-slide="next"
                 >
                   <span
@@ -548,9 +556,8 @@
           <div class="col-md">
             <div class="card">
               <div
-                id="carouselExampleControls"
+                id="carousel4"
                 class="carousel slide"
-                data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -592,7 +599,7 @@
                 <button
                   class="carousel-control-prev"
                   type="button"
-                  data-bs-target="#carouselExampleControls"
+                  data-bs-target="#carousel4"
                   data-bs-slide="prev"
                 >
                   <span
@@ -604,7 +611,7 @@
                 <button
                   class="carousel-control-next"
                   type="button"
-                  data-bs-target="#carouselExampleControls"
+                  data-bs-target="#carousel4"
                   data-bs-slide="next"
                 >
                   <span
