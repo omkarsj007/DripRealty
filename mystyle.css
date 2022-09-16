@@ -11,7 +11,13 @@
 .secondary-color {
     color: var(--secondary-color);
 }
+.bg-primary-color {
+    background-color: var(--primary-color);
+}
 
+.bg-secondary-color {
+    background-color: var(--secondary-color);
+}
 body {
     font-family: 'Playfair Display', sans-serif;
 }
@@ -93,6 +99,12 @@ body {
     color: var(--secondary-color);
 }
 
+.link{
+    color:white;
+}
+.link:hover {
+    color: var(--secondary-color);
+}
 .darken {
     filter: brightness(75%);
 }
