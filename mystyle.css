@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url('https://fonts.googleapis.com/css?family=Playfair Display:400,700');
 
 :root {
     --primary-color: #5089C6;
     --secondary-color : #FFAA4C;
 }
+
 .primary-color{
     color : var(--primary-color);
 }
 .secondary-color {
     color: var(--secondary-color);
 }
+
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
 }
 
 .navbg {
