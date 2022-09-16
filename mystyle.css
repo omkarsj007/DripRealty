@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
+:root {
+    --primary-color: #277BC0;
+    --secondary-color : #FFB200;
+}
+.primary-color{
+    color : var(--primary-color);
+}
+.secondary-color {
+    color: var(--secondary-color);
+}
 body {
     font-family: 'Lato', sans-serif;
 }
@@ -71,8 +81,9 @@ body {
 }
 
 .navbar-nav > .nav-item > a:hover {
-    color: rgb(86, 235, 255);
+    color: var(--secondary-color);
 }
+
 
 .navbar-brand {
     /* transform: translateX(-50%); */
