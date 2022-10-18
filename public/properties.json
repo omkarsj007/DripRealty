@@ -12,7 +12,7 @@
     "nightly_fee" : 134,
     "cleaning_fee" : 30,
     "service_fee" : 50,
-    "amenitiies" : ["Coffee maker", 
+    "amenities" : ["Coffee maker", 
                     "Swimming pool", 
                     "Outdoor kitchen", 
                     "Dishwashe",
@@ -38,7 +38,7 @@
     "nightly_fee" : 134,
     "cleaning_fee" : 30,
     "service_fee" : 50,
-    "amenitiies" : ["Coffee maker", 
+    "amenities" : ["Coffee maker", 
                     "Swimming pool", 
                     "Outdoor kitchen", 
                     "Dishwashe",
@@ -52,7 +52,7 @@
     "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
 },
 {
-    "id" : 1,
+    "id" : 3,
     "title" : "Cool house 3",
     "images" : ["img/house101.jpg", 
                     "img/house302.jpg", 
@@ -64,7 +64,7 @@
     "nightly_fee" : 134,
     "cleaning_fee" : 30,
     "service_fee" : 50,
-    "amenitiies" : ["Coffee maker", 
+    "amenities" : ["Coffee maker", 
                     "Swimming pool", 
                     "Outdoor kitchen", 
                     "Dishwashe",
@@ -78,7 +78,7 @@
     "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
 },
 {
-    "id" : 1,
+    "id" : 4,
     "title" : "Cool house 4",
     "images" : ["img/house401.jpg", 
                     "img/house402.jpg", 
@@ -90,7 +90,7 @@
     "nightly_fee" : 134,
     "cleaning_fee" : 30,
     "service_fee" : 50,
-    "amenitiies" : ["Coffee maker", 
+    "amenities" : ["Coffee maker", 
                     "Swimming pool", 
                     "Outdoor kitchen", 
                     "Dishwashe",
@@ -104,7 +104,7 @@
     "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
 },
 {
-    "id" : 1,
+    "id" : 5,
     "title" : "Cool house 4",
     "images" : ["img/house401.jpg", 
                     "img/house402.jpg", 
@@ -116,7 +116,7 @@
     "nightly_fee" : 134,
     "cleaning_fee" : 30,
     "service_fee" : 50,
-    "amenitiies" : ["Coffee maker", 
+    "amenities" : ["Coffee maker", 
                     "Swimming pool", 
                     "Outdoor kitchen", 
                     "Dishwashe",
@@ -130,7 +130,7 @@
     "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
 } ,
 {
-    "id" : 1,
+    "id" : 6,
     "title" : "Cool house 4",
     "images" : ["img/house401.jpg", 
                     "img/house402.jpg", 
@@ -142,7 +142,7 @@
     "nightly_fee" : 134,
     "cleaning_fee" : 30,
     "service_fee" : 50,
-    "amenitiies" : ["Coffee maker", 
+    "amenities" : ["Coffee maker", 
                     "Swimming pool", 
                     "Outdoor kitchen", 
                     "Dishwashe",
@@ -156,7 +156,7 @@
     "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
 } ,
 {
-    "id" : 1,
+    "id" : 7,
     "title" : "Cool house 4",
     "images" : ["img/house401.jpg", 
                     "img/house402.jpg", 
@@ -168,7 +168,7 @@
     "nightly_fee" : 134,
     "cleaning_fee" : 30,
     "service_fee" : 50,
-    "amenitiies" : ["Coffee maker", 
+    "amenities" : ["Coffee maker", 
                     "Swimming pool", 
                     "Outdoor kitchen", 
                     "Dishwashe",

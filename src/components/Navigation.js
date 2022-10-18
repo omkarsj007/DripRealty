@@ -28,7 +28,7 @@ const Navigation = () => {
             <span className="primary-color fw-bold fs-3 font">Drip</span>
             <span className="secondary-color fw-bold fs-3 font">Realty</span>
           </Link>
-          <Navbar.Toggle aria-controls="navbarScroll" variant />
+          <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse
             id="navMenu"
             className="justify-content-end text-center"
@@ -48,7 +48,6 @@ const Navigation = () => {
                 <button className="btn btn-warning font mx-3">
                   <span>
                     <i className="bi bi-justify pe-2"></i>
-
                     <i className="bi bi-person-circle"></i>
                   </span>
                 </button>
