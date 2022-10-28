@@ -8,13 +8,12 @@ function App() {
   return (
     <Router>
       <Navigation />
-      <div className="container-fluid">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/discover" element={<Discover />} />
-          <Route path="/propertyInfo" element={<PropertyInfo />} />
-        </Routes>
-      </div>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/discover" element={<Discover />} />
+        <Route path="/propertyInfo" element={<PropertyInfo />} />
+      </Routes>
     </Router>
   );
 }

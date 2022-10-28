@@ -16,7 +16,7 @@ const Discover = () => {
   }, []);
 
   return (
-    <div>
+    <div className="ms-5 me-5">
       <FilterBar filterText={filterText} onFilterTextChange={setFilterText} />
       <Properties properties={properties} filterText={filterText} />
     </div>
