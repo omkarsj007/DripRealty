@@ -1,6 +1,7 @@
 :root {
     --primary-color: #5089C6;
     --secondary-color: #FFAA4C;
+    --tertiary-color: #F7F6F2;
 }
 
 .primary-color {
@@ -18,7 +19,12 @@
 .bg-secondary-color {
     background-color: var(--secondary-color);
 }
-
+.bg-tertiary-color {
+    background-color: var(--tertiary-color);
+}
+.bg-gray-color{
+    background-color: #888888;
+}
 .font {
     font-family: 'Playfair Display', serif;
 }
@@ -49,4 +55,13 @@
 
 .grow:hover {
     transform: scale(1.05);
+}
+
+.carousel-content {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    z-index: 20;
+    color: white;
+    text-shadow: 5px 5px 5px black;
 }

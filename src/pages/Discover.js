@@ -16,10 +16,13 @@ const Discover = () => {
   }, []);
 
   return (
-    <div className="ms-5 me-5">
-      <FilterBar filterText={filterText} onFilterTextChange={setFilterText} />
-      <Properties properties={properties} filterText={filterText} />
+    <div className="">
+      <div className="ms-5 me-5 mb-0">
+        <FilterBar filterText={filterText} onFilterTextChange={setFilterText} />
+        <Properties properties={properties} filterText={filterText} />
+      </div>
     </div>
+
   );
 };
 

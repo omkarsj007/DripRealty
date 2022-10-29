@@ -6,7 +6,15 @@ import "../components/styles/mystyles.css";
 const PropertyInfo = () => {
   const location = useLocation();
   const [info] = useState(location.state.info);
+  const money = (number) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0,
+    }).format(number);
+  };
   return (
+    
     <Container fluid className="font mt-3">
       <Container>
         <h1 className="fw-bold">{info.property.title}</h1>
@@ -76,7 +84,7 @@ const PropertyInfo = () => {
       </Container>
       <Container className="mt-3 mb-3 fs-5">
         <p className="fs-2">
-          ${info.property.nightly_fee}
+          {money(info.property.nightly_fee)}
           <span className="text-muted fs-5"> night</span>
         </p>
         <p className="fs-5">
@@ -89,16 +97,31 @@ const PropertyInfo = () => {
           {info.property.baths} baths
         </p>
         <hr />
+        <Row>
+          <Col lg={6} className="mb-5">
+            <h3 className="fw-bold mb-3"> Description</h3>
+            <p className="fs-4">
+              {info.property.description}
+            </p>
+            <hr />
+            <p className="fw-bold fs-4"> Amenities</p>
+            <ul>
+              {info.property.amenities.map((a, i) => (
+                <li key={i} className="fs-5">
+                  {a}
+                </li>
+              ))}
+            </ul>
+          </Col>
+          <Col lg={6}>
+            <CardInfo fees={info}/>
+              
+  
+          </Col>
+        </Row>
 
-        <hr />
-        <p className="fw-bold fs-4">Amenities:</p>
-        <ul>
-          {info.property.amenities.map((a, i) => (
-            <li key={i} className="fs-5">
-              {a}
-            </li>
-          ))}
-        </ul>
+
+
       </Container>
     </Container>
   );

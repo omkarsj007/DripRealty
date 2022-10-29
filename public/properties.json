@@ -1,184 +1,235 @@
 [
-{
-    "id" : 1,
-    "title" : "Cool house 1",
-    "images" : ["img/house101.jpg", 
-                    "img/house102.jpg", 
-                    "img/house103.jpg", 
-                    "img/house104.jpg", 
-                    "img/house105.jpg"
-                ],   
-    "location" : [{"city": "Dallas", "state": "Texas"}],
-    "nightly_fee" : 134,
-    "cleaning_fee" : 30,
-    "service_fee" : 50,
-    "amenities" : ["Coffee maker", 
-                    "Swimming pool", 
-                    "Outdoor kitchen", 
-                    "Dishwashe",
-                    "Cable television",
-                    "Fireplace"
-                ],
-    "max_guests": 8,
-    "bedrooms" : 4,
-    "beds" : 4,
-    "baths" : 4.5,
-    "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
-},
-{
-    "id" : 2,
-    "title" : "Cool house 2",
-    "images" : ["img/house201.jpg", 
-                    "img/house202.jpg", 
-                    "img/house203.jpg", 
-                    "img/house204.jpg", 
-                    "img/house205.jpg"
-                ],   
-    "location" : [{"city": "Northbay", "state": "Florida"}],
-    "nightly_fee" : 134,
-    "cleaning_fee" : 30,
-    "service_fee" : 50,
-    "amenities" : ["Coffee maker", 
-                    "Swimming pool", 
-                    "Outdoor kitchen", 
-                    "Dishwasher",
-                    "Cable television",
-                    "Fireplace"
-                ],
-    "max_guests": 8,
-    "bedrooms" : 4,
-    "beds" : 4,
-    "baths" : 4.5,
-    "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
-},
-{
-    "id" : 3,
-    "title" : "Cool house 3",
-    "images" : ["img/house101.jpg", 
-                    "img/house302.jpg", 
-                    "img/house303.jpg", 
-                    "img/house304.jpg", 
-                    "img/house305.jpg"
-                ],   
-    "location" : [{"city": "Nordland", "state": "Norway"}],
-    "nightly_fee" : 134,
-    "cleaning_fee" : 30,
-    "service_fee" : 50,
-    "amenities" : ["Coffee maker", 
-                    "Swimming pool", 
-                    "Outdoor kitchen", 
-                    "Dishwashe",
-                    "Cable television",
-                    "Fireplace"
-                ],
-    "max_guests": 8,
-    "bedrooms" : 4,
-    "beds" : 4,
-    "baths" : 4.5,
-    "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
-},
-{
-    "id" : 4,
-    "title" : "Cool house 4",
-    "images" : ["img/house401.jpg", 
-                    "img/house402.jpg", 
-                    "img/house403.jpg", 
-                    "img/house404.jpg", 
-                    "img/house405.jpg"
-                ],   
-    "location" : [{"city": "Joshua Tree", "state": "California"}],
-    "nightly_fee" : 134,
-    "cleaning_fee" : 30,
-    "service_fee" : 50,
-    "amenities" : ["Coffee maker", 
-                    "Swimming pool", 
-                    "Outdoor kitchen", 
-                    "Dishwashe",
-                    "Cable television",
-                    "Fireplace"
-                ],
-    "max_guests": 8,
-    "bedrooms" : 4,
-    "beds" : 4,
-    "baths" : 4.5,
-    "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
-},
-{
-    "id" : 5,
-    "title" : "Cool house 4",
-    "images" : ["img/house401.jpg", 
-                    "img/house402.jpg", 
-                    "img/house403.jpg", 
-                    "img/house404.jpg", 
-                    "img/house405.jpg"
-                ],   
-    "location" : [{"city": "Dallas", "state": "Texas"}],
-    "nightly_fee" : 134,
-    "cleaning_fee" : 30,
-    "service_fee" : 50,
-    "amenities" : ["Coffee maker", 
-                    "Swimming pool", 
-                    "Outdoor kitchen", 
-                    "Dishwashe",
-                    "Cable television",
-                    "Fireplace"
-                ],
-    "max_guests": 8,
-    "bedrooms" : 4,
-    "beds" : 4,
-    "baths" : 4.5,
-    "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
-} ,
-{
-    "id" : 6,
-    "title" : "Cool house 4",
-    "images" : ["img/house401.jpg", 
-                    "img/house402.jpg", 
-                    "img/house403.jpg", 
-                    "img/house404.jpg", 
-                    "img/house405.jpg"
-                ],   
-    "location" : [{"city": "Dallas", "state": "Texas"}],
-    "nightly_fee" : 134,
-    "cleaning_fee" : 30,
-    "service_fee" : 50,
-    "amenities" : ["Coffee maker", 
-                    "Swimming pool", 
-                    "Outdoor kitchen", 
-                    "Dishwashe",
-                    "Cable television",
-                    "Fireplace"
-                ],
-    "max_guests": 8,
-    "bedrooms" : 4,
-    "beds" : 4,
-    "baths" : 4.5,
-    "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
-} ,
-{
-    "id" : 7,
-    "title" : "Cool house 4",
-    "images" : ["img/house401.jpg", 
-                    "img/house402.jpg", 
-                    "img/house403.jpg", 
-                    "img/house404.jpg", 
-                    "img/house405.jpg"
-                ],   
-    "location" : [{"city": "Dallas", "state": "Texas"}],
-    "nightly_fee" : 134,
-    "cleaning_fee" : 30,
-    "service_fee" : 50,
-    "amenities" : ["Coffee maker", 
-                    "Swimming pool", 
-                    "Outdoor kitchen", 
-                    "Dishwashe",
-                    "Cable television",
-                    "Fireplace"
-                ],
-    "max_guests": 8,
-    "bedrooms" : 4,
-    "beds" : 4,
-    "baths" : 4.5,
-    "description" : "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
-}        
+    {
+        "id": 1,
+        "title": "Lake Front Retreat",
+        "images": [
+            "img/house101.jpg",
+            "img/house102.jpg",
+            "img/house103.jpg",
+            "img/house104.jpg",
+            "img/house105.jpg"
+        ],
+        "location": [
+            {
+                "city": "Fort Worth",
+                "state": "Texas"
+            }
+        ],
+        "nightly_fee": 2604,
+        "cleaning_fee": 30,
+        "service_fee": 50,
+        "amenities": [
+            "Coffee maker",
+            "Swimming pool",
+            "Freezer",
+            "Ice maker",
+            "Cable television",
+            "Sound system",
+            "Carbon monoxide alarm"
+        ],
+        "max_guests": 8,
+        "bedrooms": 5,
+        "beds": 7,
+        "baths": 3.5,
+        "description": "Stunning 5.5 acre Lake Front retreat in Fort Worth, Texas, with over 350' of lake frontage, a brand new 2,000 square foot dock, and a brand new pool and hot tub."
+    },
+    {
+        "id": 2,
+        "title": "Mansion Yacht",
+        "images": [
+            "img/house201.jpg",
+            "img/house202.jpg",
+            "img/house203.jpg",
+            "img/house204.jpg",
+            "img/house205.jpg"
+        ],
+        "location": [
+            {
+                "city": "Northbay",
+                "state": "Florida"
+            }
+        ],
+        "nightly_fee": 1000,
+        "cleaning_fee": 50,
+        "service_fee": 120,
+        "amenities": [
+            "Coffee maker",
+            "Air conditioning bedrooms",
+            "Washer/Dryer",
+            "Dishwasher",
+            "Cable television",
+            "Wi-Fi"
+        ],
+        "max_guests": 8,
+        "bedrooms": 4,
+        "beds": 4,
+        "baths": 4.5,
+        "description": "Enjoy an expansive grand salon with scenic panorama glass walls, 12 foot ceilings, living and dining space for 12, chefs kitchen and sweeping outdoor terrace."
+    },
+    {
+        "id": 3,
+        "title": "Arctic Hideaway",
+        "images": [
+            "img/house301.jpg",
+            "img/house302.jpg",
+            "img/house303.jpg",
+            "img/house304.jpg",
+            "img/house305.jpg"
+        ],
+        "location": [
+            {
+                "city": "Nordland",
+                "state": "Norway"
+            }
+        ],
+        "nightly_fee": 1234,
+        "cleaning_fee": 320,
+        "service_fee": 50,
+        "amenities": [
+            "Coffee maker",
+            "Formal dining area with seating for 10",
+            "Outdoor kitchen",
+            "Dishwashe",
+            "Cable television",
+            "Wine fridge"
+        ],
+        "max_guests": 9,
+        "bedrooms": 6,
+        "beds": 10,
+        "baths": 7.5,
+        "description": "Architecturally playful and stunning collection of ten individual buildings for 10 people with kitchen house, studio building, bathhouse, crab shack and sauna."
+    },
+    {
+        "id": 4,
+        "title": "The Kellogg Doolittle House",
+        "images": [
+            "img/house401.jpg",
+            "img/house402.jpg",
+            "img/house403.jpg",
+            "img/house404.jpg",
+            "img/house405.jpg"
+        ],
+        "location": [
+            {
+                "city": "Joshua Tree",
+                "state": "California"
+            }
+        ],
+        "nightly_fee": 6500,
+        "cleaning_fee": 69,
+        "service_fee": 220,
+        "amenities": [
+            "Iron/Ironing Board",
+            "Swimming pool",
+            "Outdoor kitchen",
+            "Sound system",
+            "Cable television",
+            "Fireplace"
+        ],
+        "max_guests": 15,
+        "bedrooms": 9,
+        "beds": 8,
+        "baths": 6,
+        "description": "One of the most exclusive homes in the world that is so “one-of-a-kind,” nearly every element, inside and out, is handcrafted by architect Ken Kellogg."
+    },
+    {
+        "id": 5,
+        "title": "Royal Style Mansion",
+        "images": [
+            "img/house501.jpg",
+            "img/house502.jpg",
+            "img/house503.jpg",
+            "img/house504.jpg",
+            "img/house505.jpg"
+        ],
+        "location": [
+            {
+                "city": "Caesarea",
+                "state": "Israel"
+            }
+        ],
+        "nightly_fee": 5000,
+        "cleaning_fee": 300,
+        "service_fee": 500,
+        "amenities": [
+            "Wine room",
+            "Billiard Hall",
+            "4K Cinema Room",
+            "Eco-friendly energy saving systems",
+            "Total security and privacy"
+        ],
+        "max_guests": 8,
+        "bedrooms": 4,
+        "beds": 4,
+        "baths": 4.5,
+        "description": "2.71 acres encompass a number of luxurious amenities: a private spa with a fitness room, saunas, an indoor pool and a rest area, landscape gardens, 2 fountains with the Roman sculptures, monumental columns and an expansive outdoor pool with the built in stereo system and a large outdoor TV screen.The interior design features natural marble and onyx mosaics, 14k gold moldings, unique parquets, silk carpets and carefully selected custom-made furnishings. When you enter this enormous palace, you’re welcomed into a tremendous 2,475 sq. ft. grand hall crowned with crystal chandeliers and marble columns, setting the tone for the rest of the mansion. A majestic staircase leads you to the upper level, where you can find 3 in-suite bedrooms, a study and a vast master suite with 2 bathrooms, 2 walk-in closets and 2 dressing areas. Ground floor amenities include a 2,152 sq. ft. living room, a bar desk, a formal dining room, a separate breakfast room, a fully equipped chef kitchen and a library that grant you and your guests the most remarkable experience. This majestic palace, which boasts over 63,130 sf. ft. of a living space, is a true embodiment of Baroque and Rococo architecture and European royal style design that invisibly incorporates state-of-the-art high-tech controls."
+    },
+    {
+        "id": 6,
+        "title": "Venus Modern",
+        "images": [
+            "img/house601.jpg",
+            "img/house602.jpg",
+            "img/house603.jpg",
+            "img/house604.jpg",
+            "img/house605.jpg"
+        ],
+        "location": [
+            {
+                "city": "Los Angeles",
+                "state": "California"
+            }
+        ],
+        "nightly_fee": 2450,
+        "cleaning_fee": 650,
+        "service_fee": 100,
+        "amenities": [
+            "Fully equipped kitchen with breakfast bar",
+            "Swimming pool",
+            "Formal dining area with seating for 8",
+            "Dishwasher",
+            "Apple TV",
+            "Central air conditioning",
+            "Fireplace"
+        ],
+        "max_guests": 8,
+        "bedrooms": 4,
+        "beds": 4,
+        "baths": 4.5,
+        "description": "Gorgeous views from the heights of the Hollywood Hills and state-of-the-art amenities make Venus Modern a standout. This beautifully appointed and supremely chic vacation rental sits high enough to look out over Los Angeles to the Pacific in the distance. Its private lot, contemporary interiors and four suite-style bedrooms can accommodate up to eight friends and family members in a serene setting that’s nevertheless only 5 minutes from the Sunset Strip. Soak in the California sun from outdoor living spaces that feature lounging and dining areas, a pool and hot tub, and a barbecue. If you’d prefer to relax or entertain indoors, the satellite TV, wet bar, fireplace and Wi-Fi make it easy. This luxury home also boasts high-tech amenities such as a home-automation system and a Sonos sound system.From the broad glass pivot door at the entry to the foyer’s Venini chandelier and sweeping glass staircase, Venus Modern makes a statement from the start. The drama continues in the open-plan, designer-finished living spaces, where even the floors are finished in custom French white oak or gleaming Porcelanosa tile. A zebra rug and tufted settees in the living room and a Sputnik light fixture in the dining room add glamour, and in the fully equipped kitchen, Miele appliances maintain the sophisticated ambience. Though the villa feels like your own holiday retreat in the California hills, it’s ideally situated for sightseeing around Los Angeles, with the Sunset Strip only 5 minutes away. It’s 5 miles or less to the boutiques on Rodeo Drive, incredible concerts at the Hollywood Bowl and the thrills of Universal Studios, and about 10 miles or less to the collection at the Getty Center and the nearest golf course. Spend a day tanning, swimming or surfing at one of the three beaches within 25 miles, or try a hike through nearby Topanga State Park."
+    },
+    {
+        "id": 7,
+        "title": "Artevilla",
+        "images": [
+            "img/house701.jpg",
+            "img/house702.jpg",
+            "img/house703.jpg",
+            "img/house704.jpg",
+            "img/house705.jpg"
+        ],
+        "location": [
+            {
+                "city": "Mauna Lani",
+                "state": "Hawaii"
+            }
+        ],
+        "nightly_fee": 3200,
+        "cleaning_fee": 1265,
+        "service_fee": 1000,
+        "amenities": [
+            "Fully equipped kitchen",
+            "Swimming pool",
+            "Solar powered home",
+            "Billiard table",
+            "Cable television",
+            "Formal dining area with seating for 12",
+            "Washer/Dryer"
+        ],
+        "max_guests": 11,
+        "bedrooms": 5,
+        "beds": 6,
+        "baths": 5.5,
+        "description": "Shower among statues and banana trees at this light-filled villa within Mauna Lani Resort. Every room opens to ocean or garden vistas—even foosball goes alfresco on a balcony with mountain views. Perched above the beach, you can venture from the designer billiards table to Pauoa Beach and 2 golf courses in minutes, though the 46-foot saltwater infinity pool with hot tub might tempt you to stay.Bedroom 1 - Master: Canopy king size bed, Ensuite bathroom with stand-alone shower and bathtub, Alfresco shower, Television, Walk-in closet, Desk, Private garden, Ocean view. Bedroom 2: King size bed, Ensuite bathroom with stand-alone shower and bathtub, Television, Walk-in closet, Private balcony, Ocean view. Bedroom 3: Canopy king size bed, Television, Balcony. Bedroom 4: King size bed, Ensuite bathroom with stand-alone shower, Alfresco shower, Television, Walk-in closet. Bedroom 5: 2 Twin size beds, Ensuite bathroom with stand-alone shower, Alfresco shower, Television, Walk-in closet."
+    }
 ]

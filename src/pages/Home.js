@@ -1,8 +1,9 @@
 import React from "react";
+import Jumbotron from "../components/Jumbotron"
 const Home = () => {
   return (
-    <div style={{ marginTop: "4rem" }}>
-      <h1>Home</h1>
+    <div>
+      <Jumbotron />
     </div>
   );
 };
