@@ -2,7 +2,10 @@ import React from "react";
 
 const FilterBar = (props) => {
   return (
-    <form className="d-flex align-items-center flex-column input-group input-group-lg mt-3" role="search">
+    <form
+      className="d-flex align-items-center flex-column input-group input-group-lg"
+      role="search"
+    >
       <input
         className="form-control m-2 w-50 bg-light text-dark "
         type="search"

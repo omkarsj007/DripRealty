@@ -65,3 +65,23 @@
     color: white;
     text-shadow: 5px 5px 5px black;
 }
+
+.profile-content {
+    background: var(--tertiary-color);
+    border-radius: 30px;
+    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.8),
+                5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.profile-img{
+    border-radius: 50%;
+}
+
+.shadows{
+    box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.8),
+            5px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.darken {
+    filter: brightness(75%);
+}
+

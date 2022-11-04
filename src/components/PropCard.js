@@ -16,16 +16,20 @@ const PropCard = (props) => {
   return (
     <Col>
       <Link className="nav-link" to="/propertyInfo" state={{ info: info }}>
-        <Card 
-          className="grow" 
-          variant="light" 
+        <Card
+          className="grow shadows"
+          variant="light"
           text="dark"
-          bg="light">
+          bg="light"
+          border="light"
+          style={{ minHeight: "25rem" }}
+        >
           <Card.Img
             variant="top"
             src={props.property.images[0]}
             style={{ height: "12rem" }}
             className="cover"
+            loading="lazy"
           />
           <Card.Body>
             <Card.Title>{props.property.title}</Card.Title>
@@ -33,7 +37,9 @@ const PropCard = (props) => {
               {props.property.location[0].city},{" "}
               {props.property.location[0].state}
             </Card.Subtitle>
-            <Card.Text>{props.property.description.substring(0, 160)}...</Card.Text>
+            <Card.Text className="d-none d-xxl-block">
+              {props.property.description.substring(0, 100)}...
+            </Card.Text>
             <Card.Subtitle className="mb-2">
               {money(props.property.nightly_fee)}/night
             </Card.Subtitle>

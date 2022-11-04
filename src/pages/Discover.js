@@ -16,13 +16,12 @@ const Discover = () => {
   }, []);
 
   return (
-    <div className="">
-      <div className="ms-5 me-5 mb-0">
+    <div className="bg-tertiary-color" style={{ height: "100vh" }}>
+      <div className="ms-5 me-5 mb-0 pt-5">
         <FilterBar filterText={filterText} onFilterTextChange={setFilterText} />
         <Properties properties={properties} filterText={filterText} />
       </div>
     </div>
-
   );
 };
 
