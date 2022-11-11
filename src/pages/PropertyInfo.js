@@ -15,7 +15,7 @@ const PropertyInfo = () => {
     }).format(number);
   };
   return (
-    <Container fluid className="font mt-3 bg-tertiary-color">
+    <Container fluid className="font pt-3 bg-tertiary-color">
       <Container>
         <h1 className="fw-bold">{info.property.title}</h1>
         <p className="fs-5">
@@ -116,7 +116,9 @@ const PropertyInfo = () => {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className="pb-5">
+        <p className="fs-3 fw-bold">Comments</p>
+        <hr />
         <CommentSection propertyID={info.property._id} />
       </Container>
     </Container>

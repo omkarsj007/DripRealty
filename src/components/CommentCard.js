@@ -31,10 +31,14 @@ const CommentCard = (props) => {
           </Col>
           <Col md={11}>
             <div>
-              <span className="fs-5 fw-bold">
+              <span className="fs-3 fw-bold">
                 {profile.first_name} {profile.last_name}
               </span>
               <div>{props.user.comments}</div>
+              <div className="fst-italic fw-bold">
+                Rating: {props.user.rating}/5
+              </div>
+              <div>{props.user.dateCommented.substring(0, 10)}</div>
             </div>
           </Col>
         </Row>
