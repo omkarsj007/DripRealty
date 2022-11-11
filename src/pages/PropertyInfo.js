@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import CardInfo from "../components/CardInfo";
+import CommentSection from "../components/CommentSection";
 import "../components/styles/mystyles.css";
 const PropertyInfo = () => {
   const location = useLocation();
@@ -14,8 +15,7 @@ const PropertyInfo = () => {
     }).format(number);
   };
   return (
-    
-    <Container fluid className="font mt-3">
+    <Container fluid className="font mt-3 bg-tertiary-color">
       <Container>
         <h1 className="fw-bold">{info.property.title}</h1>
         <p className="fs-5">
@@ -84,25 +84,23 @@ const PropertyInfo = () => {
       </Container>
       <Container className="mt-3 mb-3 fs-5">
         <p className="fs-2">
-          {money(info.property.nightly_fee)}
+          {money(info.property.nightly_fee["$numberDecimal"])}
           <span className="text-muted fs-5"> night</span>
         </p>
         <p className="fs-5">
           {info.property.max_guests} guests
-          <i class="bi bi-dot" />
+          <i className="bi bi-dot" />
           {info.property.bedrooms} bedrooms
-          <i class="bi bi-dot" />
+          <i className="bi bi-dot" />
           {info.property.beds} beds
-          <i class="bi bi-dot" />
+          <i className="bi bi-dot" />
           {info.property.baths} baths
         </p>
         <hr />
         <Row>
           <Col lg={6} className="mb-5">
-            <h3 className="fw-bold mb-3"> Description</h3>
-            <p className="fs-4">
-              {info.property.description}
-            </p>
+            <p className="fw-bold mb-3 fs-5"> Description</p>
+            <p className="fs-4">{info.property.description}</p>
             <hr />
             <p className="fw-bold fs-4"> Amenities</p>
             <ul>
@@ -114,14 +112,12 @@ const PropertyInfo = () => {
             </ul>
           </Col>
           <Col lg={6}>
-            <CardInfo fees={info}/>
-              
-  
+            <CardInfo fees={info} />
           </Col>
         </Row>
-
-
-
+      </Container>
+      <Container>
+        <CommentSection propertyID={info.property._id} />
       </Container>
     </Container>
   );

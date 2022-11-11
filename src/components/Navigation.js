@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./styles/mystyles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 
 import Navbar from "react-bootstrap/Navbar";
 
 const Navigation = () => {
+  const navigate = useNavigate();
+  const clickProfile = useCallback(
+    () => navigate("/profile", { replace: true }),
+    [navigate]
+  );
   return (
     <header>
       <Navbar
@@ -35,7 +40,7 @@ const Navigation = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link font mx-3" to="/test">
+                <Link className="nav-link font mx-3" to="/">
                   Become a Host
                 </Link>
               </li>
@@ -45,7 +50,10 @@ const Navigation = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <button className="btn btn-warning font mx-3">
+                <button
+                  className="btn btn-warning font mx-3"
+                  onClick={clickProfile}
+                >
                   <span>
                     <i className="bi bi-justify pe-2"></i>
                     <i className="bi bi-person-circle"></i>

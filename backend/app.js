@@ -1,23 +1,45 @@
-
 const express = require("express");
 const monk = require("monk");
 
-var db = monk('localhost:27017/vidzy');
+var db = monk("localhost:27017/driprealty");
 // console.log(db.listCollections())
-var collection = db.get('mycollection');
-
+var cors = require("cors");
 const app = express();
 
-app.use(express.json());
+// app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   return res.json({ message: "Hello World 👋🇵🇹" });
 });
 
-app.get("/posts", async (req, res) => {
+var properties = db.get("properties");
+app.get("/properties", async (req, res) => {
   try {
-    console.log(await db.listCollections())
-    const data = await collection.find();
+    console.log(await db.listCollections());
+    const data = await properties.find();
+    return res.json(data);
+  } catch (error) {
+    throw boomify(error);
+  }
+});
+
+var users = db.get("users");
+app.get("/users", async (req, res) => {
+  try {
+    console.log(await db.listCollections());
+    const data = await users.find();
+    return res.json(data);
+  } catch (error) {
+    throw boomify(error);
+  }
+});
+
+var comments = db.get("comments");
+app.get("/comments", async (req, res) => {
+  try {
+    console.log(await db.listCollections());
+    const data = await comments.find();
     return res.json(data);
   } catch (error) {
     throw boomify(error);
@@ -27,7 +49,7 @@ app.get("/posts", async (req, res) => {
 app.get("/insert", async (req, res) => {
   try {
     // console.log(await db.listCollections())
-    await collection.insert({item: 'canvas'});
+    await collection.insert({ item: "canvas" });
     // let results = await collection.insertOne({
     //   _id: 1000,
     //   user_id: 23452345,
@@ -44,6 +66,5 @@ app.get("/insert", async (req, res) => {
     console.log(error);
   }
 });
-
 
 module.exports = app;

@@ -7,22 +7,20 @@ const Discover = () => {
   const [filterText, setFilterText] = useState("");
 
   useEffect(() => {
-    fetch("properties.json")
+    fetch("http://localhost:3000/properties")
       .then((res) => res.json())
       .then((data) => {
         setProperties(data);
       })
       .catch(console.log);
   }, []);
-
   return (
-    <div className="">
+    <div className="bg-tertiary-color">
       <div className="ms-5 me-5 mb-0">
         <FilterBar filterText={filterText} onFilterTextChange={setFilterText} />
         <Properties properties={properties} filterText={filterText} />
       </div>
     </div>
-
   );
 };
 

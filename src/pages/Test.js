@@ -11,15 +11,12 @@ const Test = () => {
         setProperties(JSON.stringify(data, null, 2));
       })
       .catch(console.log);
-  }, []);w
+  }, []);
 
   return (
     <div className="">
-      <div className="ms-5 me-5 mb-0">
-        {properties}
-      </div>
+      <div className="ms-5 me-5 mb-0">{properties}</div>
     </div>
-
   );
 };
 

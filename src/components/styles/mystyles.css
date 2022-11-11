@@ -19,12 +19,15 @@
 .bg-secondary-color {
     background-color: var(--secondary-color);
 }
+
 .bg-tertiary-color {
     background-color: var(--tertiary-color);
 }
-.bg-gray-color{
+
+.bg-gray-color {
     background-color: #888888;
 }
+
 .font {
     font-family: 'Playfair Display', serif;
 }
@@ -55,6 +58,8 @@
 
 .grow:hover {
     transform: scale(1.05);
+    box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.8),
+            5px 5px 8px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-content {
@@ -64,4 +69,24 @@
     z-index: 20;
     color: white;
     text-shadow: 5px 5px 5px black;
+}
+
+.profile-content {
+    background: var(--tertiary-color);
+    border-radius: 30px;
+    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.8),
+        5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-img {
+    border-radius: 50%;
+}
+
+.shadows {
+    box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.8),
+        5px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.darken {
+    filter: brightness(75%);
 }
