@@ -26,12 +26,12 @@ app.get("/properties", async (req, res) => {
 
 app.put("/properties", async (req, res) => {
   try {
-    body = req.body;
-    console;
-    const data = await properties.update({});
+    let data = req.body;
+    console.log(data);
+    // const data = await properties.update({});
     return res.json(data);
   } catch (error) {
-    throw boomify(error);
+    console.log(error);
   }
 });
 
