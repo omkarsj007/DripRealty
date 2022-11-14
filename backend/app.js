@@ -26,8 +26,8 @@ app.get("/properties", async (req, res) => {
 
 app.put("/properties", async (req, res) => {
   try {
-    body = req.body
-    console
+    body = req.body;
+    console;
     const data = await properties.update({});
     return res.json(data);
   } catch (error) {
@@ -57,11 +57,11 @@ app.get("/comments", async (req, res) => {
   }
 });
 
-var reservations = db.get("reservations")
+var reservations = db.get("reservations");
 
 app.get("/reservations", async (req, res) => {
   try {
-    let data = await reservations.find()
+    let data = await reservations.find();
     // console.log(sample)
     return res.json(data);
   } catch (error) {
@@ -73,20 +73,17 @@ app.get("/reservationsProperty", async (req, res) => {
   try {
     let data = await reservations.aggregate([
       {
-        $lookup:
-        {
+        $lookup: {
           from: "properties",
           localField: "listing_id",
           foreignField: "_id",
-          as: "propertyDetails"
+          as: "propertyDetails",
         },
-
       },
       {
-        $match: {customer_id : "U2"}
-      }
-
-    ])
+        $match: { customer_id: "U2" },
+      },
+    ]);
     // console.log(sample)
     return res.json(data);
   } catch (error) {
@@ -96,17 +93,15 @@ app.get("/reservationsProperty", async (req, res) => {
 
 app.get("/userReservation", async (req, res) => {
   try {
-
-    let data = await reservations.find({ "customer_id": req.query.userID })
-    console.log(req.query.userID)
+    let data = await reservations.find({ customer_id: req.query.userID });
+    console.log(req.query.userID);
     return res.json(data);
   } catch (error) {
     console.log(error);
   }
 });
 
-app.put("")
-
+app.put("");
 
 app.get("/insert", async (req, res) => {
   try {
