@@ -43,9 +43,6 @@ app.put("/properties", async (req, res) => {
       { $set: req.body },
       { upsert: true }
     );
-    if (data.n == 0) {
-      // const data = await properties.update({ ...req.body }, { upsert: true });
-    }
     return res.json(data);
   } catch (error) {
     console.log(error);
