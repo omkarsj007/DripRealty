@@ -1,7 +1,9 @@
 const express = require("express");
 const monk = require("monk");
-
+var ObjectId = require("mongodb").ObjectId;
+const mongoose = require("mongoose");
 var db = monk("localhost:27017/driprealty");
+
 // console.log(db.listCollections())
 var cors = require("cors");
 const app = express();
@@ -16,19 +18,27 @@ app.get("/", (req, res) => {
 var properties = db.get("properties");
 app.get("/properties", async (req, res) => {
   try {
-    console.log(await db.listCollections());
-    const data = await properties.find();
+    let data;
+    if (req.query == null) {
+      data = await properties.find();
+    } else {
+      data = await properties.find({ id: req.query.id });
+    }
+    console.log(req.body);
+
     return res.json(data);
   } catch (error) {
-    throw boomify(error);
+    console.log(error);
   }
 });
 
 app.put("/properties", async (req, res) => {
   try {
-    let data = req.body;
-    console.log(data);
-    // const data = await properties.update({});
+    console.log(req.query.id);
+    const data = await properties.update(
+      { id: req.query.id.toString() },
+      { $set: { baths: "4" } }
+    );
     return res.json(data);
   } catch (error) {
     console.log(error);
@@ -59,7 +69,7 @@ app.get("/comments", async (req, res) => {
 
 var reservations = db.get("reservations");
 
-app.get("/reservations", async (req, res) => {
+app.get("/reservationsAll", async (req, res) => {
   try {
     let data = await reservations.find();
     // console.log(sample)
@@ -91,7 +101,7 @@ app.get("/reservationsProperty", async (req, res) => {
   }
 });
 
-app.get("/userReservation", async (req, res) => {
+app.get("/reservations", async (req, res) => {
   try {
     let data = await reservations.find({ customer_id: req.query.userID });
     console.log(req.query.userID);
