@@ -119,7 +119,7 @@ const PropertyInfo = () => {
       <Container className="pb-5">
         <p className="fs-3 fw-bold">Comments</p>
         <hr />
-        <CommentSection propertyID={info.property._id} />
+        <CommentSection propertyID={info.property.id} />
       </Container>
     </Container>
   );
