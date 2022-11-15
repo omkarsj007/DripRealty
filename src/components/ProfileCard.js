@@ -2,13 +2,13 @@ import React from "react";
 import { Card, ListGroup, Image } from "react-bootstrap";
 
 const ProfileCard = (props) => {
-  console.log(props.user._id);
+  console.log(props.user.id);
   return (
     <Card style={{ width: "12rem" }} border="light" className="shadows">
       <ListGroup variant="flush">
         <ListGroup.Item className="d-flex justify-content-center">
           <Image
-            src={"/img/" + props.user._id + ".jpg"}
+            src={"/img/" + props.user.id + ".jpg"}
             roundedCircle
             style={{ height: "10rem" }}
             className="shadows"
