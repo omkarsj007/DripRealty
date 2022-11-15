@@ -9,7 +9,7 @@ const CommentCard = (props) => {
       .then((res) => res.json())
       .then((data) => {
         setProfile(
-          data[data.findIndex((e) => e._id === props.user.reviewer_id)]
+          data[data.findIndex((e) => e.id === props.user.reviewer_id)]
         );
       })
       .catch(console.log);
@@ -21,7 +21,7 @@ const CommentCard = (props) => {
           <Col md={1}>
             <Link className="nav-link" to="/profile" state={{ info: profile }}>
               <Image
-                src={"/img/" + profile._id + ".jpg"}
+                src={"/img/" + profile.id + ".jpg"}
                 roundedCircle
                 style={{ height: "5rem" }}
                 className="shadows"

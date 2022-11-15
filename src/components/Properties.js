@@ -22,7 +22,7 @@ const Properties = (props) => {
             );
           })
           .map((p) => (
-            <PropCard key={p._id} property={p} />
+            <PropCard key={p.id} property={p} />
           ))}
       </Row>
     </Container>

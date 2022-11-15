@@ -20,7 +20,7 @@ const CommentSection = (props) => {
             return filter.listing_id === props.propertyID;
           })
           .map((users) => (
-            <CommentCard key={users._id} user={users} />
+            <CommentCard key={users.id} user={users} />
           ))}
       </div>
     </Container>
