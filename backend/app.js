@@ -145,7 +145,7 @@ app.get("/reservationsProperty", async (req, res) => {
   }
 });
 
-app.get("/insert", async (req, res) => {
+app.put("/insert", async (req, res) => {
   try {
     // console.log(await db.listCollections())
     // let results = await collection.insertOne({

@@ -4,15 +4,29 @@ import Form from "react-bootstrap/Form";
 const Test = () => {
   const [properties, setProperties] = useState([]);
   const [filterText, setFilterText] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:3000/insert")
-      .then((res) => res.json())
-      .then((data) => {
-        setProperties(JSON.stringify(data, null, 2));
-      })
-      .catch(console.log);
-  }, []);
+  // handleSubmit() {
+  //     const requestOptions = {
+  //       method: "PUT",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ stri: "here" }),
+  //     };
+  //     fetch("http://localhost:3000/insert", requestOptions)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log();
+  //         setProperties(JSON.stringify(data, null, 2));
+  //       })
+  //       .catch(console.log);
+  //   }
+  //   useEffect(() => {
+  //     fetch("http://localhost:3000/properties?id={props.property.id}", requestOptions)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log();
+  //         setProperties(JSON.stringify(data, null, 2));
+  //       })
+  //       .catch(console.log);
+  //   }, []);
 
   return (
     <div className="">
