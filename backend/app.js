@@ -3,13 +3,13 @@ const monk = require("monk");
 var ObjectId = require("mongodb").ObjectId;
 const mongoose = require("mongoose");
 var db = monk("localhost:27017/driprealty");
-const bp = require('body-parser')
+const bp = require("body-parser");
 
 // console.log(db.listCollections())
 var cors = require("cors");
 const app = express();
-app.use(bp.json())
-app.use(bp.urlencoded({ extended: true }))
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 // app.use(express.json());
 app.use(cors());
@@ -22,7 +22,7 @@ var properties = db.get("properties");
 app.get("/properties", async (req, res) => {
   try {
     let data;
-    console.log(req.query)
+    console.log(req.query);
     if (Object.keys(req.query).length === 0) {
       data = await properties.find();
     } else {
@@ -40,8 +40,12 @@ app.put("/properties", async (req, res) => {
   try {
     const data = await properties.update(
       { id: req.query.id.toString() },
-      { $set: req.body  }
+      { $set: req.body },
+      { upsert: true }
     );
+    if (data.n == 0) {
+      // const data = await properties.update({ ...req.body }, { upsert: true });
+    }
     return res.json(data);
   } catch (error) {
     console.log(error);
@@ -132,8 +136,6 @@ app.get("/reservationsProperty", async (req, res) => {
     console.log(error);
   }
 });
-
-
 
 app.get("/insert", async (req, res) => {
   try {
