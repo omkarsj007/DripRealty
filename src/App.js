@@ -2,6 +2,7 @@ import Navigation from "./components/Navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Test from "./pages/Test";
 import Discover from "./pages/Discover";
 import PropertyInfo from "./pages/PropertyInfo";
 import Profile from "./pages/Profile";
@@ -14,7 +15,7 @@ function App() {
       <Navigation />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Test />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/propertyInfo" element={<PropertyInfo />} />
         <Route path="/profile" element={<Profile />} />

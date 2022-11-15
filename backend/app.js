@@ -98,7 +98,18 @@ app.get("/reservations", async (req, res) => {
     console.log(error);
   }
 });
-
+app.put("/reservations", async (req, res) => {
+  try {
+    const data = await reservations.update(
+      { id: req.query.id.toString() },
+      { $set: req.body },
+      { upsert: true }
+    );
+    return res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 app.delete("/reservations", async (req, res) => {
   try {
     if (Object.keys(req.query).length === 0) {
@@ -137,7 +148,6 @@ app.get("/reservationsProperty", async (req, res) => {
 app.get("/insert", async (req, res) => {
   try {
     // console.log(await db.listCollections())
-    await collection.insert({ item: "canvas" });
     // let results = await collection.insertOne({
     //   _id: 1000,
     //   user_id: 23452345,
@@ -148,8 +158,8 @@ app.get("/insert", async (req, res) => {
     //   last_updated_date: new Date(2022, 08, 19, 13, 12),
     //   cost: 300
     // })
-    const data = await collection.find();
-    return res.json(data);
+
+    console.log(req.body);
   } catch (error) {
     console.log(error);
   }
