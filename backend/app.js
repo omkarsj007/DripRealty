@@ -3,10 +3,13 @@ const monk = require("monk");
 var ObjectId = require("mongodb").ObjectId;
 const mongoose = require("mongoose");
 var db = monk("localhost:27017/driprealty");
+const bp = require('body-parser')
 
 // console.log(db.listCollections())
 var cors = require("cors");
 const app = express();
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
 
 // app.use(express.json());
 app.use(cors());
@@ -19,7 +22,8 @@ var properties = db.get("properties");
 app.get("/properties", async (req, res) => {
   try {
     let data;
-    if (req.query == null) {
+    console.log(req.query)
+    if (Object.keys(req.query).length === 0) {
       data = await properties.find();
     } else {
       data = await properties.find({ id: req.query.id });
@@ -34,11 +38,23 @@ app.get("/properties", async (req, res) => {
 
 app.put("/properties", async (req, res) => {
   try {
-    console.log(req.query.id);
     const data = await properties.update(
       { id: req.query.id.toString() },
-      { $set: { baths: "4" } }
+      { $set: req.body  }
     );
+    return res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.delete("/properties", async (req, res) => {
+  try {
+    if (Object.keys(req.query).length === 0) {
+      data = [];
+    } else {
+      data = await properties.remove({ id: req.query.id });
+    }
     return res.json(data);
   } catch (error) {
     console.log(error);
@@ -69,10 +85,26 @@ app.get("/comments", async (req, res) => {
 
 var reservations = db.get("reservations");
 
-app.get("/reservationsAll", async (req, res) => {
+app.get("/reservations", async (req, res) => {
   try {
-    let data = await reservations.find();
-    // console.log(sample)
+    if (Object.keys(req.query).length === 0) {
+      data = await reservations.find();
+    } else {
+      data = await reservations.find({ id: req.query.id });
+    }
+    return res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.delete("/reservations", async (req, res) => {
+  try {
+    if (Object.keys(req.query).length === 0) {
+      data = [];
+    } else {
+      data = await reservations.remove({ id: req.query.id });
+    }
     return res.json(data);
   } catch (error) {
     console.log(error);
@@ -86,7 +118,7 @@ app.get("/reservationsProperty", async (req, res) => {
         $lookup: {
           from: "properties",
           localField: "listing_id",
-          foreignField: "_id",
+          foreignField: "id",
           as: "propertyDetails",
         },
       },
@@ -101,17 +133,7 @@ app.get("/reservationsProperty", async (req, res) => {
   }
 });
 
-app.get("/reservations", async (req, res) => {
-  try {
-    let data = await reservations.find({ customer_id: req.query.userID });
-    console.log(req.query.userID);
-    return res.json(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
 
-app.put("");
 
 app.get("/insert", async (req, res) => {
   try {
