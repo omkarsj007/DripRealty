@@ -7,6 +7,7 @@ import Discover from "./pages/Discover";
 import PropertyInfo from "./pages/PropertyInfo";
 import Profile from "./pages/Profile";
 import mongoose from "mongoose";
+import BecomeHost from "./pages/BecomeHost";
 // const cors = require("cors");
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/discover" element={<Discover />} />
         <Route path="/propertyInfo" element={<PropertyInfo />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/becomeHost" element={<BecomeHost />} />
       </Routes>
     </Router>
   );

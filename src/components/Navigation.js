@@ -40,7 +40,7 @@ const Navigation = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link font mx-3" to="/">
+                <Link className="nav-link font mx-3" to="/becomeHost">
                   Become a Host
                 </Link>
               </li>
