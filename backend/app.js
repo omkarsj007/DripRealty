@@ -19,6 +19,8 @@ app.get("/", (req, res) => {
 });
 
 var properties = db.get("properties");
+
+// Method used to retreive one or all properties
 app.get("/properties", async (req, res) => {
   try {
     let data;
@@ -36,6 +38,7 @@ app.get("/properties", async (req, res) => {
   }
 });
 
+// Method used to update existing property or create a new property
 app.put("/properties", async (req, res) => {
   try {
     const data = await properties.update(
@@ -49,6 +52,7 @@ app.put("/properties", async (req, res) => {
   }
 });
 
+// Method used to delete a property listing
 app.delete("/properties", async (req, res) => {
   try {
     if (Object.keys(req.query).length === 0) {
@@ -62,30 +66,10 @@ app.delete("/properties", async (req, res) => {
   }
 });
 
-var users = db.get("users");
-app.get("/users", async (req, res) => {
-  try {
-    console.log(await db.listCollections());
-    const data = await users.find();
-    return res.json(data);
-  } catch (error) {
-    throw boomify(error);
-  }
-});
-
-var comments = db.get("comments");
-app.get("/comments", async (req, res) => {
-  try {
-    console.log(await db.listCollections());
-    const data = await comments.find();
-    return res.json(data);
-  } catch (error) {
-    throw boomify(error);
-  }
-});
 
 var reservations = db.get("reservations");
 
+// Method to retrieve one or all reservations.
 app.get("/reservations", async (req, res) => {
   try {
     if (Object.keys(req.query).length === 0) {
@@ -98,6 +82,8 @@ app.get("/reservations", async (req, res) => {
     console.log(error);
   }
 });
+
+// Method to update a reservation or create a new reservation
 app.put("/reservations", async (req, res) => {
   try {
     const data = await reservations.update(
@@ -110,6 +96,8 @@ app.put("/reservations", async (req, res) => {
     console.log(error);
   }
 });
+
+// Method to delete a reservation
 app.delete("/reservations", async (req, res) => {
   try {
     if (Object.keys(req.query).length === 0) {
@@ -123,6 +111,32 @@ app.delete("/reservations", async (req, res) => {
   }
 });
 
+
+var users = db.get("users");
+// Method used to retrieve users 
+app.get("/users", async (req, res) => {
+  try {
+    console.log(await db.listCollections());
+    const data = await users.find();
+    return res.json(data);
+  } catch (error) {
+    throw boomify(error);
+  }
+});
+
+var comments = db.get("comments");
+// Method used to retrieve comments for a property listing
+app.get("/comments", async (req, res) => {
+  try {
+    console.log(await db.listCollections());
+    const data = await comments.find();
+    return res.json(data);
+  } catch (error) {
+    throw boomify(error);
+  }
+});
+
+// Get the join of a the reservation and its corresponding property
 app.get("/reservationsProperty", async (req, res) => {
   try {
     let data = await reservations.aggregate([
