@@ -15,7 +15,7 @@ const PropCard = (props) => {
   const [info] = useState(props);
   return (
     <Col>
-      <Link className="nav-link" to="/propertyInfo" state={{ info: info }}>
+      <Link className="nav-link" to="/propertyInfo/" state={{ info: info }}>
         <Card
           className="grow"
           variant="light"
@@ -32,8 +32,7 @@ const PropCard = (props) => {
           <Card.Body>
             <Card.Title>{props.property.title}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              {props.property.location[0].city},{" "}
-              {props.property.location[0].state}
+              {props.property.location.city}, {props.property.location.state}
             </Card.Subtitle>
             <Card.Text className="d-none d-xl-block">
               {props.property.description.substring(0, 160)}...

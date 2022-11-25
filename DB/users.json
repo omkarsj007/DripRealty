@@ -1,0 +1,53 @@
+[{
+  "id": "U1",
+  "first_name": "Supreme",
+  "last_name": "Overlord",
+  "email": "supremeoverlord@someplace.com",
+  "pwd": "<Hashed-Value>",
+  "phone_num": "(111)-111-1111",
+  "Age": "24",
+  "join_date": {
+    "$date": {
+      "$numberLong": "1659916800000"
+    }
+  },
+  "favorites": [
+    "P1",
+    "P3",
+    "P6"
+  ]
+},{
+  "id": "U2",
+  "first_name": "Buzz",
+  "last_name": "Lightyear",
+  "email": "buzzlightyear@someplace.com",
+  "pwd": "<Hashed-Value>",
+  "phone_num": "(222)-123-4567",
+  "Age": "29",
+  "join_date": {
+    "$date": {
+      "$numberLong": "1659830400000"
+    }
+  },
+  "favorites": [
+    "P2",
+    "P3"
+  ]
+},{
+  "id": "U3",
+  "first_name": "Dark",
+  "last_name": "Overlord",
+  "email": "darkoverload@someplace.com",
+  "pwd": "<Hashed-Value>",
+  "phone_num": "(888)-777-6969",
+  "Age": "27",
+  "join_date": {
+    "$date": {
+      "$numberLong": "1654732800000"
+    }
+  },
+  "favorites": [
+    "P3",
+    "P7"
+  ]
+}]

@@ -10,10 +10,10 @@ const Properties = (props) => {
         {props.properties
           .filter((filter) => {
             return (
-              filter.location[0].city
+              filter.location.city
                 .toLowerCase()
                 .includes(props.filterText.toLowerCase()) ||
-              filter.location[0].state
+              filter.location.state
                 .toLowerCase()
                 .includes(props.filterText.toLowerCase()) ||
               filter.title

@@ -19,8 +19,8 @@ const PropertyInfo = () => {
       <Container>
         <h1 className="fw-bold">{info.property.title}</h1>
         <p className="fs-5">
-          Located in {info.property.location[0].city},{" "}
-          {info.property.location[0].state}
+          Located in {info.property.location.city},{" "}
+          {info.property.location.state}
         </p>
         <Row>
           <Col lg={6} style={{ height: "412px" }}>
@@ -41,6 +41,7 @@ const PropertyInfo = () => {
                   alt=""
                   src={info.property.images[1]}
                   className="cover rounded"
+                  loading="lazy"
                 />
               </Col>
               <Col
