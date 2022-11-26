@@ -147,19 +147,22 @@ const BecomeHost = () => {
     while (properties.includes(num_id)) {
       num_id = (Math.floor(Math.random() * 100) + 1).toString();
     }
+    console.log(num_id);
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(inputFields),
     };
-    fetch("http://localhost:3000/properties?id=P" + { num_id }, requestOptions)
+    fetch(
+      "http://localhost:3000/properties?id=P" + num_id.toString(),
+      requestOptions
+    )
       .then(() => console.log(inputFields))
       .catch(console.log);
     setShow(false);
-    navigate.push("/home");
+    navigate("/propertyInfo", { state: { info: { property: inputFields } } });
   };
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -167,6 +170,7 @@ const BecomeHost = () => {
       <div className="m-3 fs-1 fw-bold font d-flex justify-content-center">
         Add your property
       </div>
+      <hr />
       <Form className="ps-5 pe-5">
         <Form.Group className="mb-3">
           <FloatingLabel label="Title">
@@ -352,7 +356,8 @@ const BecomeHost = () => {
             </Accordion.Item>
           </Accordion>
         </Form.Group>
-        <div className="d-flex justify-content-center">
+        <hr />
+        <div className="d-flex justify-content-center mb-5">
           <Button size="lg" variant="primary" onClick={handleShow}>
             Submit
           </Button>
