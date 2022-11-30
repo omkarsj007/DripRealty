@@ -2,7 +2,6 @@ import React from "react";
 import { Card, ListGroup, Image } from "react-bootstrap";
 
 const ProfileCard = (props) => {
-  console.log(props.user.id);
   return (
     <Card style={{ width: "12rem" }} border="light" className="shadows">
       <ListGroup variant="flush">

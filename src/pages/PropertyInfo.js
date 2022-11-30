@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Button,
+  FloatingLabel,
+  Form,
+} from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import CardInfo from "../components/CardInfo";
 import CommentSection from "../components/CommentSection";
@@ -119,7 +126,28 @@ const PropertyInfo = () => {
       </Container>
       <Container className="pb-5">
         <p className="fs-3 fw-bold">Comments</p>
+
+        <Row>
+          <Col xs={14} md={10}>
+            <Form>
+              <FloatingLabel label="Post a comment" className="mt-3">
+                <Form.Control
+                  as="textarea"
+                  name="description"
+                  style={{ maxHeight: "10rem", minHeight: "6rem" }}
+                />
+              </FloatingLabel>
+            </Form>
+          </Col>
+          <Col xs={4} md={2}>
+            <Button variant="outline-dark" size="lg">
+              Insert
+            </Button>
+          </Col>
+        </Row>
         <hr />
+      </Container>
+      <Container className="pb-5">
         <CommentSection propertyID={info.property.id} />
       </Container>
     </Container>

@@ -90,3 +90,32 @@
 .darken {
     filter: brightness(75%);
 }
+
+.card-list {
+    position: relative;
+    text-align: left;
+}
+
+.centered {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+}
+
+.btn-centered{
+    position: absolute;
+    bottom: 32px;
+    right: 16px;
+}
+.edit-link {
+    color: white !important;
+}
+.edit-link:hover {
+    color: lightgray !important;
+    cursor: pointer;
+}
+
+.text-shadow {
+    text-shadow: 3px 3px 3px #000000
+}
+

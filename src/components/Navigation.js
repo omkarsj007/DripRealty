@@ -1,17 +1,20 @@
-import React, { useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/mystyles.css";
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-
 import Navbar from "react-bootstrap/Navbar";
 
 const Navigation = () => {
-  const navigate = useNavigate();
-  const clickProfile = useCallback(
-    () => navigate("/profile", { replace: true }),
-    [navigate]
-  );
+  const [profile, setProfile] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/users")
+      .then((res) => res.json())
+      .then((data) => {
+        setProfile(data[data.findIndex((e) => e.id === "U1")]);
+      })
+      .catch(console.log);
+  }, []);
+
   return (
     <header>
       <Navbar
@@ -50,15 +53,14 @@ const Navigation = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <button
-                  className="btn btn-warning font mx-3"
-                  onClick={clickProfile}
-                >
-                  <span>
-                    <i className="bi bi-justify pe-2"></i>
-                    <i className="bi bi-person-circle"></i>
-                  </span>
-                </button>
+                <Link to="/profile" state={{ info: profile }}>
+                  <button className="btn btn-warning font mx-3">
+                    <span>
+                      <i className="bi bi-justify pe-2"></i>
+                      <i className="bi bi-person-circle"></i>
+                    </span>
+                  </button>
+                </Link>
               </li>
             </ul>
           </Navbar.Collapse>
