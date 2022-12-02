@@ -13,6 +13,7 @@ const PropCard = (props) => {
     }).format(number);
   };
   const [info] = useState(props);
+  console.log(info);
   return (
     <Col>
       <Link className="nav-link" to="/propertyInfo" state={{ info: info }}>

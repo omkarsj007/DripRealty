@@ -15,39 +15,7 @@ const EditProperties = () => {
   const location = useLocation();
   const [info] = useState(location.state.info);
 
-  const [inputFields, setInputFields] = useState(
-    // title: "",
-    // images: [
-    //   "img/house101.jpg",
-    //   "img/house102.jpg",
-    //   "img/house103.jpg",
-    //   "img/house104.jpg",
-    //   "img/house105.jpg",
-    // ],
-    // location: {
-    //   address: "",
-    //   city: "",
-    //   state: "",
-    // },
-
-    // nightly_fee: {
-    //   $numberDecimal: "",
-    // },
-    // service_fee: {
-    //   $numberDecimal: "",
-    // },
-    // cleaning_fee: {
-    //   $numberDecimal: "",
-    // },
-    // amenities: [],
-    // max_guests: "",
-    // beds: "",
-    // bedrooms: "",
-    // baths: "",
-    // description: "",
-    // hostID: "U1",
-    info
-  );
+  const [inputFields, setInputFields] = useState(info);
 
   const updateData = (e) => {
     setInputFields({
