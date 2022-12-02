@@ -53,7 +53,7 @@ const Navigation = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/profile" state={{ info: profile }}>
+                <Link to="/Login" state={{ info: profile }}>
                   <button className="btn btn-warning font mx-3">
                     <span>
                       <i className="bi bi-justify pe-2"></i>

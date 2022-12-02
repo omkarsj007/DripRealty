@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import mongoose from "mongoose";
 import BecomeHost from "./pages/BecomeHost";
 import EditProperties from "./pages/EditProperties";
+import Login from "./pages/Login";
 // const cors = require("cors");
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/becomeHost" element={<BecomeHost />} />
         <Route path="/editProperties" element={<EditProperties />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
