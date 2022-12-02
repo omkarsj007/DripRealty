@@ -8,7 +8,7 @@ const UserPropertyCard = (props) => {
   return (
     <Container>
       <Link to="/propertyInfo" state={{ info: { property: props.info } }}>
-        <div className="card-list mb-2" style={{ height: "6rem" }}>
+        <div className="card-list mb-2 grow" style={{ height: "6rem" }}>
           <img
             className="cover rounded shadows"
             src={props.info.images[0]}

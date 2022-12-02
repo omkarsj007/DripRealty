@@ -296,7 +296,7 @@ const BecomeHost = () => {
                 <Row xs={1} md={4} xxl={6} className="g-4">
                   {topAmenities.map((item) => (
                     <Form.Check
-                      type="radio"
+                      type="checkbox"
                       key={item}
                       name={item}
                       label={item}
@@ -312,7 +312,7 @@ const BecomeHost = () => {
                 <Row xs={1} md={4} xxl={6} className="g-4">
                   {basicAmenities.map((item) => (
                     <Form.Check
-                      type="radio"
+                      type="checkbox"
                       key={item}
                       name={item}
                       label={item}
@@ -328,7 +328,7 @@ const BecomeHost = () => {
                 <Row xs={1} md={4} xxl={6} className="g-4">
                   {safetyAmenities.map((item) => (
                     <Form.Check
-                      type="radio"
+                      type="checkbox"
                       key={item}
                       name={item}
                       label={item}
@@ -344,7 +344,7 @@ const BecomeHost = () => {
                 <Row xs={1} md={4} xxl={6} className="g-4">
                   {extraAmenities.map((item) => (
                     <Form.Check
-                      type="radio"
+                      type="checkbox"
                       key={item}
                       name={item}
                       label={item}
