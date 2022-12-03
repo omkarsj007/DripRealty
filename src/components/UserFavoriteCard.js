@@ -17,6 +17,8 @@ const UserFavoriteCard = (props) => {
       favorites: changes,
     });
     console.log(inputFields);
+    props.delete(props.deleteValue + 1);
+
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -37,6 +39,7 @@ const UserFavoriteCard = (props) => {
       ),
     [navigate]
   );
+
   return (
     <Container>
       <div className="card-list mb-2 grow" style={{ height: "6rem" }}>
