@@ -41,23 +41,35 @@ const Login = () => {
           state: { info: JSON.parse(localStorage.getItem("user")) },
         });
       })
+      // .then(
+      //       fetch("http://localhost:3000/welcome/", {
+      //       method: "get",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         Accept: "application/json",
+      //         "x-auth-token": JSON.parse(localStorage.getItem("user")).token,
+      //       },
+      //       })
+      //       .then((res) => res.json())
+      //       .then((res) => console.log(res))
+      // )
       .catch((error) => {
         console.log(error.message);
       });
 
     //request to a protected route
-    const localstorage_user = JSON.parse(localStorage.getItem("user"));
-    console.log(localstorage_user);
-    fetch("http://localhost:3000/welcome/", {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "x-auth-token": localstorage_user.token,
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    // const localstorage_user = JSON.parse(localStorage.getItem("user"));
+    // console.log(localstorage_user);
+    // fetch("http://localhost:3000/welcome/", {
+    //   method: "get",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     "x-auth-token": localstorage_user.token,
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => console.log(res));
   };
   if (localStorage.getItem("user")) {
     return <Profile></Profile>;
