@@ -80,15 +80,15 @@ const Navigation = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/Login" state={{ info: profile }}>
+                {/* <Link to="/Login" state={{ info: profile }}>
                   <button className="btn btn-warning font mx-3">
                     <span>
                       <i className="bi bi-justify pe-2"></i>
                       <i className="bi bi-person-circle"></i>
                     </span>
                   </button>
-                </Link> */
-                <ProfileButton profile={profile}></ProfileButton>}
+                </Link>  */}
+                <ProfileButton profile={profile}></ProfileButton>
               </li>
             </ul>
           </Navbar.Collapse>
