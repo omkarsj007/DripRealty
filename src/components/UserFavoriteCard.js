@@ -19,10 +19,12 @@ const UserFavoriteCard = (props) => {
     console.log(inputFields);
     const requestOptions = {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(inputFields),
     };
-    fetch("http://localhost:3000/user?id=U1", requestOptions)
+    fetch("http://localhost:3000/users?id=U1", requestOptions)
       .then(() => console.log())
       .catch(console.log);
   };

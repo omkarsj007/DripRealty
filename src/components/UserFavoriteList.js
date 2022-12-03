@@ -9,9 +9,10 @@ const UserFavoriteList = (props) => {
       .then((res) => res.json())
       .then((data) => {
         setUseData(data);
+        console.log(userData);
       })
       .catch(console.log);
-  });
+  }, []);
 
   return (
     <Container>
