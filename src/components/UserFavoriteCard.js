@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useCallback, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import "./styles/mystyles.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 const UserFavoriteCard = (props) => {
-  const [inputFields, setInputFields] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:3000/users?id=U1")
-      .then((res) => res.json())
-      .then((data) => {
-        setInputFields(data);
-      })
-      .catch(console.log);
-  }, []);
+  const [inputFields, setInputFields] = useState(props.user[0]);
 
+  const navigate = useNavigate();
   const handleSubmit = () => {
+    let changes = props.user[0].favorites.filter(
+      (filter) => props.info.id !== filter
+    );
+    setInputFields({
+      ...inputFields,
+      favorites: changes,
+    });
+    console.log(inputFields);
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -25,32 +26,40 @@ const UserFavoriteCard = (props) => {
       .then(() => console.log())
       .catch(console.log);
   };
-  console.log(inputFields);
+  const handleOnClickProperty = useCallback(
+    () =>
+      navigate(
+        "/propertyInfo",
+        { state: { info: { property: props.info } } },
+        { replace: true }
+      ),
+    [navigate]
+  );
   return (
     <Container>
-      <Link to="/propertyInfo" state={{ info: { property: props.info } }}>
-        <div className="card-list mb-2 grow" style={{ height: "6rem" }}>
-          <img
-            className="cover rounded shadows"
-            src={props.info.images[0]}
-            alt="background"
-            loading="lazy"
-          />
+      <div className="card-list mb-2 grow" style={{ height: "6rem" }}>
+        <img
+          className="cover rounded shadows"
+          src={props.info.images[0]}
+          alt="background"
+          loading="lazy"
+        />
 
-          <p
-            className="centered font text-shadow fs-3 ps-5"
+        <p
+          className="centered font text-shadow fs-3 ps-5 edit-link`"
+          style={{ color: "white" }}
+          onClick={handleOnClickProperty}
+        >
+          {props.info.title}
+        </p>
+        <OverlayTrigger placement="right" overlay={<Tooltip>Remove</Tooltip>}>
+          <i
+            className="edit-link bi bi-trash btn-centered fs-2"
             style={{ color: "white" }}
-          >
-            {props.info.title}
-          </p>
-          <OverlayTrigger placement="right" overlay={<Tooltip>Remove</Tooltip>}>
-            <i
-              className="edit-link bi bi-trash btn-centered fs-2"
-              style={{ color: "white" }}
-            ></i>
-          </OverlayTrigger>
-        </div>
-      </Link>
+            onClick={handleSubmit}
+          ></i>
+        </OverlayTrigger>
+      </div>
     </Container>
   );
 };

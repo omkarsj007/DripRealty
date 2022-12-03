@@ -14,10 +14,6 @@ const UserPropertyList = (props) => {
       .catch(console.log);
   }, []);
 
-  properties
-    .filter((filter) => filter.hostID === props.user.id)
-    .map((p) => console.log(p));
-
   return (
     <Container>
       <p className="font fw-bold fs-1">Listed Properties</p>

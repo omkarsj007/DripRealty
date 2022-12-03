@@ -13,9 +13,17 @@ const UserFavoriteList = (props) => {
       })
       .catch(console.log);
   }, []);
-  console.log(
-    properties.filter((filter) => props.user.favorites.includes(filter.id))
-  );
+
+  const [userData, setUseData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/users?id=U1")
+      .then((res) => res.json())
+      .then((data) => {
+        setUseData(data);
+      })
+      .catch(console.log);
+  }, []);
+
   return (
     <Container>
       <p className="font fw-bold fs-1">Favorites</p>
@@ -23,7 +31,7 @@ const UserFavoriteList = (props) => {
         {properties
           .filter((filter) => props.user.favorites.includes(filter.id))
           .map((p) => (
-            <UserFavoriteCard key={p.id} info={p} userID={props.user.id} />
+            <UserFavoriteCard key={p.id} info={p} user={userData} />
           ))}
       </Row>
     </Container>
