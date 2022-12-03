@@ -13,9 +13,9 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem("user");
     navigate("/login");
-  }
+  };
   return (
     <Container className="bg-tertiary-color p-5 mt-3 profile-content ">
       <Row>
@@ -25,9 +25,7 @@ const Profile = () => {
         <Col xs={12} md={8}>
           <UserPropertyList user={info} />
         </Col>
-        <Col>
-          <UserFavoriteList user={info} />
-        </Col>
+        <Col>{/* <UserFavoriteList user={info} /> */}</Col>
       </Row>
       <Row>
         <Button onClick={handleSubmit}></Button>
