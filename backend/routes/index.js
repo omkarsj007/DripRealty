@@ -11,7 +11,6 @@ var db = monk('localhost:27017/driprealty');
 var collection = db.get('users');
 
 
-
 router.get('/', function(req, res) {
 	res.render('index', { title: 'Express'} );
 
