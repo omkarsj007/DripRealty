@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import UserPropertyCard from "./UserPropertyCard";
 
-const UserPropertyList = (props) => {
+const UserFavoriteList = (props) => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
@@ -14,22 +14,23 @@ const UserPropertyList = (props) => {
       .catch(console.log);
   }, []);
 
-  properties
-    .filter((filter) => filter.hostID === props.user.id)
-    .map((p) => console.log(p));
+  props.user.favorites.map((p) => {
+    console.log(properties.find((find) => find.id === p));
+  });
 
   return (
     <Container>
-      <p className="font fw-bold fs-1">Listed Properties</p>
+      <p className="font fw-bold fs-1">Favorites</p>
       <Row xs={1} md={1} xxl={1}>
-        {properties
-          .filter((filter) => filter.hostID === props.user.id)
-          .map((p) => (
-            <UserPropertyCard key={p.id} info={p} />
-          ))}
+        {props.user.favorites.map((p) => {
+          <UserPropertyCard
+            key={p}
+            info={properties.find((find) => find.id === p)}
+          />;
+        })}
       </Row>
     </Container>
   );
 };
 
-export default UserPropertyList;
+export default UserFavoriteList;

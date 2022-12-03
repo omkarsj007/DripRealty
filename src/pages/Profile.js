@@ -4,6 +4,7 @@ import ProfileCard from "../components/ProfileCard";
 import "../components/styles/mystyles.css";
 import { useLocation } from "react-router-dom";
 import UserPropertyList from "../components/UserPropertyList";
+import UserFavoriteList from "../components/UserFavoriteList";
 const Profile = () => {
   const location = useLocation();
   const [info] = useState(location.state.info);
@@ -15,6 +16,9 @@ const Profile = () => {
         </Col>
         <Col xs={12} md={8}>
           <UserPropertyList user={info} />
+        </Col>
+        <Col>
+          <UserFavoriteList user={info} />
         </Col>
       </Row>
     </Container>
