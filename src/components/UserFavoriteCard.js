@@ -15,14 +15,17 @@ const UserFavoriteCard = (props) => {
       .catch(console.log);
   }, []);
 
-  const requestOptions = {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(inputFields),
+  const handleSubmit = () => {
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(inputFields),
+    };
+    fetch("http://localhost:3000/user?id=U1", requestOptions)
+      .then(() => console.log())
+      .catch(console.log);
   };
-  fetch("http://localhost:3000/user?id=U1", requestOptions)
-    .then(() => console.log())
-    .catch(console.log);
+  console.log(inputFields);
   return (
     <Container>
       <Link to="/propertyInfo" state={{ info: { property: props.info } }}>
