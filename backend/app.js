@@ -1,7 +1,7 @@
-var createError = require('http-errors');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var createError = require("http-errors");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 const express = require("express");
 const monk = require("monk");
 var ObjectId = require("mongodb").ObjectId;
@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 var db = monk("localhost:27017/driprealty");
 const bp = require("body-parser");
 
-var indexRouter = require('./routes/index');
+var indexRouter = require("./routes/index");
 
 // console.log(db.listCollections())
 var cors = require("cors");
@@ -20,36 +20,39 @@ app.use(bp.urlencoded({ extended: true }));
 // app.use(express.json());
 // app.use(cors());
 app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', ['*']);
-  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST');
-  res.append('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-auth-token');
+  res.append("Access-Control-Allow-Origin", ["*"]);
+  res.append("Access-Control-Allow-Methods", "GET,PUT,POST");
+  res.append(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, x-auth-token"
+  );
   next();
 });
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', indexRouter);
+app.use("/", indexRouter);
 
 // app.use(function(req, res, next) {
 //   next(createError(404));
 // });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 app.get("/", (req, res) => {
@@ -104,7 +107,6 @@ app.delete("/properties", async (req, res) => {
   }
 });
 
-
 var reservations = db.get("reservations");
 
 // Method to retrieve one or all reservations.
@@ -149,9 +151,8 @@ app.delete("/reservations", async (req, res) => {
   }
 });
 
-
 var users = db.get("users");
-// Method used to retrieve users 
+// Method used to retrieve users
 app.get("/users", async (req, res) => {
   try {
     console.log(await db.listCollections());
@@ -173,7 +174,19 @@ app.get("/comments", async (req, res) => {
     throw boomify(error);
   }
 });
-
+// Method used to update existing comment or create a new comment
+app.put("/comments", async (req, res) => {
+  try {
+    const data = await comments.update(
+      { id: req.query.id.toString() },
+      { $set: req.body },
+      { upsert: true }
+    );
+    return res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 // Get the join of a the reservation and its corresponding property
 app.get("/reservationsProperty", async (req, res) => {
   try {
