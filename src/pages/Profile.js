@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import ProfileCard from "../components/ProfileCard";
 import "../components/styles/mystyles.css";
@@ -11,7 +11,16 @@ const Profile = () => {
   const location = useLocation();
   const [info] = useState(location.state.info);
   const navigate = useNavigate();
+  const [properties, setProperties] = useState([]);
 
+  useEffect(() => {
+    fetch("http://localhost:3000/properties")
+      .then((res) => res.json())
+      .then((data) => {
+        setProperties(data);
+      })
+      .catch(console.log);
+  }, []);
   const handleSubmit = () => {
     localStorage.removeItem("user");
     navigate("/login");
@@ -25,7 +34,9 @@ const Profile = () => {
         <Col xs={12} md={8}>
           <UserPropertyList user={info} />
         </Col>
-        <Col>{/* <UserFavoriteList user={info} /> */}</Col>
+        <Col>
+          <UserFavoriteList user={info} property={properties} />
+        </Col>
       </Row>
       <Row>
         <Button onClick={handleSubmit}></Button>
