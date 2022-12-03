@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
-import UserPropertyCard from "./UserPropertyCard";
+import UserFavoriteCard from "./UserFavoriteCard";
 
 const UserFavoriteList = (props) => {
   const [properties, setProperties] = useState([]);
@@ -13,21 +13,18 @@ const UserFavoriteList = (props) => {
       })
       .catch(console.log);
   }, []);
-
-  props.user.favorites.map((p) => {
-    console.log(properties.find((find) => find.id === p));
-  });
-
+  console.log(
+    properties.filter((filter) => props.user.favorites.includes(filter.id))
+  );
   return (
     <Container>
       <p className="font fw-bold fs-1">Favorites</p>
       <Row xs={1} md={1} xxl={1}>
-        {props.user.favorites.map((p) => {
-          <UserPropertyCard
-            key={p}
-            info={properties.find((find) => find.id === p)}
-          />;
-        })}
+        {properties
+          .filter((filter) => props.user.favorites.includes(filter.id))
+          .map((p) => (
+            <UserFavoriteCard key={p.id} info={p} />
+          ))}
       </Row>
     </Container>
   );
