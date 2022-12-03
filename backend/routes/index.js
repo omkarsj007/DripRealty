@@ -89,7 +89,8 @@ router.post('/login', function(req, res) {
 
 			}
 			else{
-				if (user.password === password ){
+				
+				if (user.pwd === password ){
 					var token = jwt.sign({ user_id: user._id, email}, 'secretkey');
 					user.token = token;
 					res.json(user);
