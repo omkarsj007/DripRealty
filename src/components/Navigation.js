@@ -13,8 +13,9 @@ const Navigation = () => {
         setProfile(data[data.findIndex((e) => e.id === "U1")]);
       })
       .catch(console.log);
+      setProfile(localStorage.getItem('user'))
   }, []);
-
+  
   return (
     <header>
       <Navbar

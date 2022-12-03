@@ -1,76 +1,100 @@
 import React from "react";
 import { Container, Form, FloatingLabel, Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import Profile from "./Profile";
+import { useNavigate } from "react-router-dom";
+
+
 const Login = () => {
 
-  fetch('http://localhost:3000/login', {
-          method: "POST",
-          headers : { 
-            'Content-Type': 'application/json',
-             'Accept': 'application/json'
-          },
-          body: JSON.stringify( {  // you will get user information from login form
+  const navigate = useNavigate();
+  const [inputFields, setInputFields] = useState({email:"",password:""});
+  const updateData = (e) => {
+    setInputFields({
+      ...inputFields,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-            "email": "supremeoverlord@someplace.com",
-            "password": "<Hashed-Value>",
 
-          } )
-        })
-        .then( res => res.json() )
-        .then( (data) => { 
-            console.log(data);
 
-            let inMemoryToken = data.token;
-            console.log(inMemoryToken);
+  const handleSubmit = () => {
+    console.log(inputFields["email"])
+    fetch('http://localhost:3000/login', {
+      method: "POST",
+      headers : { 
+        'Content-Type': 'application/json',
+         'Accept': 'application/json'
+      },
+      body: JSON.stringify( {  // you will get user information from login form
 
-            localStorage.setItem('user', JSON.stringify(data));
+        "email": inputFields["email"],
+        "password": inputFields["password"],
 
-            
-        })
-        .catch((error) => {
-          console.log(error.message);
+      } )
+    })
+    .then( res => res.json() )
+    .then( (data) => { 
+        console.log(data);
+
+        let inMemoryToken = data.token;
+        console.log(localStorage.getItem('user'));
+
+        localStorage.setItem('user', JSON.stringify(data));
+        navigate("/profile");
+
         
-        });
+    })
+    .catch((error) => {
+      console.log(error.message);
+    
+    });
 
 
-        //request to a protected route
-        const localstorage_user = JSON.parse(localStorage.getItem('user'))
-        console.log(localstorage_user)
-        fetch( "http://localhost:3000/welcome/", {
-            method: 'get',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'x-auth-token': localstorage_user.token
-                
-            }
+    //request to a protected route
+    const localstorage_user = JSON.parse(localStorage.getItem('user'))
+    console.log(localstorage_user)
+    fetch( "http://localhost:3000/welcome/", {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'x-auth-token': localstorage_user.token
+            
+        }
 
-        })
-        .then( res => res.json() )
-        .then( res => console.log( res ) );
-
-  return (
+    })
+    .then( res => res.json() )
+    .then( res => console.log( res ) );
+  };
+  if(localStorage.getItem('user')){
+    return (<Profile ></Profile>)
+  }
+    return (
     <Container>
       <Form className="ps-5 pe-5">
         <Form.Group className="mb-3">
-          <FloatingLabel label="Username">
+          <FloatingLabel label="Email">
             <Form.Control
               placeholder="Title"
-              name="title"
-              //   onChange={updateData}
+              name="email"
+              onChange={updateData}
             />
           </FloatingLabel>
           <FloatingLabel label="Password">
             <Form.Control
               placeholder="Title"
-              name="title"
-              //   onChange={updateData}
+              name="password"
+              onChange={updateData}
             />
           </FloatingLabel>
-          <Button>Login</Button>
+          <Button onClick={handleSubmit}>Login</Button>
         </Form.Group>
       </Form>
     </Container>
-  );
-};
+    );
+  }
+  
+
 
 export default Login;

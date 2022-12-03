@@ -23,6 +23,19 @@ router.get('/welcome', auth, function(req, res) {
 });
 
 
+// Method used to retrieve users
+router.get("/userLoggedIn", auth, function(req, res) {
+  try {
+    collection.findOne({ email: req.email }, function(err, user){
+		res.json(user);
+	})
+	
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 router.post('/register', function(req, res) {
 	
 	const {username, email, password } = req.body;
