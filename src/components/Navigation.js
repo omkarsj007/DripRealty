@@ -13,9 +13,9 @@ const Navigation = () => {
         setProfile(data[data.findIndex((e) => e.id === "U1")]);
       })
       .catch(console.log);
-      setProfile(localStorage.getItem('user'))
+    setProfile(localStorage.getItem("user"));
   }, []);
-  
+
   return (
     <header>
       <Navbar
@@ -54,7 +54,7 @@ const Navigation = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/Login" state={{ info: profile }}>
+                <Link to="/profile" state={{ info: profile }}>
                   <button className="btn btn-warning font mx-3">
                     <span>
                       <i className="bi bi-justify pe-2"></i>
