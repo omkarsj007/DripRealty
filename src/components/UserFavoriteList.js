@@ -23,7 +23,7 @@ const UserFavoriteList = (props) => {
         {properties
           .filter((filter) => props.user.favorites.includes(filter.id))
           .map((p) => (
-            <UserFavoriteCard key={p.id} info={p} />
+            <UserFavoriteCard key={p.id} info={p} userID={props.user.id} />
           ))}
       </Row>
     </Container>

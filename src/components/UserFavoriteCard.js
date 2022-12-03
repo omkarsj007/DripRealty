@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import "./styles/mystyles.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 const UserFavoriteCard = (props) => {
+  const [inputFields, setInputFields] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/users?id=U1")
+      .then((res) => res.json())
+      .then((data) => {
+        setInputFields(data);
+      })
+      .catch(console.log);
+  }, []);
+
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(inputFields),
+  };
+  fetch("http://localhost:3000/user?id=U1", requestOptions)
+    .then(() => console.log())
+    .catch(console.log);
   return (
     <Container>
       <Link to="/propertyInfo" state={{ info: { property: props.info } }}>

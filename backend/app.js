@@ -155,14 +155,29 @@ var users = db.get("users");
 // Method used to retrieve users
 app.get("/users", async (req, res) => {
   try {
-    console.log(await db.listCollections());
-    const data = await users.find();
+    if (Object.keys(req.query).length === 0) {
+      data = await users.find();
+    } else {
+      data = await users.find({ id: req.query.id });
+    }
     return res.json(data);
   } catch (error) {
-    throw boomify(error);
+    console.log(error);
   }
 });
-
+// Method used to update existing comment or create a new comment
+app.put("/users", async (req, res) => {
+  try {
+    const data = await users.update(
+      { id: req.query.id.toString() },
+      { $set: req.body },
+      { upsert: true }
+    );
+    return res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 var comments = db.get("comments");
 // Method used to retrieve comments for a property listing
 app.get("/comments", async (req, res) => {
