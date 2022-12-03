@@ -4,16 +4,42 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 
+const ProfileButton = (props) =>{
+  if (localStorage.getItem('user')) {
+    console.log(localStorage.getItem('user'))
+    return (
+      <Link to="/profile" state={{ info: props.profile }}>
+        <button className="btn btn-warning font mx-3">
+          <span>
+            <i className="bi bi-justify pe-2"></i>
+            <i className="bi bi-person-circle"></i>
+          </span>
+        </button>
+      </Link>
+    )
+  } else {
+    return (
+      <Link to="/login" state={{ info: props.profile }}>
+        <button className="btn btn-warning font mx-3">
+          <span>
+            <i className="bi bi-justify pe-2"></i>
+            <i className="bi bi-person-circle"></i>
+          </span>
+        </button>
+      </Link>
+    )
+  }
+}
 const Navigation = () => {
   const [profile, setProfile] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setProfile(data[data.findIndex((e) => e.id === "U1")]);
-      })
-      .catch(console.log);
-    setProfile(localStorage.getItem("user"));
+    // fetch("http://localhost:3000/users")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setProfile(data[data.findIndex((e) => e.id === "U1")]);
+    //   })
+    //   .catch(console.log);
+      setProfile(localStorage.getItem('user'))
   }, []);
 
   return (
@@ -54,14 +80,15 @@ const Navigation = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/login" state={{ info: profile }}>
+                <Link to="/Login" state={{ info: profile }}>
                   <button className="btn btn-warning font mx-3">
                     <span>
                       <i className="bi bi-justify pe-2"></i>
                       <i className="bi bi-person-circle"></i>
                     </span>
                   </button>
-                </Link>
+                </Link> */
+                <ProfileButton profile={profile}></ProfileButton>}
               </li>
             </ul>
           </Navbar.Collapse>
