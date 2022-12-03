@@ -9,6 +9,8 @@ const mongoose = require("mongoose");
 var db = monk("localhost:27017/driprealty");
 const bp = require("body-parser");
 
+var indexRouter = require('./routes/index');
+
 // console.log(db.listCollections())
 var cors = require("cors");
 const app = express();
@@ -32,6 +34,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
 
 // app.use(function(req, res, next) {
 //   next(createError(404));
