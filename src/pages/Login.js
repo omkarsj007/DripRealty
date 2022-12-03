@@ -71,9 +71,11 @@ const Login = () => {
     //   .then((res) => res.json())
     //   .then((res) => console.log(res));
   };
-  if (localStorage.getItem("user")) {
-    return <Profile></Profile>;
-  }
+  // if (localStorage.getItem("user")) {
+  //   navigate("/profile", {
+  //     state: { info: JSON.parse(localStorage.getItem("user")) },
+  //   });
+  // }
   return (
     <Container>
       <Form className="ps-5 pe-5">

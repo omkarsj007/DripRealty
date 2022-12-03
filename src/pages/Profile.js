@@ -9,7 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const location = useLocation();
-  const [info] = useState(location.state.info);
+  // const [info] = useState(location.state.info);
+  const [info] = useState(JSON.parse(localStorage.getItem('user')));
+  
   const navigate = useNavigate();
   const [properties, setProperties] = useState([]);
 
@@ -25,6 +27,15 @@ const Profile = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
+  if(info == null){
+    
+    return (
+      <Row>
+      <Button onClick={handleSubmit} label="">Please log in</Button>
+      </Row>
+    )
+    
+  }
   return (
     <Container className="bg-tertiary-color p-5 mt-3 profile-content ">
       <Row>
