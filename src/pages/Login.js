@@ -19,8 +19,8 @@ const Login = () => {
         .then( (data) => { 
             console.log(data);
 
-            // let inMemoryToken = data.token;
-            // console.log(inMemoryToken);
+            let inMemoryToken = data.token;
+            console.log(inMemoryToken);
 
             localStorage.setItem('user', JSON.stringify(data));
 
@@ -33,20 +33,20 @@ const Login = () => {
 
 
         //request to a protected route
-        // const localstorage_user = JSON.parse(localStorage.getItem('user'))
-        // console.log(localstorage_user)
-        // fetch( "http://localhost:3000/welcome/", {
-        //     method: 'get',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json',
-        //         'x-auth-token': localstorage_user.email
+        const localstorage_user = JSON.parse(localStorage.getItem('user'))
+        console.log(localstorage_user)
+        fetch( "http://localhost:3000/welcome/", {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'x-auth-token': localstorage_user.email
                 
-        //     }
+            }
 
-        // })
-        // .then( res => res.json() )
-        // .then( res => console.log( res ) );
+        })
+        .then( res => res.json() )
+        .then( res => console.log( res ) );
 
   return (
     <Container>
