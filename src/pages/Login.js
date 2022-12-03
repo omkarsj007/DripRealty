@@ -40,7 +40,7 @@ const Login = () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'x-auth-token': localstorage_user.email
+                'x-auth-token': localstorage_user.token
                 
             }
 
