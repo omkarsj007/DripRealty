@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Form, FloatingLabel, Button } from "react-bootstrap";
 const Login = () => {
 
-  fetch('http://localhost:3000/welcome', {
+  fetch('http://localhost:3000/login', {
           method: "POST",
           headers : { 
             'Content-Type': 'application/json',
