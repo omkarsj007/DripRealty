@@ -76,6 +76,10 @@ const Login = () => {
   //     state: { info: JSON.parse(localStorage.getItem("user")) },
   //   });
   // }
+
+  const registerPage = () => {
+    //navigate("/register");
+  }
   return (
     <Container>
       <Form className="ps-5 pe-5">
@@ -95,6 +99,7 @@ const Login = () => {
             />
           </FloatingLabel>
           <Button onClick={handleSubmit}>Login</Button>
+          <Button style={{ marginLeft: '0.8rem' }} onClick={registerPage}>Register</Button>
         </Form.Group>
       </Form>
     </Container>

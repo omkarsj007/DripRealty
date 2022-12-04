@@ -10,6 +10,7 @@ import mongoose from "mongoose";
 import BecomeHost from "./pages/BecomeHost";
 import EditProperties from "./pages/EditProperties";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 // const cors = require("cors");
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/becomeHost" element={<BecomeHost />} />
         <Route path="/editProperties" element={<EditProperties />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
