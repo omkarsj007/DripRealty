@@ -6,29 +6,10 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { set } from "mongoose";
 const UserFavoriteCard = (props) => {
-  const [inputFields, setInputFields] = useState(props.user);
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    props.setUser(inputFields);
     props.delete(props.info.id);
-    // let changes = props.user.favorites.filter(
-    //   (filter) => props.info.id !== filter
-    // );
-    // setInputFields({
-    //   ...inputFields,
-    //   favorites: changes,
-    // });
-    // const requestOptions = {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(inputFields),
-    // };
-    // fetch("http://localhost:3000/users?id=" + inputFields.id, requestOptions)
-    //   .then(() => console.log())
-    //   .catch(console.log);
   };
 
   const handleOnClickProperty = useCallback(

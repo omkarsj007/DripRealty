@@ -16,6 +16,10 @@ const UserPropertyCard = (props) => {
       ),
     [navigate]
   );
+  const handleSubmit = () => {
+    // props.delete(props.info.id);
+  };
+
   const handleOnClickProperty = useCallback(
     () =>
       navigate(
@@ -49,6 +53,13 @@ const UserPropertyCard = (props) => {
             onClick={handleOnClick}
           ></i>
         </OverlayTrigger>
+        {/* <OverlayTrigger> */}
+        <i
+          className="edit-link bi bi-trash btn-centered me-5 fs-2"
+          style={{ color: "white" }}
+          // onClick={handleSubmit}
+        ></i>
+        {/* </OverlayTrigger> */}
       </div>
     </Container>
   );
