@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [properties, setProperties] = useState([]);
-
+  const [error, setError] = useState(false)
   useEffect(() => {
     fetch("http://localhost:3000/properties")
       .then((res) => res.json())
@@ -137,7 +137,35 @@ const Register = () => {
       "http://localhost:3000/register",
       requestOptions
     )
-      .then(() => console.log(inputFields))
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data)
+        if(data.error){
+            console.log(data.error)
+            alert(data.error)
+            return(
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Add new user</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Are you sure the information is correct? </Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleSubmit}>
+                        Submit
+                    </Button>
+                    </Modal.Footer>
+                </Modal>
+            )
+        }
+        else{
+            localStorage.setItem('user', data)
+            console.log(data)
+        }
+        
+      })
       .catch(console.log);
     setShow(false);
     // navigate("/propertyInfo", { state: { info: { property: inputFields } } });
@@ -248,7 +276,7 @@ const Register = () => {
             Close
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Save Changes
+            Submit
           </Button>
         </Modal.Footer>
       </Modal>

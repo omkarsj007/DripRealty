@@ -78,7 +78,7 @@ const Login = () => {
   // }
 
   const registerPage = () => {
-    //navigate("/register");
+    navigate("/register");
   }
   return (
     <Container>
