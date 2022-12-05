@@ -13,7 +13,9 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [properties, setProperties] = useState([]);
-  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const [showError, setError] = useState(false)
+
   useEffect(() => {
     fetch("http://localhost:3000/properties")
       .then((res) => res.json())
@@ -43,91 +45,10 @@ const Register = () => {
     });
   };
 
-//   const handleAddress = (e) => {
-//     setInputFields({
-//       ...inputFields,
-//       location: {
-//         ...inputFields.location,
-//         [e.target.name]: e.target.value,
-//       },
-//     });
-//   };
-
-//   const updatePrice = (e) => {
-//     setInputFields({
-//       ...inputFields,
-//       [e.target.name]: { $numberDecimal: e.target.value },
-//     });
-//   };
-
-//   const handleAmenities = (e) => {
-//     if (e.target.checked) {
-//       setInputFields({
-//         ...inputFields,
-//         amenities: [...inputFields.amenities, e.target.name],
-//       });
-//     } else {
-//       setInputFields({
-//         ...inputFields,
-//         amenities: [
-//           inputFields.amenities.filter((item) => item !== e.target.name),
-//         ],
-//       });
-//     }
-//   };
-//   const topAmenities = [
-//     "A pool",
-//     "Wifi",
-//     "A kitchen",
-//     "Free parking",
-//     "A jacuzzi",
-//     "A washer or dryer",
-//     "Air conditioning or heating",
-//     "Self check-in",
-//     "Laptop-friendly workspace",
-//     "Pets allowed",
-//   ];
-
-//   const safetyAmenities = [
-//     "Carbon monoxide alarm",
-//     "Smoke alarm",
-//     "Fire extinguisher",
-//     "First-aid kit",
-//     "Emergency plan and local numbers",
-//   ];
-
-//   const basicAmenities = [
-//     "Toilet paper",
-//     "Soap for hands and body",
-//     "One towel per guest",
-//     "Linens for each bed",
-//     "One pillow per guest",
-//     "Cleaning supplies",
-//   ];
-
-//   const extraAmenities = [
-//     "Toiletries",
-//     "Cleaning supplies",
-//     "Dining basics",
-//     "Wine glasses",
-//     "Cooking supplies",
-//     "Drinks",
-//     "Snacks",
-//     "Hangers",
-//     "Adapters and chargers",
-//     "Laptop-friendly workspace",
-//     "Good lighting",
-//     "Office supplies",
-//   ];
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    // console.log(inputFields);
-    // var num_id = (Math.floor(Math.random() * 100) + 1).toString();
-    // while (properties.includes(num_id)) {
-    //   num_id = (Math.floor(Math.random() * 100) + 1).toString();
-    // }
-    // console.log(num_id);
+   
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -142,27 +63,14 @@ const Register = () => {
         console.log(data)
         if(data.error){
             console.log(data.error)
-            alert(data.error)
-            return(
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                    <Modal.Title>Add new user</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Are you sure the information is correct? </Modal.Body>
-                    <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleSubmit}>
-                        Submit
-                    </Button>
-                    </Modal.Footer>
-                </Modal>
-            )
+            setErrorMessage(data.error)
+            setError(true)
         }
         else{
             localStorage.setItem('user', data)
             console.log(data)
+            setError(false)
+            navigate("profile")
         }
         
       })
@@ -171,7 +79,9 @@ const Register = () => {
     // navigate("/propertyInfo", { state: { info: { property: inputFields } } });
   };
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  
+  
+  const handleClose = () => {setShow(false); setError(false)};
   const handleShow = () => setShow(true);
   return (
     <Container className="mt-5">
@@ -272,11 +182,23 @@ const Register = () => {
         </Modal.Header>
         <Modal.Body>Are you sure the information is correct? </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
+        <Button variant="primary" onClick={handleSubmit}>
+            Yes
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Submit
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+          
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showError} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title> There was an issue</Modal.Title>
+        </Modal.Header>
+        <Modal.Body> {errorMessage} </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Okay
           </Button>
         </Modal.Footer>
       </Modal>
