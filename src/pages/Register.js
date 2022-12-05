@@ -31,11 +31,8 @@ const Register = () => {
     pwd: "",
     phone_num: "",
     Age: "",
-    join_date: {
-      $date: {
-        $numberLong: new Date().toLocaleDateString()
-      }
-    },
+    join_date: new Date().toLocaleDateString()
+    ,
     favorites: []
   });
 
@@ -126,24 +123,24 @@ const Register = () => {
 
   const handleSubmit = () => {
     // console.log(inputFields);
-    var num_id = (Math.floor(Math.random() * 100) + 1).toString();
-    while (properties.includes(num_id)) {
-      num_id = (Math.floor(Math.random() * 100) + 1).toString();
-    }
-    console.log(num_id);
+    // var num_id = (Math.floor(Math.random() * 100) + 1).toString();
+    // while (properties.includes(num_id)) {
+    //   num_id = (Math.floor(Math.random() * 100) + 1).toString();
+    // }
+    // console.log(num_id);
     const requestOptions = {
-      method: "PUT",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(inputFields),
     };
     fetch(
-      "http://localhost:3000/properties?id=P" + num_id.toString(),
+      "http://localhost:3000/register",
       requestOptions
     )
       .then(() => console.log(inputFields))
       .catch(console.log);
     setShow(false);
-    navigate("/propertyInfo", { state: { info: { property: inputFields } } });
+    // navigate("/propertyInfo", { state: { info: { property: inputFields } } });
   };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
