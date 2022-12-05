@@ -4,18 +4,16 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 
-const ProfileButton = (props) =>{
-  
-  window.onload = () =>{
-    console.log(JSON.parse(localStorage.getItem('user')))
-  console.log(props.profile)
-  console.log(props.link)
-  }
-  if(localStorage.getItem('user'))
-  {
-    console.log("in")
+const ProfileButton = (props) => {
+  window.onload = () => {
+    console.log(JSON.parse(localStorage.getItem("user")));
+    console.log(props.profile);
+    console.log(props.link);
+  };
+  if (localStorage.getItem("user")) {
+    console.log("in");
     return (
-      <Link to="/profile" state={{ info: props.profile }} >
+      <Link to="/profile" state={{ info: props.profile }}>
         <button className="btn btn-warning font mx-3">
           <span>
             <i className="bi bi-justify pe-2"></i>
@@ -23,12 +21,10 @@ const ProfileButton = (props) =>{
           </span>
         </button>
       </Link>
-    )
-  }
-  else
-  {
+    );
+  } else {
     return (
-      <Link to="/login" >
+      <Link to="/login">
         <button className="btn btn-warning font mx-3">
           <span>
             <i className="bi bi-justify pe-2"></i>
@@ -36,28 +32,25 @@ const ProfileButton = (props) =>{
           </span>
         </button>
       </Link>
-    )
+    );
   }
-  
-}
+};
 const Navigation = () => {
   // const [profile, setProfile] = useState({});
-  const localUser = JSON.parse(localStorage.getItem('user')) || {};
+  const localUser = JSON.parse(localStorage.getItem("user")) || {};
   const [profile, setProfile] = useState(localUser);
-  const l = localStorage.getItem('userData') ? "/profile" : "/login";
+  const l = localStorage.getItem("userData") ? "/profile" : "/login";
   const [link, setLink] = useState(l);
-  
+
   useEffect(() => {
-   
-      let a = JSON.parse(localStorage.getItem("user"))
-      setProfile(a)
-      if (localStorage.getItem('user')) {
-        setLink("/profile")
-      } else {
-        setLink("/login")
-      }
-      console.log("nav triggered")
-      
+    let a = JSON.parse(localStorage.getItem("user"));
+    setProfile(a);
+    if (localStorage.getItem("user")) {
+      setLink("/profile");
+    } else {
+      setLink("/login");
+    }
+    console.log("nav triggered");
   }, []);
 
   return (
@@ -97,7 +90,7 @@ const Navigation = () => {
                   Discover
                 </Link>
               </li>
-              <li className="nav-item">            
+              <li className="nav-item">
                 <ProfileButton profile={profile} link={link}></ProfileButton>
               </li>
             </ul>

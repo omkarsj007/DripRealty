@@ -9,7 +9,8 @@ const UserFavoriteCard = (props) => {
 
   const navigate = useNavigate();
   const handleSubmit = () => {
-    let changes = props.user[0].favorites.filter(
+    console.log(props.user);
+    let changes = props.user.favorites.filter(
       (filter) => props.info.id !== filter
     );
     setInputFields({
