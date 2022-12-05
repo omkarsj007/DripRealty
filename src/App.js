@@ -11,6 +11,7 @@ import BecomeHost from "./pages/BecomeHost";
 import EditProperties from "./pages/EditProperties";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Reservations from "./pages/Reservations";
 // const cors = require("cors");
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/editProperties" element={<EditProperties />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/reservations" element={<Reservations />} />
       </Routes>
     </Router>
   );

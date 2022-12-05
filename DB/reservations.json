@@ -38,4 +38,25 @@
   "listing_id": "P3",
   "host_id": "U1",
   "customer_id": "U2"
+},
+{
+  "id": "R3",
+  "dateReserved": {
+    "$date": {
+      "$numberLong": "1660089600000"
+    }
+  },
+  "dateStart": {
+    "$date": {
+      "$numberLong": "1670803200000"
+    }
+  },
+  "dateEnd": {
+    "$date": {
+      "$numberLong": "1670976000000"
+    }
+  },
+  "listing_id": "P4",
+  "host_id": "U2",
+  "customer_id": "U1"
 }]
