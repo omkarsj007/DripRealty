@@ -103,6 +103,7 @@ const EditProperties = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    console.log(inputFields)
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

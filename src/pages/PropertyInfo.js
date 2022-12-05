@@ -14,6 +14,8 @@ import "../components/styles/mystyles.css";
 const PropertyInfo = () => {
   const location = useLocation();
   const [info] = useState(location.state.info);
+  const [comment, setComment] = useState([]);
+
   const money = (number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -21,6 +23,30 @@ const PropertyInfo = () => {
       minimumFractionDigits: 0,
     }).format(number);
   };
+
+  const updateComment = (e) => {
+    setComment({
+      ...comment,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  const handleInsert = () => {
+    console.log(comment)
+    const requestOptions = {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(comment),
+    };
+    fetch(
+      "http://localhost:3000/comments?listing_id=" + info.property.id,
+      requestOptions
+    )
+      .then(() => console.log(comment))
+      .catch(console.log);
+      // setShow(false);
+      // navigate("/propertyInfo", { state: { info: { property: inputFields } } });
+  }
   return (
     <Container fluid className="font pt-3 bg-tertiary-color">
       <Container>
@@ -124,23 +150,24 @@ const PropertyInfo = () => {
           </Col>
         </Row>
       </Container>
-      <Container className="pb-5">
+      <Container>
         <p className="fs-3 fw-bold">Comments</p>
 
         <Row>
-          <Col xs={14} md={10}>
+          <Col xs={14} md={11}>
             <Form>
-              <FloatingLabel label="Post a comment" className="mt-3">
+              <FloatingLabel label="Post a comment">
                 <Form.Control
                   as="textarea"
                   name="description"
+                  onChange={updateComment}
                   style={{ maxHeight: "10rem", minHeight: "6rem" }}
                 />
               </FloatingLabel>
             </Form>
           </Col>
-          <Col xs={4} md={2}>
-            <Button variant="outline-dark" size="lg">
+          <Col xs={4} md={1}>
+            <Button variant="outline-dark" size="md" onClick={handleInsert}>
               Insert
             </Button>
           </Col>

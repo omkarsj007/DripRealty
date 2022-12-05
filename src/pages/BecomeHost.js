@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 
 const BecomeHost = () => {
   const [properties, setProperties] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+
 
   useEffect(() => {
     fetch("http://localhost:3000/properties")
@@ -26,11 +28,11 @@ const BecomeHost = () => {
   const [inputFields, setInputFields] = useState({
     title: "",
     images: [
-      "img/house101.jpg",
-      "img/house102.jpg",
-      "img/house103.jpg",
-      "img/house104.jpg",
-      "img/house105.jpg",
+      // "img/house101.jpg",
+      // "img/house102.jpg",
+      // "img/house103.jpg",
+      // "img/house104.jpg",
+      // "img/house105.jpg",
     ],
     location: {
       address: "",
@@ -139,6 +141,14 @@ const BecomeHost = () => {
     "Good lighting",
     "Office supplies",
   ];
+
+  const handleImages = (e) => {
+    setInputFields({
+      ...inputFields,
+      images: [...inputFields.images, e.target.name],
+    });
+  };
+
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -355,6 +365,37 @@ const BecomeHost = () => {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
+          <Form.Label className="mt-3 fs-3 font">Prices</Form.Label>
+          <div>
+            {inputFields.images.map((item) => (
+              <div>
+                <p>{item}</p>
+                {/* <img alt="not fount" width={"250px"} src={URL.createObjectURL({item})} />
+                <br /> */}
+                <button onClick={()=>setInputFields.images.item(null)}>Remove</button>
+              </div>
+            ))}
+            {selectedImage && (
+              <div>
+              <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+              <br />
+              <button onClick={()=>setSelectedImage(null)}>Remove</button>
+              </div>
+            )}
+            <input
+              type="file"
+              name="myImage"
+              onChange={handleImages}
+            />
+            <input
+              type="file"
+              name="myImage"
+              onChange={(event) => {
+                console.log(event.target.files[0]);
+                setSelectedImage(event.target.files[0]);
+              }}
+            />
+          </div>
         </Form.Group>
         <hr />
         <div className="d-flex justify-content-center mb-5">
