@@ -6,27 +6,14 @@ const UserFavoriteList = (props) => {
   const [userData, setUserData] = useState(props.user);
   const [deleted, setDeleted] = useState("");
   useEffect(() => {
-    console.log("Userdata " + userData.favorites);
     props.newInfo(userData);
   }, [userData]);
+
   useEffect(() => {
-    // fetch("http://localhost:3000/users?id=" + props.user.id)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setUserData({
-    //       ...data[0],
-    //       token: JSON.parse(localStorage.getItem("user")).token,
-    //     });
-    //     localStorage.setItem("user", JSON.stringify(userData));
-    //     // props.newInfo(userData);
-    //   })
-    //   .catch(console.log);
     if (deleted !== "") {
       userData.favorites = props.user.favorites.filter(
         (filter) => deleted !== filter
       );
-      // console.log(changes);
-
       setUserData({
         ...userData,
         token: JSON.parse(localStorage.getItem("user")).token,
