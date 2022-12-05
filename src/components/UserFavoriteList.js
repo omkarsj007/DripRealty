@@ -4,23 +4,45 @@ import UserFavoriteCard from "./UserFavoriteCard";
 
 const UserFavoriteList = (props) => {
   const [userData, setUserData] = useState(props.user);
-  const [deleted, setDeleted] = useState(0);
+  const [deleted, setDeleted] = useState("");
   useEffect(() => {
     console.log("Userdata " + userData.favorites);
     props.newInfo(userData);
   }, [userData]);
   useEffect(() => {
-    if (deleted != 0) {
-      fetch("http://localhost:3000/users?id=" + props.user.id)
-        .then((res) => res.json())
-        .then((data) => {
-          setUserData({
-            ...data[0],
-            token: JSON.parse(localStorage.getItem("user")).token,
-          });
-          localStorage.setItem("user", JSON.stringify(userData));
-          // props.newInfo(userData);
-        })
+    // fetch("http://localhost:3000/users?id=" + props.user.id)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setUserData({
+    //       ...data[0],
+    //       token: JSON.parse(localStorage.getItem("user")).token,
+    //     });
+    //     localStorage.setItem("user", JSON.stringify(userData));
+    //     // props.newInfo(userData);
+    //   })
+    //   .catch(console.log);
+    if (deleted !== "") {
+      userData.favorites = props.user.favorites.filter(
+        (filter) => deleted !== filter
+      );
+      // console.log(changes);
+
+      setUserData({
+        ...userData,
+        token: JSON.parse(localStorage.getItem("user")).token,
+      });
+      console.log(userData);
+      console.log(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+      const requestOptions = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      };
+      fetch("http://localhost:3000/users?id=" + props.user.id, requestOptions)
+        .then(() => console.log())
         .catch(console.log);
     }
   }, [deleted]);
@@ -30,7 +52,6 @@ const UserFavoriteList = (props) => {
       <p className="font fw-bold fs-1">
         {userData.favorites} Favorites {props.user.favorites} {deleted}
       </p>
-
       <Row xs={1} md={1} xxl={1}>
         {props.property
           .filter((filter) => userData.favorites.includes(filter.id))

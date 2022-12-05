@@ -10,25 +10,25 @@ const UserFavoriteCard = (props) => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    let changes = props.user.favorites.filter(
-      (filter) => props.info.id !== filter
-    );
-    setInputFields({
-      ...inputFields,
-      favorites: changes,
-    });
     props.setUser(inputFields);
-    props.delete(props.deleteValue + 1);
-    const requestOptions = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputFields),
-    };
-    fetch("http://localhost:3000/users?id=" + inputFields.id, requestOptions)
-      .then(() => console.log())
-      .catch(console.log);
+    props.delete(props.info.id);
+    // let changes = props.user.favorites.filter(
+    //   (filter) => props.info.id !== filter
+    // );
+    // setInputFields({
+    //   ...inputFields,
+    //   favorites: changes,
+    // });
+    // const requestOptions = {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(inputFields),
+    // };
+    // fetch("http://localhost:3000/users?id=" + inputFields.id, requestOptions)
+    //   .then(() => console.log())
+    //   .catch(console.log);
   };
 
   const handleOnClickProperty = useCallback(
@@ -40,7 +40,6 @@ const UserFavoriteCard = (props) => {
       ),
     [navigate]
   );
-  const [visible, setVisible] = useState(true);
 
   return (
     <Container>
