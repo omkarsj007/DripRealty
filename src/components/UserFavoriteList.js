@@ -3,32 +3,32 @@ import { Container, Row } from "react-bootstrap";
 import UserFavoriteCard from "./UserFavoriteCard";
 
 const UserFavoriteList = (props) => {
-  const [userData, setUseData] = useState(props.user);
-  console.log("before");
-  console.log(userData);
+  const [userData, setUserData] = useState(props.user);
   const [deleted, setDeleted] = useState(0);
   useEffect(() => {
-    fetch("http://localhost:3000/users?id=" + props.user.id)
-      .then((res) => res.json())
-      .then((data) => {
-        setUseData({
-          ...data[0],
-          token: JSON.parse(localStorage.getItem("user")).token,
-        });
-        localStorage.setItem("user", JSON.stringify(userData));
-        // console.log("local");
-        // console.log(JSON.parse(localStorage.getItem("user")));
-        // console.log("user");
-        console.log("inside");
-        console.log(userData.favorites);
-      })
-      .catch(console.log);
+    console.log("Userdata " + userData.favorites);
+    props.newInfo(userData);
+  }, [userData]);
+  useEffect(() => {
+    if (deleted != 0) {
+      fetch("http://localhost:3000/users?id=" + props.user.id)
+        .then((res) => res.json())
+        .then((data) => {
+          setUserData({
+            ...data[0],
+            token: JSON.parse(localStorage.getItem("user")).token,
+          });
+          localStorage.setItem("user", JSON.stringify(userData));
+          // props.newInfo(userData);
+        })
+        .catch(console.log);
+    }
   }, [deleted]);
 
   return (
     <Container>
       <p className="font fw-bold fs-1">
-        {userData.Age} Favorites {deleted}
+        {userData.favorites} Favorites {props.user.favorites} {deleted}
       </p>
 
       <Row xs={1} md={1} xxl={1}>
@@ -39,6 +39,7 @@ const UserFavoriteList = (props) => {
               key={p.id}
               info={p}
               user={userData}
+              setUser={setUserData}
               deleteValue={deleted}
               delete={setDeleted}
             />

@@ -4,12 +4,12 @@ import { Container, Button } from "react-bootstrap";
 import "./styles/mystyles.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { set } from "mongoose";
 const UserFavoriteCard = (props) => {
-  const [inputFields, setInputFields] = useState(props.user[0]);
-
+  const [inputFields, setInputFields] = useState(props.user);
   const navigate = useNavigate();
+
   const handleSubmit = () => {
-    console.log(props.user);
     let changes = props.user.favorites.filter(
       (filter) => props.info.id !== filter
     );
@@ -17,9 +17,8 @@ const UserFavoriteCard = (props) => {
       ...inputFields,
       favorites: changes,
     });
-    console.log(inputFields);
+    props.setUser(inputFields);
     props.delete(props.deleteValue + 1);
-
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -27,10 +26,11 @@ const UserFavoriteCard = (props) => {
       },
       body: JSON.stringify(inputFields),
     };
-    fetch("http://localhost:3000/users?id=U1", requestOptions)
+    fetch("http://localhost:3000/users?id=" + inputFields.id, requestOptions)
       .then(() => console.log())
       .catch(console.log);
   };
+
   const handleOnClickProperty = useCallback(
     () =>
       navigate(
@@ -40,6 +40,7 @@ const UserFavoriteCard = (props) => {
       ),
     [navigate]
   );
+  const [visible, setVisible] = useState(true);
 
   return (
     <Container>
