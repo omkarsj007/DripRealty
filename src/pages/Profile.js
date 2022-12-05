@@ -43,7 +43,18 @@ const Profile = () => {
     <Container className="bg-tertiary-color p-5 mt-3 profile-content ">
       <Row>
         <Col xs={6} md={4}>
-          <ProfileCard user={info} />
+          <Row>
+            <ProfileCard user={info} />
+          </Row>
+          <Row>
+            <Button
+              onClick={handleSubmit}
+              style={{ width: "12rem" }}
+              className="mt-3"
+            >
+              Sign Out
+            </Button>
+          </Row>
         </Col>
         <Col xs={12} md={8}>
           <UserPropertyList user={info} />
@@ -56,9 +67,7 @@ const Profile = () => {
           />
         </Col>
       </Row>
-      <Row>
-        <Button onClick={handleSubmit}></Button>
-      </Row>
+      <Row></Row>
     </Container>
   );
 };
