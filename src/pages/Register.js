@@ -214,6 +214,7 @@ const Register = () => {
                 <Form.Control
                   placeholder="Password"
                   name="pwd"
+                  type="password"
                   onChange={updateData}
                 />
               </FloatingLabel>
@@ -223,7 +224,8 @@ const Register = () => {
                 <Form.Control
                   placeholder="P"
                   name="beds"
-                  onChange={updateData}
+                //   type="password"
+                //   onChange={updateData}
                 />
               </FloatingLabel>
             </Col>
@@ -241,7 +243,7 @@ const Register = () => {
       </Form>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add new property</Modal.Title>
+          <Modal.Title>Add new user</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure the information is correct? </Modal.Body>
         <Modal.Footer>

@@ -38,9 +38,10 @@ router.get("/userLoggedIn", auth, function(req, res) {
 
 router.post('/register', function(req, res) {
 	
-	const {username, email, password } = req.body;
+	const {id, first_name, last_name, email, pwd,
+   			phone_num, Age, join_date,favorites } = req.body;
 
-	if(!(username && email && password)){
+	if(!(email && pwd)){
 
 		res.json( { error: "All fields are required!" } );
 	}
@@ -55,9 +56,8 @@ router.post('/register', function(req, res) {
 			}
 			else{
 				let newUser = {
-					username,
-					email,
-					password
+					id, first_name, last_name, email, pwd,
+   			phone_num, Age, join_date,favorites
 
 				}
 				collection.insert(newUser, function(err, user){
