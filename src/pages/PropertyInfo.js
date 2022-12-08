@@ -6,14 +6,44 @@ import {
   Button,
   FloatingLabel,
   Form,
+  Modal,
 } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import CardInfo from "../components/CardInfo";
 import CommentSection from "../components/CommentSection";
 import "../components/styles/mystyles.css";
+// CALENDER //
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker-cssmodules.css";
+
 const PropertyInfo = () => {
   const location = useLocation();
   const [info] = useState(location.state.info);
+  const [userInfo, setUserInfo] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+
+  // FOR MODAL
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  // define check-in and check-out state
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
+
+  // define handler change function on check-in date
+  const handleCheckInDate = (date) => {
+    setCheckInDate(date);
+    setCheckOutDate(null);
+  };
+
+  // define handler change function on check-out date
+  const handleCheckOutDate = (date) => {
+    setCheckOutDate(date);
+  };
+
   const money = (number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -21,6 +51,43 @@ const PropertyInfo = () => {
       minimumFractionDigits: 0,
     }).format(number);
   };
+
+  // COMMENT
+  const updateComment = (e) => {
+    setUserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleInsert = () => {
+    console.log(userInfo);
+    var num_id = (Math.floor(Math.random() * 100000) + 1).toString();
+    let comment = [
+      {
+        id: num_id,
+        dateCommented: 0,
+        listing_id: info.property.id,
+        reviewer_id: "U2",
+        comments: userInfo.comment,
+        rating: "5",
+      },
+    ];
+    // const requestOptions = {
+    //   method: "PUT",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(comment),
+    // };
+    // fetch(
+    //   "http://localhost:3000/comments?listing_id=" + info.property.id,
+    //   requestOptions
+    // )
+    //   .then(() => console.log(comment))
+    //   .catch(console.log);
+    // setShow(false);
+    // navigate("/propertyInfo", { state: { info: { property: inputFields } } });
+  };
+
   return (
     <Container fluid className="font pt-3 bg-tertiary-color">
       <Container>
@@ -120,34 +187,135 @@ const PropertyInfo = () => {
             </ul>
           </Col>
           <Col lg={6}>
+            {/* RESERVE BUTTON */}
             <CardInfo fees={info} />
+            <div className="d-flex justify-content-center">
+              <Button
+                variant="primary"
+                className="btn btn-lg mt-2 btn-warning text-black grow"
+                onClick={handleShow}
+                style={{ width: "32rem" }}
+              >
+                <span className="fs-4 fw-bold">Reserve</span>
+              </Button>
+            </div>
           </Col>
         </Row>
+        {/* MODAL CALENDER  */}
+        <Modal
+          dialogClassName="modal-20w"
+          centered
+          show={show}
+          onHide={handleClose}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Make Reservation</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Container className="d-flex justify-content-between">
+              <div>
+                <label>Check-in</label>
+                <DatePicker
+                  minDate={new Date()}
+                  selected={checkInDate}
+                  showYearDropdown
+                  scrollableMonthYearDropdown
+                  onChange={(date) => setCheckInDate(date)}
+                />
+              </div>
+              <div>
+                <label>Check-out</label>
+                <DatePicker
+                  minDate={new Date()}
+                  selected={checkOutDate}
+                  showYearDropdown
+                  scrollableMonthYearDropdown
+                  onChange={(date) => setCheckOutDate(date)}
+                />
+              </div>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
-      <Container className="pb-5">
+      <Container>
         <p className="fs-3 fw-bold">Comments</p>
 
+        <div className="font fs-5 d-flex flew-row justify-content-left">
+          <label className="pr-3">Rating:</label>
+          <form>
+            <input
+              type="radio"
+              value="1"
+              id="1"
+              onChange={updateComment}
+              name="rating"
+            />
+            <label className="pr-2 pl-1">1</label>
+            <input
+              type="radio"
+              value="2"
+              id="2"
+              onChange={updateComment}
+              name="rating"
+            />
+            <label className="pr-2 pl-1">2</label>
+            <input
+              type="radio"
+              value="3"
+              id="3"
+              onChange={updateComment}
+              name="rating"
+            />
+            <label className="pr-2 pl-1">3</label>
+            <input
+              type="radio"
+              value="4"
+              id="4"
+              onChange={updateComment}
+              name="rating"
+            />
+            <label className="pr-2 pl-1">4</label>
+            <input
+              type="radio"
+              value="5"
+              id="5"
+              onChange={updateComment}
+              name="rating"
+            />
+            <label className="pr-2 pl-1">5</label>
+          </form>
+        </div>
         <Row>
-          <Col xs={14} md={10}>
+          <Col xs={14} md={11}>
             <Form>
-              <FloatingLabel label="Post a comment" className="mt-3">
+              <FloatingLabel label="Post a comment...">
                 <Form.Control
                   as="textarea"
-                  name="description"
+                  placeholder="Post a comment..."
+                  name="comment"
+                  onChange={updateComment}
                   style={{ maxHeight: "10rem", minHeight: "6rem" }}
                 />
               </FloatingLabel>
             </Form>
           </Col>
-          <Col xs={4} md={2}>
-            <Button variant="outline-dark" size="lg">
+          <Col xs={4} md={1}>
+            <Button variant="outline-dark" size="md" onClick={handleInsert}>
               Insert
             </Button>
           </Col>
         </Row>
         <hr />
       </Container>
-      <Container className="pb-5">
+      <Container className="pb-5 p-0">
         <CommentSection propertyID={info.property.id} />
       </Container>
     </Container>
