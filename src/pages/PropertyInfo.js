@@ -6,15 +6,39 @@ import {
   Button,
   FloatingLabel,
   Form,
+  Modal,
 } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import CardInfo from "../components/CardInfo";
 import CommentSection from "../components/CommentSection";
 import "../components/styles/mystyles.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
 const PropertyInfo = () => {
   const location = useLocation();
   const [info] = useState(location.state.info);
   const [comment, setComment] = useState([]);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  // define check-in and check-out state
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
+
+  // define handler change function on check-in date
+  const handleCheckInDate = (date) => {
+    setCheckInDate(date);
+    setCheckOutDate(null);
+  };
+
+  // define handler change function on check-out date
+  const handleCheckOutDate = (date) => {
+    setCheckOutDate(date);
+  };
 
   const money = (number) => {
     return new Intl.NumberFormat("en-US", {
@@ -146,17 +170,93 @@ const PropertyInfo = () => {
             </ul>
           </Col>
           <Col lg={6}>
+            {/* RESERVE BUTTON */}
             <CardInfo fees={info} />
+            <div className="d-flex justify-content-center">
+              <Button
+                variant="primary"
+                className="btn btn-lg mt-2 btn-warning text-black grow"
+                onClick={handleShow}
+                style={{ width: "32rem" }}
+              >
+                <span className="fs-4 fw-bold">Reserve</span>
+              </Button>
+            </div>
           </Col>
         </Row>
+        <Modal           
+          dialogClassName="modal-20w"
+          centered
+          show={show}
+          onHide={handleClose}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Make Reservation</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Container className="d-flex justify-content-between">
+              <div>
+                <label>Check-in</label>
+                <DatePicker
+                  minDate={new Date()}
+                  selected={checkInDate}
+                  showYearDropdown
+                  scrollableMonthYearDropdown
+                  onChange={(date) => setCheckInDate(date)}
+                />
+              </div>
+              <div>
+                <label>Check-out</label>
+                <DatePicker
+                  minDate={new Date()}
+                  selected={checkOutDate}
+                  showYearDropdown
+                  scrollableMonthYearDropdown
+                  onChange={(date) => setCheckOutDate(date)}
+                />
+              </div>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
       <Container>
         <p className="fs-3 fw-bold">Comments</p>
-
+        
+        <div className="font fs-5 d-flex flew-row justify-content-left">
+          <label className="pr-3">Rating:</label>
+          {/* <div className="pr-2"> */}
+            <form>
+              <input type="radio" value="1" id="1"
+                onChange={updateComment} name="rating" />
+              <label className="pr-2 pl-1">1</label>
+              <input type="radio" value="2" id="2"
+                onChange={updateComment} name="rating"/>
+              <label className="pr-2 pl-1">2</label>
+              <input type="radio" value="3" id="3"
+                onChange={updateComment} name="rating"/>
+              <label className="pr-2 pl-1">3</label>
+              <input type="radio" value="4" id="4"
+                onChange={updateComment} name="rating"/>
+              <label className="pr-2 pl-1">4</label>
+              <input type="radio" value="5" id="5"
+                onChange={updateComment} name="rating"/>
+              <label className="pr-2 pl-1">5</label>
+            </form>
+          {/* </div> */}
+        </div>
+        
         <Row>
-          <Col xs={14} md={11}>
+          <Col xs={14} md={11} >
             <Form>
-              <FloatingLabel label="Post a comment">
+              <FloatingLabel className="fs-4" label="Post a comment...">
                 <Form.Control
                   as="textarea"
                   name="description"
@@ -174,7 +274,7 @@ const PropertyInfo = () => {
         </Row>
         <hr />
       </Container>
-      <Container className="pb-5">
+      <Container className="pb-5 p-0">
         <CommentSection propertyID={info.property.id} />
       </Container>
     </Container>

@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const CardInfo = (props) => {
   const money = (number) => {
@@ -11,7 +12,7 @@ const CardInfo = (props) => {
     }).format(number);
   };
   return (
-    <Card style={{ height: "30rem" }}>
+    <Card style={{ height: "25rem" }}>
       <Card.Header className="fs-2 mb-3 fw-bold">
         <span className="ms-5">Reserve Now</span>
       </Card.Header>
@@ -48,14 +49,14 @@ const CardInfo = (props) => {
           </span>
         </Card.Text>
 
-        <hr />
-
+        {/* <hr />
         <Button
           variant="primary"
           className="btn btn-lg w-100 mt-2 btn-warning text-black"
         >
           Reserve
-        </Button>
+        </Button> */}
+
       </Card.Body>
     </Card>
   );
