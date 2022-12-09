@@ -11,7 +11,7 @@ const FilterBar = (props) => {
       <input
         className="form-control m-2 w-50 bg-light text-dark "
         type="search"
-        placeholder="Search by "
+        placeholder="Search by title or location "
         aria-label="Search"
         value={props.filterText}
         onChange={(e) => props.onFilterTextChange(e.target.value)}

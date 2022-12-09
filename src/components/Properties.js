@@ -22,7 +22,6 @@ const Properties = (props) => {
             );
           })
           .filter((filter) => {
-            console.log(filter.type);
             return filter.type
               .toLowerCase()
               .includes(props.filterType.toLowerCase());
