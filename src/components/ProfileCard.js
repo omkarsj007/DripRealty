@@ -4,15 +4,7 @@ import { Card, ListGroup, Image } from "react-bootstrap";
 const fs = require('fs') 
 
 const ProfileCard = (props) => {
-  let path = "/img/" + props.user.id + ".jpg"
-
   
-  fs.readFile('path', 'utf8' , (err, data) => {
-    if (err) {
-      path = "/img/UD.jpg"
-    }
-    console.log(data);
-  });
   return (
     <Card style={{ width: "12rem" }} border="light" className="shadows">
       <ListGroup variant="flush">

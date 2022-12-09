@@ -3,7 +3,7 @@ var router = express.Router();
 
 const jwt = require('jsonwebtoken');
 const auth = require('./middleware/auth');
-
+const bcrypt = require('bcrypt');
 
 var monk = require('monk');
 const { response } = require('express');
@@ -58,26 +58,32 @@ router.post('/register', function(req, res) {
 
 			}
 			else{
-				collection.count({}, function (error, count) {
-						let id = "U" + (count+1)
-						let newUser = {
-								id, first_name, last_name, email, pwd,
-						phone_num, Age, join_date,favorites
+				bcrypt.hash(pwd, 10, function(err, hash) {
+					// Store hash in your password DB.
+				
+					collection.count({}, function (error, count) {
+							let id = "U" + (count+1)
+							let pwd = hash
+							let newUser = {
+									id, first_name, last_name, email, pwd,
+							phone_num, Age, join_date,favorites
 
-							}
-						collection.insert(newUser, function(err, user){
-							
-							if (err) throw err;
-							var token = jwt.sign({ user_id: user._id, email}, 'secretkey');
+								}
+							collection.insert(newUser, function(err, user){
+								
+								if (err) throw err;
+								var token = jwt.sign({ user_id: user._id, email}, 'secretkey');
 
-							if (token){
-								user.token = token;
+								if (token){
+									user.token = token;
 
-							}
-							res.json(user);
+								}
+								res.json(user);
 
-						})
-				  });
+							})
+					});
+
+				});
 				
 
 
@@ -109,17 +115,19 @@ router.post('/login', function(req, res) {
 
 			}
 			else{
+				bcrypt.compare(password, user.pwd).then(function(result) {
+					if (result){
+						var token = jwt.sign({ user_id: user._id, email}, 'secretkey');
+						user.token = token;
+						res.json(user);
+	
+					}
+					else{
+						res.json( {error: "User email or password is incorrect!" } );
+	
+					}
+				});
 				
-				if (user.pwd === password ){
-					var token = jwt.sign({ user_id: user._id, email}, 'secretkey');
-					user.token = token;
-					res.json(user);
-
-				}
-				else{
-					res.json( {error: "User email or password is incorrect!" } );
-
-				}
 
 			}
 
