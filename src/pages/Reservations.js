@@ -20,8 +20,8 @@ const ReservationCard = (props) =>{
           .then((data) => {
             if (data.error) {
               console.log(data.error);
-              setErrorMessage(data.error);
-              setError(true);
+              props.setErrorMessage(data.error);
+              props.setError(true);
             }
             else{
               props.setDelete(props.reservation.id)
@@ -119,7 +119,7 @@ const Reservations = (props) => {
            <div className="m-5">
             <p className="font fw-bold fs-1 m-5">Your Reservations</p>
             <Row className="m-5">
-                {reservations.map((x, i) => (<ReservationCard key={i} reservation={x} setReservation={setReservations} setDelete={setDelete}/>))}  
+                {reservations.map((x, i) => (<ReservationCard key={i} reservation={x} setReservation={setReservations} setDelete={setDelete} setError={setError} setErrorMessage={setErrorMessage}/>))}  
             </Row>
         </div>
         </Container>
