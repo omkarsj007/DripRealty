@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Col,
   Container,
@@ -19,13 +19,22 @@ import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import { set } from "mongoose";
 
 const FavoritePage = (props) => {
-  console.log(props.user.favorites);
-  console.log(props.property);
-
-  const handleClick = () => {};
+  const [isActive, setActive] = useState(props.active);
+  console.log(isActive);
+  const handleToggle = () => {
+    setActive(!isActive);
+  };
   return (
     <div>
-      <i className="bi bi-heart"></i>
+      <button onClick={handleToggle} className="favorite">
+        <i
+          className={`${
+            !isActive
+              ? "bi bi-heart fs-1 primary-color"
+              : "bi bi-heart-fill fs-1 primary-color"
+          }`}
+        ></i>
+      </button>
     </div>
   );
 };
@@ -110,6 +119,41 @@ const PropertyInfo = () => {
     setComment("");
   };
 
+  // Favorites
+  const [favorite, setFavorite] = useState("");
+  useEffect(() => {
+    let fav = userInfo.favorites.filter(
+      (filter) => filter === info.property.id
+    );
+    console.log(fav);
+    if (fav.length) {
+      setFavorite("true");
+      console.log(favorite);
+    } else {
+      setFavorite("false");
+      console.log(favorite);
+    }
+    // if (deleted !== "") {
+    //   userData.favorites = props.user.favorites.filter(
+    //     (filter) => deleted !== filter
+    //   );
+    //   setUserData({
+    //     ...userData,
+    //     token: JSON.parse(localStorage.getItem("user")).token,
+    //   });
+    //   localStorage.setItem("user", JSON.stringify(userData));
+    //   const requestOptions = {
+    //     method: "PUT",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(userData),
+    //   };
+    //   fetch("http://localhost:3000/users?id=" + props.user.id, requestOptions)
+    //     .then(() => console.log())
+    //     .catch(console.log);
+    // }
+  }, []);
   return (
     <Container fluid className="font pt-5 bg-tertiary-color">
       <Container className="">
@@ -181,7 +225,7 @@ const PropertyInfo = () => {
       </Container>
       <Container className="mt-3 mb-3 fs-5">
         <div style={{ float: "right" }}>
-          <FavoritePage user={userInfo} property={info.property.id} />
+          <FavoritePage active={favorite} />
         </div>
         <p className="fs-2">
           {money(info.property.nightly_fee["$numberDecimal"])}

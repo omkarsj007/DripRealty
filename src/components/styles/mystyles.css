@@ -129,3 +129,9 @@
     position: relative;
     z-index: -99;
 }
+
+.favorite {
+    padding: 0;
+    border: none;
+    background: none;
+}
