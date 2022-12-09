@@ -8,9 +8,9 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 
 const ProfileButton = (props) => {
   window.onload = () => {
-    console.log(JSON.parse(localStorage.getItem("user")));
-    console.log(props.profile);
-    console.log(props.link);
+    // console.log(JSON.parse(localStorage.getItem("user")));
+    // console.log(props.profile);
+    // console.log(props.link);
   };
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -19,7 +19,6 @@ const ProfileButton = (props) => {
   };
 
   if (localStorage.getItem("user")) {
-    console.log("in");
     return (
       <Dropdown className="d-inline mx-2 font fs-5 fw-bold ">
         <Dropdown.Toggle id="dropdown-autoclose-true" variant="warning">
@@ -71,7 +70,6 @@ const Navigation = () => {
     } else {
       setLink("/login");
     }
-    console.log("nav triggered");
   }, []);
 
   return (
