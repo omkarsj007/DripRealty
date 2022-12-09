@@ -1,61 +1,25 @@
 [{
   "id": "R1",
-  "dateReserved": {
-    "$date": {
-      "$numberLong": "1652572800000"
-    }
-  },
-  "dateStart": {
-    "$date": {
-      "$numberLong": "1656633600000"
-    }
-  },
-  "dateEnd": {
-    "$date": {
-      "$numberLong": "1657152000000"
-    }
-  },
+  "dateReserved": "2022-11-12",
+  "dateStart": "2022-12-11",
+  "dateEnd": "2022-12-16",
   "listing_id": "P1",
   "host_id": "U2",
   "customer_id": "U1"
 },{
   "id": "R2",
-  "dateReserved": {
-    "$date": {
-      "$numberLong": "1660089600000"
-    }
-  },
-  "dateStart": {
-    "$date": {
-      "$numberLong": "1670803200000"
-    }
-  },
-  "dateEnd": {
-    "$date": {
-      "$numberLong": "1670976000000"
-    }
-  },
+  "dateReserved": "2022-11-12",
+  "dateStart": "2022-12-12",
+  "dateEnd": "2022-17-13",
   "listing_id": "P3",
   "host_id": "U1",
   "customer_id": "U1"
 },
 {
   "id": "R3",
-  "dateReserved": {
-    "$date": {
-      "$numberLong": "1660089600000"
-    }
-  },
-  "dateStart": {
-    "$date": {
-      "$numberLong": "1670803200000"
-    }
-  },
-  "dateEnd": {
-    "$date": {
-      "$numberLong": "1670976000000"
-    }
-  },
+  "dateReserved": "2022-11-12",
+  "dateStart": "2022-12-16",
+  "dateEnd": "2022-12-20",
   "listing_id": "P4",
   "host_id": "U2",
   "customer_id": "U1"
