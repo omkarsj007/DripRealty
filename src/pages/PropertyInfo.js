@@ -18,6 +18,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import { set } from "mongoose";
 
+const FavoritePage = (props) => {
+  console.log(props.user.favorites);
+  console.log(props.property);
+
+  const handleClick = () => {};
+  return (
+    <div>
+      <i className="bi bi-heart"></i>
+    </div>
+  );
+};
 const PropertyInfo = () => {
   const location = useLocation();
   const [info] = useState(location.state.info);
@@ -74,7 +85,7 @@ const PropertyInfo = () => {
     var num_id = (Math.floor(Math.random() * 100000) + 1).toString();
     let comments = {
       id: num_id,
-      dateCommented: "date",
+      dateCommented: new Date().toLocaleDateString(),
       listing_id: info.property.id,
       reviewer_id: userInfo.id,
       comments: userInfo.comments,
@@ -169,6 +180,9 @@ const PropertyInfo = () => {
         </Row>
       </Container>
       <Container className="mt-3 mb-3 fs-5">
+        <div style={{ float: "right" }}>
+          <FavoritePage user={userInfo} property={info.property.id} />
+        </div>
         <p className="fs-2">
           {money(info.property.nightly_fee["$numberDecimal"])}
           <span className="text-muted fs-5"> night</span>
@@ -182,6 +196,7 @@ const PropertyInfo = () => {
           <i className="bi bi-dot" />
           {info.property.baths} baths
         </p>
+
         <hr />
         <Row>
           <Col lg={6} className="mb-5">
