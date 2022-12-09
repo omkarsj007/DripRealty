@@ -55,7 +55,8 @@ router.post('/register', function(req, res) {
 
 			}
 			else{
-				let newId = "U" + collection.count()+1
+				
+				let newId = "U" + Promise.resolve(collection.count())+1
 				let newUser = {
 					newId, first_name, last_name, email, pwd,
    			phone_num, Age, join_date,favorites
