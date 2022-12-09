@@ -16,7 +16,18 @@ const ReservationCard = (props) =>{
             
           };
           fetch("http://localhost:3000/reservations?id=" + props.reservation.id, requestOptions)
-          .then(() => props.setDelete(props.reservation.id))
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.error) {
+              console.log(data.error);
+              setErrorMessage(data.error);
+              setError(true);
+            }
+            else{
+              props.setDelete(props.reservation.id)
+            }
+            
+          })
             .catch(console.log);
 
         // fetch("http://localhost:3000/reservations")
@@ -65,6 +76,14 @@ const Reservations = (props) => {
   const [reservations, setReservations] = useState([]);
   const [info] = useState(JSON.parse(localStorage.getItem("user")));
   const [deleteRes, setDelete] = useState("");
+  const [showError, setError] = useState(false);
+  const [show, setShow] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleClose = () => {
+    setShow(false);
+    setError(false);
+  };
 
   const fruits = ["Apple", "Mango", "Banana", "GFG"];
 
@@ -96,12 +115,15 @@ const Reservations = (props) => {
     return (
         // reservations.map(fruit => <div
         //     style={styles}></div>)
-        <div className="m-5">
+        <Container>
+           <div className="m-5">
             <p className="font fw-bold fs-1 m-5">Your Reservations</p>
             <Row className="m-5">
                 {reservations.map((x, i) => (<ReservationCard key={i} reservation={x} setReservation={setReservations} setDelete={setDelete}/>))}  
             </Row>
         </div>
+        </Container>
+       
         
         
         )
