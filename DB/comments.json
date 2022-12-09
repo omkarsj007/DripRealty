@@ -1,32 +1,20 @@
 [{
   "id": "C1",
-  "dateCommented": {
-    "$date": {
-      "$numberLong": "1656633600000"
-    }
-  },
+  "dateCommented": "12/9/2022",
   "listing_id": "P1",
   "reviewer_id": "U2",
   "comments": "We enjoyed everything about our stay for a long weekend.",
   "rating": "5"
 },{
   "id": "C2",
-  "dateCommented": {
-    "$date": {
-      "$numberLong": "1659312000000"
-    }
-  },
+  "dateCommented": "12/9/2022",
   "listing_id": "P2",
   "reviewer_id": "U1",
   "comments": "We loved the house and the location on the lake.",
   "rating": "3"
 },{
   "id": "C3",
-  "dateCommented": {
-    "$date": {
-      "$numberLong": "1661990400000"
-    }
-  },
+  "dateCommented": "12/9/2022",
   "listing_id": "P3",
   "reviewer_id": "U1",
   "comments": "The self check in and check out were super easy. We would definitely consider renting again.",
