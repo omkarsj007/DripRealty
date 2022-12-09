@@ -79,27 +79,37 @@ const Login = () => {
 
   const registerPage = () => {
     navigate("/register");
-  }
+  };
   return (
-    <Container>
-      <Form className="ps-5 pe-5">
-        <Form.Group className="mb-3">
-          <FloatingLabel label="Email">
+    <Container className="w-25 profile-content mt-5">
+      <Form className="p-5">
+        <Form.Group>
+          <FloatingLabel label="Email" className="mb-3">
             <Form.Control
               placeholder="Title"
               name="email"
               onChange={updateData}
             />
           </FloatingLabel>
-          <FloatingLabel label="Password">
+          <FloatingLabel label="Password" className="mb-3">
             <Form.Control
               placeholder="Title"
               name="password"
               onChange={updateData}
             />
           </FloatingLabel>
-          <Button onClick={handleSubmit}>Login</Button>
-          <Button style={{ marginLeft: '0.8rem' }} onClick={registerPage}>Register</Button>
+          <Container className="d-flex justify-content-center">
+            <Button onClick={handleSubmit} className="btn btn-lg grow">
+              <span className="font fw-bold">Login</span>
+            </Button>
+            <Button
+              style={{ marginLeft: "0.8rem" }}
+              className="btn btn-lg grow btn-warning"
+              onClick={registerPage}
+            >
+              <span className="font fw-bold">Register</span>
+            </Button>
+          </Container>
         </Form.Group>
       </Form>
     </Container>

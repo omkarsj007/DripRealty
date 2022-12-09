@@ -25,12 +25,13 @@ const BecomeHost = () => {
 
   const [inputFields, setInputFields] = useState({
     title: "",
+    available: "yes",
     images: [
-      "img/house101.jpg",
-      "img/house102.jpg",
-      "img/house103.jpg",
-      "img/house104.jpg",
-      "img/house105.jpg",
+      // "img/house101.jpg",
+      // "img/house102.jpg",
+      // "img/house103.jpg",
+      // "img/house104.jpg",
+      // "img/house105.jpg",
     ],
     location: {
       address: "",
@@ -139,6 +140,15 @@ const BecomeHost = () => {
     "Good lighting",
     "Office supplies",
   ];
+
+  // PICTURE ////
+  const handleImages = (e) => {
+    setInputFields({
+      ...inputFields,
+      images: [...inputFields.images, e.target.value],
+    });
+  };
+
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -166,7 +176,7 @@ const BecomeHost = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 profile-content mb-5 p-5">
       <div className="m-3 fs-1 fw-bold font d-flex justify-content-center">
         Add your property
       </div>
@@ -355,11 +365,48 @@ const BecomeHost = () => {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
+          <Form.Label className="mt-3 fs-3 font">Pictures</Form.Label>
+          <div>
+            {inputFields.images.map((item) => (
+              <div>
+                <p>
+                  {item}
+                  {/* <img alt="not fount" width={"250px"} src={URL.createObjectURL({item})} />
+                  <br /> */}
+                  <button onClick={() => setInputFields.images.item(null)}>
+                    Remove
+                  </button>
+                </p>
+              </div>
+            ))}
+            {/* {selectedImage && (
+                <div>
+                <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+                <br />
+                <button onClick={()=>setSelectedImage(null)}>Remove</button>
+                </div>
+              )} */}
+            <input type="file" id="image" onChange={handleImages} />
+
+            {/* <input
+                type="file"
+                name="myImage"
+                onChange={(event) => {
+                  console.log(event.target.files[0]);
+                  setSelectedImage(event.target.files[0]);
+                }}
+              /> */}
+          </div>
         </Form.Group>
         <hr />
         <div className="d-flex justify-content-center mb-5">
-          <Button size="lg" variant="primary" onClick={handleShow}>
-            Submit
+          <Button
+            size="lg"
+            variant="primary"
+            onClick={handleShow}
+            className="grow w-25"
+          >
+            <span className="font fw-bold">Submit</span>
           </Button>
         </div>
       </Form>

@@ -17,7 +17,7 @@ const UserPropertyCard = (props) => {
     [navigate]
   );
   const handleSubmit = () => {
-    // props.delete(props.info.id);
+    props.delete(props.info.id);
   };
 
   const handleOnClickProperty = useCallback(
@@ -29,6 +29,7 @@ const UserPropertyCard = (props) => {
       ),
     [navigate]
   );
+
   return (
     <Container>
       <div className="card-list mb-2 grow" style={{ height: "6rem" }}>
@@ -57,7 +58,7 @@ const UserPropertyCard = (props) => {
         <i
           className="edit-link bi bi-trash btn-centered me-5 fs-2"
           style={{ color: "white" }}
-          // onClick={handleSubmit}
+          onClick={handleSubmit}
         ></i>
         {/* </OverlayTrigger> */}
       </div>

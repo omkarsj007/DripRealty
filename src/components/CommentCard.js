@@ -19,15 +19,13 @@ const CommentCard = (props) => {
       <Card.Body>
         <Row>
           <Col md={1}>
-            <Link className="nav-link" to="/profile" state={{ info: profile }}>
-              <Image
-                src={"/img/" + profile.id + ".jpg"}
-                roundedCircle
-                style={{ height: "5rem" }}
-                className="shadows"
-                loading="lazy"
-              />
-            </Link>
+            <Image
+              src={"/img/" + profile.id + ".jpg"}
+              roundedCircle
+              style={{ height: "5rem" }}
+              className="shadows"
+              loading="lazy"
+            />
           </Col>
           <Col md={11}>
             <div>

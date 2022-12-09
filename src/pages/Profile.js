@@ -22,7 +22,7 @@ const Profile = () => {
     fetch("http://localhost:3000/properties")
       .then((res) => res.json())
       .then((data) => {
-        setProperties(data);
+        setProperties(data.filter((filter) => filter.available === "yes"));
       })
       .catch(console.log);
   }, []);
@@ -46,7 +46,7 @@ const Profile = () => {
           <Row>
             <ProfileCard user={info} />
           </Row>
-          <Row>
+          {/* <Row>
             <Button
               onClick={handleSubmit}
               style={{ width: "12rem" }}
@@ -54,10 +54,10 @@ const Profile = () => {
             >
               Sign Out
             </Button>
-          </Row>
+          </Row> */}
         </Col>
         <Col xs={12} md={8}>
-          <UserPropertyList user={info} />
+          <UserPropertyList user={info} property={properties} />
         </Col>
         <Col>
           <UserFavoriteList

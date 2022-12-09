@@ -18,8 +18,6 @@ const UserFavoriteList = (props) => {
         ...userData,
         token: JSON.parse(localStorage.getItem("user")).token,
       });
-      console.log(userData);
-      console.log(userData);
       localStorage.setItem("user", JSON.stringify(userData));
       const requestOptions = {
         method: "PUT",

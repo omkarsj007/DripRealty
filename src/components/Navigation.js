@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./styles/mystyles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 const ProfileButton = (props) => {
   window.onload = () => {
@@ -10,17 +12,36 @@ const ProfileButton = (props) => {
     console.log(props.profile);
     console.log(props.link);
   };
+  const navigate = useNavigate();
+  const handleSubmit = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   if (localStorage.getItem("user")) {
     console.log("in");
     return (
-      <Link to="/profile" state={{ info: props.profile }}>
-        <button className="btn btn-warning font mx-3">
-          <span>
-            <i className="bi bi-justify pe-2"></i>
-            <i className="bi bi-person-circle"></i>
-          </span>
-        </button>
-      </Link>
+      <Dropdown className="d-inline mx-2 font fs-5 fw-bold">
+        <Dropdown.Toggle id="dropdown-autoclose-true" variant="warning">
+          Menu
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu align="end" title="Dropdown end">
+          <Link
+            to="/profile"
+            state={{ info: props.profile }}
+            style={{ textDecoration: "none" }}
+          >
+            <Dropdown.Item as="button">
+              <span className="font fw-3">Profile</span>
+            </Dropdown.Item>
+          </Link>
+          <Dropdown.Divider />
+          <Dropdown.Item as="button" onClick={handleSubmit}>
+            <span className="font fw-3">Sign out</span>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     );
   } else {
     return (
