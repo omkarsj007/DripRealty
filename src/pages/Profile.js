@@ -5,7 +5,7 @@ import "../components/styles/mystyles.css";
 import { useLocation } from "react-router-dom";
 import UserPropertyList from "../components/UserPropertyList";
 import UserFavoriteList from "../components/UserFavoriteList";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Profile = () => {
   const location = useLocation();
@@ -40,21 +40,19 @@ const Profile = () => {
     );
   }
   return (
-    <Container className="bg-tertiary-color p-5 mt-3 profile-content ">
+    <Container className="bg-tertiary-color p-5 mt-5 mb-5 profile-content ">
       <Row>
         <Col xs={6} md={4}>
           <Row>
             <ProfileCard user={info} />
           </Row>
-          {/* <Row>
-            <Button
-              onClick={handleSubmit}
-              style={{ width: "12rem" }}
-              className="mt-3"
-            >
-              Sign Out
-            </Button>
-          </Row> */}
+          <Row>
+            <Link to="/reservations">
+              <Button style={{ width: "170px" }} className="mt-3 grow">
+                <span className="font">Reservations</span>
+              </Button>
+            </Link>
+          </Row>
         </Col>
         <Col xs={12} md={8}>
           <UserPropertyList user={info} property={properties} />

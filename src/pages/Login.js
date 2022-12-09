@@ -45,8 +45,7 @@ const Login = () => {
           console.log(data.error);
           setErrorMessage(data.error);
           setError(true);
-        }
-        else{
+        } else {
           let inMemoryToken = data.token;
           console.log(localStorage.getItem("user"));
 
@@ -55,7 +54,6 @@ const Login = () => {
             state: { info: JSON.parse(localStorage.getItem("user")) },
           });
         }
-        
       })
       // .then(
       //       fetch("http://localhost:3000/welcome/", {
@@ -114,6 +112,7 @@ const Login = () => {
             <Form.Control
               placeholder="Title"
               name="password"
+              type="password"
               onChange={updateData}
             />
           </FloatingLabel>

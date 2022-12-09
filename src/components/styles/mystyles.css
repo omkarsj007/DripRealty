@@ -107,7 +107,11 @@
     bottom: 16px;
     left: 16px;
 }
-
+.right {
+    position: absolute;
+    bottom: 16px;
+    right: 128px;
+}
 .btn-centered{
     position: absolute;
     bottom: 32px;

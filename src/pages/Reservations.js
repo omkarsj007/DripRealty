@@ -12,13 +12,12 @@ const ReservationCard = (props) => {
     fetch("http://localhost:3000/properties?id=" + props.reservation.listing_id)
       .then((res) => res.json())
       .then((data) => {
-        setProperty(data[0]) 
+        setProperty(data[0]);
         console.log(data[0]["images"][0]);
-        console.log(properties)
+        console.log(properties);
       })
       .catch(console.log);
   }, []);
-
 
   const deleteReservation = () => {
     const requestOptions = {
@@ -52,11 +51,11 @@ const ReservationCard = (props) => {
     //   .catch(console.log);
   };
 
-  let property = properties["images"]
-  if(property == null){
-    property = ""
-  }else{
-    property = properties["images"][0]
+  let property = properties["images"];
+  if (property == null) {
+    property = "";
+  } else {
+    property = properties["images"][0];
   }
   return (
     <Container>
@@ -67,19 +66,21 @@ const ReservationCard = (props) => {
           alt="background"
           loading="lazy"
         />
-
         <p
-          className="centered font text-shadow fs-3 ps-5 edit-link`"
+          className="centered font text-shadow fs-3 ps-5 "
           style={{ color: "white" }}
         >
-          <pre style={{ color: "white" }}>
-            {props.reservation.listing_id} {props.reservation.dateStart} -{" "}
-            {props.reservation.dateEnd}
-          </pre>
+          {properties.title}&nbsp;
+        </p>
+        <p
+          className="right font text-shadow fs-3 ps-5"
+          style={{ color: "white" }}
+        >
+          {props.reservation.dateStart} - {props.reservation.dateEnd}
         </p>
         <OverlayTrigger placement="right" overlay={<Tooltip>Remove</Tooltip>}>
           <i
-            className="edit-link bi bi-trash btn-centered fs-2"
+            className="bi bi-trash btn-centered fs-2 edit-link"
             style={{ color: "white" }}
             onClick={deleteReservation}
           ></i>
@@ -145,6 +146,15 @@ const Reservations = (props) => {
               setErrorMessage={setErrorMessage}
             />
           ))}
+        </Row>
+        <Row>
+          <Link to="/profile">
+            <div className="d-flex justify-content-center mb-5">
+              <Button size="lg" variant="primary" className="grow w-25">
+                <span className="font fw-bold">Go back</span>
+              </Button>
+            </div>
+          </Link>
         </Row>
       </div>
 

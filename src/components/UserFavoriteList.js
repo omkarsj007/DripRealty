@@ -34,9 +34,7 @@ const UserFavoriteList = (props) => {
 
   return (
     <Container>
-      <p className="font fw-bold fs-1">
-        {userData.favorites} Favorites {props.user.favorites} {deleted}
-      </p>
+      <p className="font fw-bold fs-1">Favorites</p>
       <Row xs={1} md={1} xxl={1}>
         {props.property
           .filter((filter) => userData.favorites.includes(filter.id))

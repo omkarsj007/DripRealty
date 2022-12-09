@@ -22,7 +22,7 @@ const PropCard = (props) => {
           variant="light"
           text="dark"
           bg="light"
-          style={{ minHeight: "20rem", height: "28rem" }}
+          style={{ minHeight: "20rem", height: "29rem" }}
         >
           <Card.Img
             variant="top"

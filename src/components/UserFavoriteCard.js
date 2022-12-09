@@ -33,7 +33,7 @@ const UserFavoriteCard = (props) => {
         />
 
         <p
-          className="centered font text-shadow fs-3 ps-5 edit-link`"
+          className="centered font text-shadow fs-3 ps-5 edit-link"
           style={{ color: "white" }}
           onClick={handleOnClickProperty}
         >
