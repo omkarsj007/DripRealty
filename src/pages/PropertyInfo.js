@@ -22,12 +22,16 @@ const FavoritePage = (props) => {
   const handleClick = (event) => {
     // 👇️ toggle isActive state variable
     props.setActive((current) => !current);
-    props.setClick(props.clicked + 1);
+    props.setClick(props.clicks + 1);
   };
   if (props.active) {
     return (
       <div>
-        <button onClick={handleClick} className="favorite">
+        <button
+          onClick={handleClick}
+          className="favorite"
+          style={{ width: "5rem", height: "5rem" }}
+        >
           <i className="bi bi-heart-fill fs-1 primary-color"></i>
         </button>
       </div>
@@ -35,7 +39,11 @@ const FavoritePage = (props) => {
   } else {
     return (
       <div>
-        <button onClick={handleClick} className="favorite">
+        <button
+          onClick={handleClick}
+          className="favorite"
+          style={{ width: "5rem", height: "5rem" }}
+        >
           <i className="bi bi-heart fs-1 primary-color"></i>
         </button>
       </div>
@@ -127,34 +135,43 @@ const PropertyInfo = () => {
   const [favorite, setFavorite] = useState(false);
   const [clicked, setClicked] = useState(0);
   useEffect(() => {
-    let fav = userInfo.favorites.filter(
-      (filter) => filter === info.property.id
-    );
-    if (fav.length != 0) {
-      setFavorite(true);
+    if (clicked != 0) {
+      console.log(clicked);
+      if (favorite) {
+        console.log("set to true");
+        userInfo.favorites.push(info.property.id);
+      } else {
+        console.log("set to false");
+        userInfo.favorites = userInfo.favorites.filter(
+          (filter) => filter !== info.property.id
+        );
+      }
+      setUserInfo({
+        ...userInfo,
+        favorites: userInfo.favorites,
+      });
+
+      localStorage.setItem("user", JSON.stringify(userInfo));
+
+      const requestOptions = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      };
+      fetch("http://localhost:3000/users?id=" + userInfo.id, requestOptions)
+        .then(() => console.log())
+        .catch(console.log);
     } else {
-      setFavorite(false);
-    }
-    if (clicked !== 0) {
-      userInfo.favorites = userInfo.favorites.filter(
-        (filter) => info.property.id !== filter
+      let fav = userInfo.favorites.filter(
+        (filter) => filter === info.property.id
       );
-      console.log(userInfo.favorites);
-      // setUserData({
-      //   ...userData,
-      //   token: JSON.parse(localStorage.getItem("user")).token,
-      // });
-      // localStorage.setItem("user", JSON.stringify(userData));
-      // const requestOptions = {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(userData),
-      // };
-      // fetch("http://localhost:3000/users?id=" + props.user.id, requestOptions)
-      //   .then(() => console.log())
-      //   .catch(console.log);
+      if (fav.length != 0) {
+        setFavorite(true);
+      } else {
+        setFavorite(false);
+      }
     }
   }, [clicked]);
   return (
