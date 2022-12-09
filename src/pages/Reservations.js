@@ -6,27 +6,39 @@ import { Link, useNavigate } from "react-router-dom";
 import "../components/styles/mystyles.css";
 
 const ReservationCard = (props) => {
-
+  const [properties, setProperties] = useState([]);
+  console.log(props.reservation.listing_id);
+  useEffect(() => {
+    fetch("http://localhost:3000/properties")
+      .then((res) => res.json())
+      .then((data) => {
+        setProperties(
+          data.filter((filter) => filter.id === props.reservation.listing_id)
+        );
+        console.log(properties);
+      })
+      .catch(console.log);
+  }, []);
   const deleteReservation = () => {
     const requestOptions = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-
     };
-    fetch("http://localhost:3000/reservations?id=" + props.reservation.id, requestOptions)
+    fetch(
+      "http://localhost:3000/reservations?id=" + props.reservation.id,
+      requestOptions
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
           console.log(data.error);
           props.setErrorMessage(data.error);
           props.setError(true);
+        } else {
+          props.setDelete(props.reservation.id);
         }
-        else {
-          props.setDelete(props.reservation.id)
-        }
-
       })
       .catch(console.log);
 
@@ -37,28 +49,25 @@ const ReservationCard = (props) => {
     //     props.setReservation(a);
     //   })
     //   .catch(console.log);
-
-  }
+  };
   return (
     <Container>
       <div className="card-list mb-2 grow" style={{ height: "6rem" }}>
-        <img
+        {/* <img
           className="cover rounded shadows"
-          src='https://media.istockphoto.com/id/534761709/photo/reserved-sign-on-restaurant-table.jpg?s=612x612&w=0&k=20&c=q3Jy3s-Cyqeq6MAVWC0vYPVIsNOdZHHxjJIBju1jCw0='
+          src={properties[0].images[0]}
           alt="background"
           loading="lazy"
-        />
+        /> */}
 
         <p
           className="centered font text-shadow fs-3 ps-5 edit-link`"
           style={{ color: "white" }}
-
         >
           <pre style={{ color: "white" }}>
-            {props.reservation.listing_id}      {props.reservation.dateStart} - {props.reservation.dateEnd}
+            {props.reservation.listing_id} {props.reservation.dateStart} -{" "}
+            {props.reservation.dateEnd}
           </pre>
-
-
         </p>
         <OverlayTrigger placement="right" overlay={<Tooltip>Remove</Tooltip>}>
           <i
@@ -69,8 +78,8 @@ const ReservationCard = (props) => {
         </OverlayTrigger>
       </div>
     </Container>
-  )
-}
+  );
+};
 
 const Reservations = (props) => {
   const [reservations, setReservations] = useState([]);
@@ -101,16 +110,15 @@ const Reservations = (props) => {
     fetch("http://localhost:3000/reservations")
       .then((res) => res.json())
       .then((data) => {
-        let a = data.filter((r) => r.customer_id == info.id)
+        let a = data.filter((r) => r.customer_id == info.id);
         setReservations(a);
       })
       .catch(console.log);
   }, [deleteRes]);
   const navigate = useNavigate();
-  console.log(reservations)
-  console.log(info.id)
-  var list = reservations.map(x => {
-  });
+  console.log(reservations);
+  console.log(info.id);
+  var list = reservations.map((x) => {});
 
   return (
     // reservations.map(fruit => <div
@@ -119,7 +127,16 @@ const Reservations = (props) => {
       <div className="m-5">
         <p className="font fw-bold fs-1 m-5">Your Reservations</p>
         <Row className="m-5">
-          {reservations.map((x, i) => (<ReservationCard key={i} reservation={x} setReservation={setReservations} setDelete={setDelete} setError={setError} setErrorMessage={setErrorMessage} />))}
+          {reservations.map((x, i) => (
+            <ReservationCard
+              key={i}
+              reservation={x}
+              setReservation={setReservations}
+              setDelete={setDelete}
+              setError={setError}
+              setErrorMessage={setErrorMessage}
+            />
+          ))}
         </Row>
       </div>
 
@@ -134,11 +151,7 @@ const Reservations = (props) => {
         </Modal.Footer>
       </Modal>
     </Container>
-
-
-
-  )
-
+  );
 };
 
 export default Reservations;
