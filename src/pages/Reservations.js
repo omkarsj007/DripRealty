@@ -12,8 +12,9 @@ const ReservationCard = (props) => {
     fetch("http://localhost:3000/properties?id=" + props.reservation.listing_id)
       .then((res) => res.json())
       .then((data) => {
-        setProperty(data[0])
-        console.log(data[0]);
+        setProperty(data[0]) 
+        console.log(data[0]["images"][0]);
+        console.log(properties)
       })
       .catch(console.log);
   }, []);
@@ -50,12 +51,19 @@ const ReservationCard = (props) => {
     //   })
     //   .catch(console.log);
   };
+
+  let property = properties["images"]
+  if(property == null){
+    property = ""
+  }else{
+    property = properties["images"][0]
+  }
   return (
     <Container>
       <div className="card-list mb-2 grow" style={{ height: "6rem" }}>
         <img
           className="cover rounded shadows"
-          src={properties["images"][0]}
+          src={property}
           alt="background"
           loading="lazy"
         />
