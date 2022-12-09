@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import CommentCard from "./CommentCard";
 
 const CommentSection = (props) => {
@@ -11,18 +11,21 @@ const CommentSection = (props) => {
         setComments(data);
       })
       .catch(console.log);
-  }, []);
+  }, [props.update]);
   return (
     <Container>
-      <div className="users">
-        {comment
-          .filter((filter) => {
-            return filter.listing_id === props.propertyID;
-          })
-          .map((users) => (
-            <CommentCard key={users.id} user={users} />
-          ))}
-      </div>
+      <Row xs={1} md={1} xxl={1} className="">
+        <div className="">
+          {comment
+            .filter((filter) => {
+              return filter.listing_id === props.propertyID;
+            })
+            .reverse()
+            .map((users, index) => (
+              <CommentCard key={index} user={users} />
+            ))}
+        </div>
+      </Row>
     </Container>
   );
 };

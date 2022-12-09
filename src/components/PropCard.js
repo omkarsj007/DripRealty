@@ -22,7 +22,7 @@ const PropCard = (props) => {
           variant="light"
           text="dark"
           bg="light"
-          style={{ minHeight: "20rem" }}
+          style={{ minHeight: "20rem", height: "28rem" }}
         >
           <Card.Img
             variant="top"
@@ -36,7 +36,7 @@ const PropCard = (props) => {
               {props.property.location.city}, {props.property.location.state}
             </Card.Subtitle>
             <Card.Text className="d-none d-xl-block">
-              {props.property.description.substring(0, 160)}...
+              {props.property.description.substring(0, 120)}...
             </Card.Text>
             <Card.Subtitle className="mb-2">
               {money(props.property.nightly_fee["$numberDecimal"])}/night

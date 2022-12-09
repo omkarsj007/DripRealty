@@ -10,7 +10,8 @@ import {
   Modal,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
+import ImageUploading from "react-images-uploading";
 const BecomeHost = () => {
   const [properties, setProperties] = useState([]);
 

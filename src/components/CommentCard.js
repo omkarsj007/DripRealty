@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Image, Row, Col } from "react-bootstrap";
+import { Card, Image, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const CommentCard = (props) => {
@@ -15,7 +15,7 @@ const CommentCard = (props) => {
       .catch(console.log);
   }, []);
   return (
-    <Card>
+    <Card className="mb-2">
       <Card.Body>
         <Row>
           <Col md={1}>
@@ -28,7 +28,7 @@ const CommentCard = (props) => {
             />
           </Col>
           <Col md={11}>
-            <div>
+            <Container className="ms-3 me-3">
               <span className="fs-3 fw-bold">
                 {profile.first_name} {profile.last_name}
               </span>
@@ -37,7 +37,7 @@ const CommentCard = (props) => {
                 Rating: {props.user.rating}/5
               </div>
               <div>{props.user.dateCommented.substring(0, 10)}</div>
-            </div>
+            </Container>
           </Col>
         </Row>
       </Card.Body>

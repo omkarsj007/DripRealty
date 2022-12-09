@@ -16,6 +16,7 @@ import "../components/styles/mystyles.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
+import { set } from "mongoose";
 
 const PropertyInfo = () => {
   const location = useLocation();
@@ -23,7 +24,8 @@ const PropertyInfo = () => {
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
-
+  const [update, setUpdate] = useState(0);
+  const [comment, setComment] = useState("");
   // FOR MODAL
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -54,6 +56,13 @@ const PropertyInfo = () => {
 
   // COMMENT
   const updateComment = (e) => {
+    setComment(e.target.value);
+    setUserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const updateRating = (e) => {
     setUserInfo({
       ...userInfo,
       [e.target.name]: e.target.value,
@@ -63,34 +72,36 @@ const PropertyInfo = () => {
   const handleInsert = () => {
     console.log(userInfo);
     var num_id = (Math.floor(Math.random() * 100000) + 1).toString();
-    let comment = [
-      {
-        id: num_id,
-        dateCommented: 0,
-        listing_id: info.property.id,
-        reviewer_id: "U2",
-        comments: userInfo.comment,
-        rating: "5",
-      },
-    ];
-    // const requestOptions = {
-    //   method: "PUT",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(comment),
-    // };
-    // fetch(
-    //   "http://localhost:3000/comments?listing_id=" + info.property.id,
-    //   requestOptions
-    // )
-    //   .then(() => console.log(comment))
-    //   .catch(console.log);
+    let comments = {
+      id: num_id,
+      dateCommented: "date",
+      listing_id: info.property.id,
+      reviewer_id: userInfo.id,
+      comments: userInfo.comments,
+      rating: userInfo.rating,
+    };
+
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(comments),
+    };
+    fetch(
+      "http://localhost:3000/comments?id=C" + info.property.id,
+      requestOptions
+    )
+      .then(() => {
+        setUpdate(update + 1);
+      })
+      .catch(console.log);
     // setShow(false);
     // navigate("/propertyInfo", { state: { info: { property: inputFields } } });
+    setComment("");
   };
 
   return (
-    <Container fluid className="font pt-3 bg-tertiary-color">
-      <Container>
+    <Container fluid className="font pt-5 bg-tertiary-color">
+      <Container className="">
         <h1 className="fw-bold">{info.property.title}</h1>
         <p className="fs-5">
           Located in {info.property.location.city},{" "}
@@ -255,7 +266,7 @@ const PropertyInfo = () => {
               type="radio"
               value="1"
               id="1"
-              onChange={updateComment}
+              onChange={updateRating}
               name="rating"
             />
             <label className="pr-2 pl-1">1</label>
@@ -263,7 +274,7 @@ const PropertyInfo = () => {
               type="radio"
               value="2"
               id="2"
-              onChange={updateComment}
+              onChange={updateRating}
               name="rating"
             />
             <label className="pr-2 pl-1">2</label>
@@ -271,7 +282,7 @@ const PropertyInfo = () => {
               type="radio"
               value="3"
               id="3"
-              onChange={updateComment}
+              onChange={updateRating}
               name="rating"
             />
             <label className="pr-2 pl-1">3</label>
@@ -279,7 +290,7 @@ const PropertyInfo = () => {
               type="radio"
               value="4"
               id="4"
-              onChange={updateComment}
+              onChange={updateRating}
               name="rating"
             />
             <label className="pr-2 pl-1">4</label>
@@ -287,28 +298,34 @@ const PropertyInfo = () => {
               type="radio"
               value="5"
               id="5"
-              onChange={updateComment}
+              onChange={updateRating}
               name="rating"
             />
             <label className="pr-2 pl-1">5</label>
           </form>
         </div>
-        <Row>
-          <Col xs={14} md={11}>
+        <Row className="g-2">
+          <Col xs={10} md={10}>
             <Form>
               <FloatingLabel label="Post a comment...">
                 <Form.Control
                   as="textarea"
                   placeholder="Post a comment..."
-                  name="comment"
+                  value={comment}
+                  name="comments"
                   onChange={updateComment}
                   style={{ maxHeight: "10rem", minHeight: "6rem" }}
                 />
               </FloatingLabel>
             </Form>
           </Col>
-          <Col xs={4} md={1}>
-            <Button variant="outline-dark" size="md" onClick={handleInsert}>
+          <Col xs={8} md={2} style={{ float: "left" }}>
+            <Button
+              variant="outline-dark"
+              className="w-75 grow"
+              size="lg"
+              onClick={handleInsert}
+            >
               Insert
             </Button>
           </Col>
@@ -316,7 +333,7 @@ const PropertyInfo = () => {
         <hr />
       </Container>
       <Container className="pb-5 p-0">
-        <CommentSection propertyID={info.property.id} />
+        <CommentSection propertyID={info.property.id} update={update} />
       </Container>
     </Container>
   );
