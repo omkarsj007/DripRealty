@@ -19,19 +19,19 @@ import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import { set } from "mongoose";
 
 const FavoritePage = (props) => {
-  const [isActive, setActive] = useState(props.active);
-  console.log(isActive);
+  console.log("props " + props.active);
   const handleToggle = () => {
-    setActive(!isActive);
+    props.setActive(!props.active);
+    console.log("props inside  " + props.active);
   };
   return (
     <div>
       <button onClick={handleToggle} className="favorite">
         <i
           className={`${
-            !isActive
-              ? "bi bi-heart fs-1 primary-color"
-              : "bi bi-heart-fill fs-1 primary-color"
+            props.active
+              ? "bi bi-heart-fill fs-1 primary-color"
+              : "bi bi-heart fs-1 primary-color"
           }`}
         ></i>
       </button>
@@ -126,7 +126,7 @@ const PropertyInfo = () => {
       (filter) => filter === info.property.id
     );
     console.log(fav);
-    if (fav.length) {
+    if (fav.length != 0) {
       setFavorite("true");
       console.log(favorite);
     } else {
@@ -225,7 +225,8 @@ const PropertyInfo = () => {
       </Container>
       <Container className="mt-3 mb-3 fs-5">
         <div style={{ float: "right" }}>
-          <FavoritePage active={favorite} />
+          {favorite}
+          <FavoritePage active={favorite} setActive={setFavorite} />
         </div>
         <p className="fs-2">
           {money(info.property.nightly_fee["$numberDecimal"])}
