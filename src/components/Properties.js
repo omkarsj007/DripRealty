@@ -18,8 +18,7 @@ const Properties = (props) => {
                 .includes(props.filterText.toLowerCase()) ||
               filter.title
                 .toLowerCase()
-                .includes(props.filterText.toLowerCase()) ||
-              filter.type.toLowerCase().includes(props.filterText.toLowerCase())
+                .includes(props.filterText.toLowerCase())
             );
           })
           .filter((filter) => {
