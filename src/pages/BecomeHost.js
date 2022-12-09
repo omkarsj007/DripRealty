@@ -27,6 +27,7 @@ const BecomeHost = () => {
   const [inputFields, setInputFields] = useState({
     title: "",
     available: "yes",
+    type: "",
     images: [
       // "img/house101.jpg",
       // "img/house102.jpg",
@@ -64,7 +65,13 @@ const BecomeHost = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  const updateType = (e) => {
+    console.log(e.target.value);
+    setInputFields({
+      ...inputFields,
+      type: e.target.name,
+    });
+  };
   const handleAddress = (e) => {
     setInputFields({
       ...inputFields,
@@ -141,7 +148,7 @@ const BecomeHost = () => {
     "Good lighting",
     "Office supplies",
   ];
-
+  const propertyType = ["Mansion", "Adventurous", "Exotic", "Drip"];
   // PICTURE ////
   const handleImages = (e) => {
     setInputFields({
@@ -158,7 +165,7 @@ const BecomeHost = () => {
     while (properties.includes(num_id)) {
       num_id = (Math.floor(Math.random() * 100) + 1).toString();
     }
-    console.log(num_id);
+    // console.log(num_id);
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -222,6 +229,40 @@ const BecomeHost = () => {
           <Form.Label className="mt-3 fs-3 font">
             Property Information
           </Form.Label>
+          <div key={`inline-radio`} className="mb-3">
+            <Form.Check
+              inline
+              label={propertyType[0]}
+              name="group"
+              value={propertyType[0]}
+              type="radio"
+              onChange={updateType}
+            />
+            <Form.Check
+              inline
+              label={propertyType[1]}
+              name="group"
+              value={propertyType[1]}
+              type="radio"
+              onChange={updateType}
+            />
+            <Form.Check
+              inline
+              label={propertyType[2]}
+              name="group"
+              value={propertyType[2]}
+              type="radio"
+              onChange={updateType}
+            />
+            <Form.Check
+              inline
+              label={propertyType[3]}
+              name="group"
+              value={propertyType[3]}
+              type="radio"
+              onChange={updateType}
+            />
+          </div>
           <Row className="mt-2">
             <Col>
               <FloatingLabel label="Max Guests">

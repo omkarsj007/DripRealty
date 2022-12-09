@@ -35,6 +35,9 @@ const PropCard = (props) => {
             <Card.Subtitle className="mb-2 text-muted">
               {props.property.location.city}, {props.property.location.state}
             </Card.Subtitle>
+            <Card.Subtitle className="mb-2">
+              {props.property.type}
+            </Card.Subtitle>
             <Card.Text className="d-none d-xl-block">
               {props.property.description.substring(0, 120)}...
             </Card.Text>

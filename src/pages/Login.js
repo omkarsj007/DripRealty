@@ -81,7 +81,10 @@ const Login = () => {
     navigate("/register");
   };
   return (
-    <Container className="w-25 profile-content mt-5">
+    <Container
+      className="w-25 profile-content mt-5"
+      style={{ minWidth: "28rem" }}
+    >
       <Form className="p-5">
         <Form.Group>
           <FloatingLabel label="Email" className="mb-3">

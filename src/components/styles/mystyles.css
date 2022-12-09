@@ -125,3 +125,7 @@
     text-shadow: 3px 3px 3px #000000
 }
 
+.select-menu {
+    position: relative;
+    z-index: -99;
+}

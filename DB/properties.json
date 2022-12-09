@@ -1,6 +1,7 @@
 [{
   "id": "P1",
   "available": "yes",
+  "type": "Adventurous",
   "title": "Lake Front Retreat",
   "images": [
     "img/house101.jpg",
@@ -43,6 +44,7 @@
 },{
   "id": "P2",
   "available": "yes",
+  "type": "Exotic",
   "title": "Mansion Yacht",
   "images": [
     "img/house201.jpg",
@@ -84,6 +86,7 @@
 },{
   "id": "P3",
   "available": "yes",
+  "type": "Exotic",
   "title": "Arctic Hideaway",
   "images": [
     "img/house301.jpg",
@@ -125,6 +128,7 @@
 },{
   "id": "P4",
   "available": "yes",
+  "type": "Exotic",
   "title": "The Kellogg Doolittle House",
   "images": [
     "img/house401.jpg",
@@ -166,6 +170,7 @@
 },{
   "id": "P5",
   "available": "yes",
+  "type": "Mansion",
   "title": "Royal Style Mansion",
   "images": [
     "img/house501.jpg",
@@ -206,6 +211,7 @@
 },{
   "id": "P6",
   "available": "yes",
+  "type": "Drip",
   "title": "Venus Modern",
   "images": [
     "img/house601.jpg",
@@ -248,6 +254,7 @@
 },{
   "id": "P7",
   "available": "yes",
+  "type": "Drip",
   "title": "Artevilla",
   "images": [
     "img/house701.jpg",

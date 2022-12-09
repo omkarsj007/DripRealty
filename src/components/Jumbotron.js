@@ -5,7 +5,7 @@ import { Row, Col } from "react-bootstrap";
 
 function Jumbotron() {
   return (
-    <div>
+    <div style={{ overflow: "visible" }} className="select-menu">
       <div className="carousel-content">
         <h1 className="fw-bold secondary-color">
           Book unique and <br />

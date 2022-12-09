@@ -21,7 +21,7 @@ const ProfileButton = (props) => {
   if (localStorage.getItem("user")) {
     console.log("in");
     return (
-      <Dropdown className="d-inline mx-2 font fs-5 fw-bold">
+      <Dropdown className="d-inline mx-2 font fs-5 fw-bold ">
         <Dropdown.Toggle id="dropdown-autoclose-true" variant="warning">
           Menu
         </Dropdown.Toggle>
