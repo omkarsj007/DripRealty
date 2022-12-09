@@ -16,6 +16,7 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState({})
   const [showError, setError] = useState(false);
+  const [passwordC, setPasswordConfirm] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/properties")
@@ -32,6 +33,7 @@ const Register = () => {
     last_name: "",
     email: "",
     pwd: "",
+    pwdConfirm: "",
     phone_num: "",
     Age: "",
     join_date: new Date().toLocaleDateString(),
@@ -102,19 +104,19 @@ const Register = () => {
         delete errors[5];
       }
     }
-    if(target == "pwdConfirm")
-    {
-      console.log(inputFields["pwd"])
-      console.log(value)
-      if(!(value == inputFields["pwd"])){
-        errors[6] = "Confirm Password value must be same as Password"
-        console.log("hello")
-      }
-      else
-      {
-        delete errors[6];
-      }
-    }
+    // if(target == "pwdConfirm")
+    // {
+    //   console.log(inputFields["pwd"])
+    //   console.log(value)
+    //   if(!(value == inputFields["pwd"])){
+    //     errors[6] = "Confirm Password value must be same as Password"
+    //     console.log("hello")
+    //   }
+    //   else
+    //   {
+    //     delete errors[6];
+    //   }
+    // }
     return errors
     
   }
@@ -125,7 +127,7 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
     setFieldErrors(validate(e.target.name, e.target.value))
-    console.log(fieldErrors)
+    // console.log(fieldErrors)
   };
 
   const passwordConfirm = (e) =>{
@@ -135,6 +137,13 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    
+    if(inputFields["pwd"] != inputFields["pwdConfirm"]){
+      setErrorMessage("Password does not match Confirm Password");
+      setError(true);
+      return;
+    }
+    delete inputFields["pwdConfirm"];
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -149,10 +158,10 @@ const Register = () => {
           setErrorMessage(data.error);
           setError(true);
         } else {
-          localStorage.setItem("user", data);
-          console.log(data);
+          localStorage.setItem("user", JSON.stringify(data));
+          console.log(localStorage.getItem("user"))
           setError(false);
-          navigate("profile");
+          navigate("/profile");
         }
       })
       .catch(console.log);
@@ -246,7 +255,7 @@ const Register = () => {
                   placeholder="Confirm Password"
                   name="pwdConfirm"
                   type="password"
-                  onChange={passwordConfirm}
+                  onChange={updateData}
                 />
               </FloatingLabel>
             </Col>

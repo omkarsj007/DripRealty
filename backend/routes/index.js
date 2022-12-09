@@ -10,6 +10,9 @@ const { response } = require('express');
 var db = monk('localhost:27017/driprealty');
 var collection = db.get('users');
 
+async function dbCount(){
+	return await collection.count()
+}
 
 router.get('/', function(req, res) {
 	res.render('index', { title: 'Express'} );
@@ -55,25 +58,27 @@ router.post('/register', function(req, res) {
 
 			}
 			else{
+				collection.count({}, function (error, count) {
+						let id = "U" + (count+1)
+						let newUser = {
+								id, first_name, last_name, email, pwd,
+						phone_num, Age, join_date,favorites
+
+							}
+						collection.insert(newUser, function(err, user){
+							
+							if (err) throw err;
+							var token = jwt.sign({ user_id: user._id, email}, 'secretkey');
+
+							if (token){
+								user.token = token;
+
+							}
+							res.json(user);
+
+						})
+				  });
 				
-				let newId = "U" + Promise.resolve(collection.count())+1
-				let newUser = {
-					newId, first_name, last_name, email, pwd,
-   			phone_num, Age, join_date,favorites
-
-				}
-				collection.insert(newUser, function(err, user){
-					
-                     if (err) throw err;
-					 var token = jwt.sign({ user_id: user._id, email}, 'secretkey');
-
-					 if (token){
-						user.token = token;
-
-					 }
-					 res.json(user);
-
-				})
 
 
 			}

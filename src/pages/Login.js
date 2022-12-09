@@ -1,17 +1,26 @@
 import React from "react";
-import { Container, Form, FloatingLabel, Button } from "react-bootstrap";
+import { Container, Form, FloatingLabel, Button, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Profile from "./Profile";
+
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const [inputFields, setInputFields] = useState({ email: "", password: "" });
+  const [showError, setError] = useState(false);
+  const [show, setShow] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const updateData = (e) => {
     setInputFields({
       ...inputFields,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleClose = () => {
+    setShow(false);
+    setError(false);
   };
 
   const handleSubmit = () => {
@@ -32,14 +41,21 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.error) {
+          console.log(data.error);
+          setErrorMessage(data.error);
+          setError(true);
+        }
+        else{
+          let inMemoryToken = data.token;
+          console.log(localStorage.getItem("user"));
 
-        let inMemoryToken = data.token;
-        console.log(localStorage.getItem("user"));
-
-        localStorage.setItem("user", JSON.stringify(data));
-        navigate("/profile", {
-          state: { info: JSON.parse(localStorage.getItem("user")) },
-        });
+          localStorage.setItem("user", JSON.stringify(data));
+          navigate("/profile", {
+            state: { info: JSON.parse(localStorage.getItem("user")) },
+          });
+        }
+        
       })
       // .then(
       //       fetch("http://localhost:3000/welcome/", {
@@ -115,6 +131,30 @@ const Login = () => {
           </Container>
         </Form.Group>
       </Form>
+      {/* <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add new user</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure the information is correct? </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSubmit}>
+            Yes
+          </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
+      <Modal show={showError} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title> {errorMessage}</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Okay
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

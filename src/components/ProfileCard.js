@@ -1,7 +1,16 @@
 import React from "react";
 import { Card, ListGroup, Image } from "react-bootstrap";
+// import fs from 'fs'
+const Fs = require('fs') 
 
 const ProfileCard = (props) => {
+  let path = "/img/" + props.user.id + ".jpg"
+
+  
+  // if(!fs.existsSync(path)){
+  //   path = "/img/UD.jpg"
+  // }
+
   return (
     <Card style={{ width: "12rem" }} border="light" className="shadows">
       <ListGroup variant="flush">
