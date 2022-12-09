@@ -143,9 +143,10 @@ const BecomeHost = () => {
   ];
 
   const handleImages = (e) => {
+    
     setInputFields({
       ...inputFields,
-      images: [...inputFields.images, e.target.name],
+      images: [...inputFields.images, e.target.value],
     });
   };
 
@@ -369,32 +370,34 @@ const BecomeHost = () => {
           <div>
             {inputFields.images.map((item) => (
               <div>
-                <p>{item}</p>
+                <p>{item}
                 {/* <img alt="not fount" width={"250px"} src={URL.createObjectURL({item})} />
                 <br /> */}
                 <button onClick={()=>setInputFields.images.item(null)}>Remove</button>
+                </p>
               </div>
             ))}
-            {selectedImage && (
+            {/* {selectedImage && (
               <div>
               <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
               <br />
               <button onClick={()=>setSelectedImage(null)}>Remove</button>
               </div>
-            )}
+            )} */}
             <input
               type="file"
-              name="myImage"
+              id="image"
               onChange={handleImages}
             />
-            <input
+
+            {/* <input
               type="file"
               name="myImage"
               onChange={(event) => {
                 console.log(event.target.files[0]);
                 setSelectedImage(event.target.files[0]);
               }}
-            />
+            /> */}
           </div>
         </Form.Group>
         <hr />
