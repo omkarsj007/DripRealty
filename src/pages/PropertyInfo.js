@@ -19,24 +19,28 @@ import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import { set } from "mongoose";
 
 const FavoritePage = (props) => {
-  console.log("props " + props.active);
-  const handleToggle = () => {
-    props.setActive(!props.active);
-    console.log("props inside  " + props.active);
+  const handleClick = (event) => {
+    // 👇️ toggle isActive state variable
+    props.setActive((current) => !current);
+    props.setClick(props.clicked + 1);
   };
-  return (
-    <div>
-      <button onClick={handleToggle} className="favorite">
-        <i
-          className={`${
-            props.active
-              ? "bi bi-heart-fill fs-1 primary-color"
-              : "bi bi-heart fs-1 primary-color"
-          }`}
-        ></i>
-      </button>
-    </div>
-  );
+  if (props.active) {
+    return (
+      <div>
+        <button onClick={handleClick} className="favorite">
+          <i className="bi bi-heart-fill fs-1 primary-color"></i>
+        </button>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <button onClick={handleClick} className="favorite">
+          <i className="bi bi-heart fs-1 primary-color"></i>
+        </button>
+      </div>
+    );
+  }
 };
 const PropertyInfo = () => {
   const location = useLocation();
@@ -120,40 +124,39 @@ const PropertyInfo = () => {
   };
 
   // Favorites
-  const [favorite, setFavorite] = useState("");
+  const [favorite, setFavorite] = useState(false);
+  const [clicked, setClicked] = useState(0);
   useEffect(() => {
     let fav = userInfo.favorites.filter(
       (filter) => filter === info.property.id
     );
-    console.log(fav);
     if (fav.length != 0) {
-      setFavorite("true");
-      console.log(favorite);
+      setFavorite(true);
     } else {
-      setFavorite("false");
-      console.log(favorite);
+      setFavorite(false);
     }
-    // if (deleted !== "") {
-    //   userData.favorites = props.user.favorites.filter(
-    //     (filter) => deleted !== filter
-    //   );
-    //   setUserData({
-    //     ...userData,
-    //     token: JSON.parse(localStorage.getItem("user")).token,
-    //   });
-    //   localStorage.setItem("user", JSON.stringify(userData));
-    //   const requestOptions = {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(userData),
-    //   };
-    //   fetch("http://localhost:3000/users?id=" + props.user.id, requestOptions)
-    //     .then(() => console.log())
-    //     .catch(console.log);
-    // }
-  }, []);
+    if (clicked !== 0) {
+      userInfo.favorites = userInfo.favorites.filter(
+        (filter) => info.property.id !== filter
+      );
+      console.log(userInfo.favorites);
+      // setUserData({
+      //   ...userData,
+      //   token: JSON.parse(localStorage.getItem("user")).token,
+      // });
+      // localStorage.setItem("user", JSON.stringify(userData));
+      // const requestOptions = {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(userData),
+      // };
+      // fetch("http://localhost:3000/users?id=" + props.user.id, requestOptions)
+      //   .then(() => console.log())
+      //   .catch(console.log);
+    }
+  }, [clicked]);
   return (
     <Container fluid className="font pt-5 bg-tertiary-color">
       <Container className="">
@@ -225,8 +228,12 @@ const PropertyInfo = () => {
       </Container>
       <Container className="mt-3 mb-3 fs-5">
         <div style={{ float: "right" }}>
-          {favorite}
-          <FavoritePage active={favorite} setActive={setFavorite} />
+          <FavoritePage
+            active={favorite}
+            setActive={setFavorite}
+            clicks={clicked}
+            setClick={setClicked}
+          />
         </div>
         <p className="fs-2">
           {money(info.property.nightly_fee["$numberDecimal"])}
