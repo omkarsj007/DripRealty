@@ -6,19 +6,19 @@ import { Link, useNavigate } from "react-router-dom";
 import "../components/styles/mystyles.css";
 
 const ReservationCard = (props) => {
-  const [properties, setProperties] = useState([]);
+  const [properties, setProperty] = useState({});
   console.log(props.reservation.listing_id);
   useEffect(() => {
-    fetch("http://localhost:3000/properties")
+    fetch("http://localhost:3000/properties?id=" + props.reservation.listing_id)
       .then((res) => res.json())
       .then((data) => {
-        setProperties(
-          data.filter((filter) => filter.id === props.reservation.listing_id)
-        );
-        console.log(properties);
+        setProperty(data[0])
+        console.log(data[0]);
       })
       .catch(console.log);
   }, []);
+
+
   const deleteReservation = () => {
     const requestOptions = {
       method: "DELETE",
@@ -53,12 +53,12 @@ const ReservationCard = (props) => {
   return (
     <Container>
       <div className="card-list mb-2 grow" style={{ height: "6rem" }}>
-        {/* <img
+        <img
           className="cover rounded shadows"
-          src={properties[0].images[0]}
+          src={properties["images"][0]}
           alt="background"
           loading="lazy"
-        /> */}
+        />
 
         <p
           className="centered font text-shadow fs-3 ps-5 edit-link`"
