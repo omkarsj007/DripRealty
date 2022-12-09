@@ -143,6 +143,14 @@ app.delete("/reservations", async (req, res) => {
     if (Object.keys(req.query).length === 0) {
       data = [];
     } else {
+      data = await reservations.find({ id: req.query.id });
+      let start = new Date(data["dateStart"])
+      const today = new Date();
+      var Difference_In_Time = (start.getTime() - today.getTime())/(1000 * 3600);
+      if(Difference_In_Time <= 48)
+      {
+        return res.json({ error: "Cannot cancel within 48 hours of Reservation" } )
+      }
       data = await reservations.remove({ id: req.query.id });
     }
     return res.json(data);
