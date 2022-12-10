@@ -56,7 +56,7 @@ app.use("/", indexRouter);
 // });
 
 // error handler 
-app.post('/imageupload', upload.single('file'), (req, res, next) => {
+app.post('/imageupload', upload.single('file'), (req, res) => {
   try{
     const file = req.file;
   console.log(file.filename);
