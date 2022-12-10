@@ -188,10 +188,7 @@ const BecomeHost = () => {
       body: formdata,
     })
       
-    if (response.data.success === 1) {
-      // setSuccess("Image upload successfully");
-      console.log("SUCCESS")
-    }
+    console.log("SUCCESS")
     
   }
   // const handleImages = (e) => {
