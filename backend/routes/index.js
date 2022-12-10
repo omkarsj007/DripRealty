@@ -42,7 +42,7 @@ router.get("/userLoggedIn", auth, function(req, res) {
 router.post('/register', function(req, res) {
 	
 	const {id, first_name, last_name, email, pwd,
-   			phone_num, Age, join_date,favorites } = req.body;
+   			phone_num, Age, join_date,favorites, host } = req.body;
 
 	if(!(email && pwd)){
 
@@ -66,7 +66,7 @@ router.post('/register', function(req, res) {
 							let pwd = hash
 							let newUser = {
 									id, first_name, last_name, email, pwd,
-							phone_num, Age, join_date,favorites
+							phone_num, Age, join_date,favorites, host
 
 								}
 							collection.insert(newUser, function(err, user){

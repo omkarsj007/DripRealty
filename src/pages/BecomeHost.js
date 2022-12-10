@@ -183,6 +183,28 @@ const BecomeHost = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  let user = localStorage.getItem('user')
+  if (!user) {
+    return (
+      <Container className="mt-5 profile-content mb-5 p-5">
+        <Row >
+          <div className="m-3 fs-3 fw-bold font d-flex justify-content-center">Please log in to account first</div>
+        </Row>
+      </Container>
+    )
+  }
+  else if(JSON.parse(user)["host"] == false)
+  {
+    return (
+      <Container className="mt-5 profile-content mb-5 p-5">
+        <Row>
+          <p className="m-3 fs-3 fw-bold font d-flex justify-content-center">You will need to sign up for a Host Account</p>
+        </Row>
+      </Container>
+    )
+  }
+  
   return (
     <Container className="mt-5 profile-content mb-5 p-5">
       <div className="m-3 fs-1 fw-bold font d-flex justify-content-center">

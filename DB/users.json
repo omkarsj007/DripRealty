@@ -15,7 +15,8 @@
     "P1",
     "P3",
     "P6"
-  ]
+  ],
+  "host": true
 },{
   "id": "U2",
   "first_name": "Buzz",
@@ -32,7 +33,8 @@
   "favorites": [
     "P2",
     "P3"
-  ]
+  ],
+  "host": true
 },{
   "id": "U3",
   "first_name": "Dark",
@@ -49,5 +51,6 @@
   "favorites": [
     "P3",
     "P7"
-  ]
+  ],
+  "host": false
 }]

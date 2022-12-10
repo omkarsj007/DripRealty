@@ -7,7 +7,7 @@ import {
   Col,
   FloatingLabel,
   Accordion,
-  Modal,
+  Modal
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -38,6 +38,7 @@ const Register = () => {
     Age: "",
     join_date: new Date().toLocaleDateString(),
     favorites: [],
+    host: false
   });
 
   const validate = (target, value) => {
@@ -126,6 +127,7 @@ const Register = () => {
       ...inputFields,
       [e.target.name]: e.target.value,
     });
+    
     setFieldErrors(validate(e.target.name, e.target.value))
     // console.log(fieldErrors)
   };
@@ -144,6 +146,8 @@ const Register = () => {
       return;
     }
     delete inputFields["pwdConfirm"];
+    inputFields["host"] = inputFields["host"] == "on" ? true: false
+    console.log(inputFields)
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -260,6 +264,11 @@ const Register = () => {
               </FloatingLabel>
             </Col>
           </Row>
+          <Form.Label className="mt-3 fs-3 font">Want to be a Host? &nbsp; <input type="checkbox" name="host" onChange={updateData} style={{transform: "scale(1.5)"}}/></Form.Label>
+          <Row>
+          
+          </Row>
+          
         </Form.Group>
         <hr />
         <div className="d-flex justify-content-center mb-5">
