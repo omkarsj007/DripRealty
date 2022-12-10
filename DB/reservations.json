@@ -23,4 +23,14 @@
   "listing_id": "P4",
   "host_id": "U2",
   "customer_id": "U1"
-}]
+},
+{
+  "id": "R4",
+  "dateReserved": "2022-11-12",
+  "dateStart": "2022-12-16",
+  "dateEnd": "2022-12-20",
+  "listing_id": "P4",
+  "host_id": "U2",
+  "customer_id": "U1"
+}
+]
