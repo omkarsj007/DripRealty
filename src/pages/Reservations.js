@@ -108,7 +108,9 @@ const Reservations = (props) => {
   return (
     <Container>
       <div className="m-5">
-        <p className="font fw-bold fs-1 m-5">Your Reservations</p>
+        <p className="font fw-bold fs-1 m-5 d-flex justify-content-center">
+          Your Reservations
+        </p>
         <Row className="m-5">
           {reservations.map((x, i) => (
             <ReservationCard
