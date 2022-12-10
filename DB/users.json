@@ -6,11 +6,7 @@
   "pwd": "$2b$10$gx/xUrfdulf3ASMSWUZToeTmWwj2mEW8AgDAV9TTBwwTfqkp0toMe",
   "phone_num": "(111)-111-1111",
   "Age": "24",
-  "join_date": {
-    "$date": {
-      "$numberLong": "1659916800000"
-    }
-  },
+  "join_date": "2022-10-16",
   "favorites": [
     "P1",
     "P3",
@@ -25,11 +21,7 @@
   "pwd": "<Hashed-Value>",
   "phone_num": "(222)-123-4567",
   "Age": "29",
-  "join_date": {
-    "$date": {
-      "$numberLong": "1659830400000"
-    }
-  },
+  "join_date": "2022-10-16",
   "favorites": [
     "P2",
     "P3"
@@ -43,11 +35,7 @@
   "pwd": "<Hashed-Value>",
   "phone_num": "(888)-777-6969",
   "Age": "27",
-  "join_date": {
-    "$date": {
-      "$numberLong": "1654732800000"
-    }
-  },
+  "join_date": "2022-10-16",
   "favorites": [
     "P3",
     "P7"
