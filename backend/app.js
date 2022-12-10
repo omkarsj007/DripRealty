@@ -10,6 +10,17 @@ var db = monk("localhost:27017/driprealty");
 const bp = require("body-parser");
 
 var indexRouter = require("./routes/index");
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '../public/img/')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname)
+  },
+})
+const upload = multer({ storage: storage })
 
 // console.log(db.listCollections())
 var cors = require("cors");
@@ -44,7 +55,24 @@ app.use("/", indexRouter);
 //   next(createError(404));
 // });
 
-// error handler
+// error handler 
+app.post('/imageupload', upload.single('file'), (req, res, next) => {
+  try{
+    const file = req.file;
+  console.log(file.filename);
+  if (!file) {
+    const error = new Error('No File')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+    res.send(file);
+  }
+  catch (error) {
+    console.log(error);
+  }
+  
+})
+
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

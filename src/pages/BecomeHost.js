@@ -10,7 +10,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 // import ImageUploading from "react-images-uploading";
 const BecomeHost = () => {
   const [properties, setProperties] = useState([]);
@@ -161,12 +161,52 @@ const BecomeHost = () => {
   ];
   const propertyType = ["Mansion", "Adventurous", "Exotic", "Drip"];
   // PICTURE ////
-  const handleImages = (e) => {
-    setInputFields({
-      ...inputFields,
-      images: [...inputFields.images, e.target.value],
+
+  const [imageFiles, setImageFiles] = useState({
+    file: [],
+    filepreview: null,
+  });
+
+  const handleImages = (event) => {
+    setImageFiles({
+      ...imageFiles,
+      file: event.target.files[0],
+      filepreview: URL.createObjectURL(event.target.files[0]),
     });
-  };
+
+  }
+
+  const submitImages = async () => {
+    const formdata = new FormData();
+    formdata.append('avatar', imageFiles.file);
+
+    axios.post("http://localhost:3000/imageupload", formdata, {
+      headers: { "Content-Type": "multipart/form-data" }
+    })
+      .then(res => { // then print response status
+        console.warn(res);
+        if (res.data.success === 1) {
+          // setSuccess("Image upload successfully");
+          console.log("SUCCESS")
+        }
+
+      })
+  }
+  // const handleImages = (e) => {
+  //   setInputFields({
+  //     ...inputFields,
+  //     images: [...inputFields.images, e.target.value],
+  //   });
+  // };
+
+  // const uploadFile = (event) => {
+  //   const data = new FormData() ;
+  //   data.append('file', event.target.files[0]);
+  //   axios.post("${apiUrl}/uploadFileAPI", data)
+  //       .then(res => { // then print response status
+  //         console.log(res.statusText)
+  //       })
+  // }
 
   const navigate = useNavigate();
   const handleLogin = () => {
@@ -179,19 +219,20 @@ const BecomeHost = () => {
       num_id = (Math.floor(Math.random() * 100) + 1).toString();
     }
     // console.log(num_id);
-    const requestOptions = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(inputFields),
-    };
-    fetch(
-      "http://localhost:3000/properties?id=P" + num_id.toString(),
-      requestOptions
-    )
-      .then(() => console.log(inputFields))
-      .catch(console.log);
-    setShow(false);
-    navigate("/propertyInfo", { state: { info: { property: inputFields } } });
+    submitImages()
+    // const requestOptions = {
+    //   method: "PUT",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(inputFields),
+    // };
+    // fetch(
+    //   "http://localhost:3000/properties?id=P" + num_id.toString(),
+    //   requestOptions
+    // )
+    //   .then(() => console.log(inputFields))
+    //   .catch(console.log);
+    // setShow(false);
+    // navigate("/propertyInfo", { state: { info: { property: inputFields } } });
   };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -495,6 +536,9 @@ const BecomeHost = () => {
                 </div>
               )} */}
             <input type="file" id="image" onChange={handleImages} />
+            {imageFiles.filepreview !== null ?
+              <img className="previewimg" src={imageFiles.filepreview} style={{"width": "300px"}} alt="UploadImage" />
+              : null}
 
             {/* <input
                 type="file"
