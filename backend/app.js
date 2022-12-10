@@ -56,18 +56,8 @@ app.use("/", indexRouter);
 // });
 
 // error handler
-app.post("/imageupload", upload.single("file"), (req, res) => {
+app.post("/imageupload", upload.array("imgFiles"), (req, res) => {
   try {
-    const file = req.file;
-    // console.log(file.filename);
-    console.log(req);
-
-    if (!file) {
-      const error = new Error("No File");
-      error.httpStatusCode = 400;
-      return next(error);
-    }
-    // res.send(file);
   } catch (error) {
     console.log(error);
   }
