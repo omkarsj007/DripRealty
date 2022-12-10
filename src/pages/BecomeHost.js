@@ -162,30 +162,31 @@ const BecomeHost = () => {
   const propertyType = ["Mansion", "Adventurous", "Exotic", "Drip"];
   // PICTURE ////
 
-  const [imageFiles, setImageFiles] = useState({
-    file: [],
-    filepreview: null,
-  });
+  
+  const [imageFiles, setImageFiles] = useState(null);
 
   const handleImages = (event) => {
-    setImageFiles({
-      ...imageFiles,
-      file: event.target.files[0],
-      filepreview: URL.createObjectURL(event.target.files[0]),
-    });
+    setImageFiles(event.target.files);
 
   }
-
   const submitImages = async () => {
-    const formdata = new FormData();
-    formdata.append('file', imageFiles.file);
-
-    // axios.post("http://localhost:3000/imageupload", formdata, {
-    //   headers: { "Content-Type": "multipart/form-data" }
-    // })
+    
+    const formData = new FormData();
+    
+    let newPaths = []
+    //********* HERE IS THE CHANGE ***********
+    for (let i = 0; i < imageFiles.length; i++) {
+      formData.append('imgFiles', imageFiles[i]);
+      newPaths.push("img/" + imageFiles[i].name)
+    }
+      setInputFields({
+      ...inputFields,
+      images: newPaths,
+    });
+    console.log(newPaths)
     const response = await fetch('http://localhost:3000/imageupload', {
       method: 'POST',
-      body: formdata,
+      body: formData,
     })
       
     console.log("SUCCESS")
@@ -219,19 +220,20 @@ const BecomeHost = () => {
     }
     // console.log(num_id);
     submitImages()
-    // const requestOptions = {
-    //   method: "PUT",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(inputFields),
-    // };
-    // fetch(
-    //   "http://localhost:3000/properties?id=P" + num_id.toString(),
-    //   requestOptions
-    // )
-    //   .then(() => console.log(inputFields))
-    //   .catch(console.log);
-    // setShow(false);
-    // navigate("/propertyInfo", { state: { info: { property: inputFields } } });
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(inputFields),
+    };
+    fetch(
+      "http://localhost:3000/properties?id=P" + num_id.toString(),
+      requestOptions
+    )
+      .then(() => submitImages())
+      .then(() => console.log(inputFields))
+      .catch(console.log);
+    setShow(false);
+    navigate("/propertyInfo", { state: { info: { property: inputFields } } });
   };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -534,10 +536,10 @@ const BecomeHost = () => {
                 <button onClick={()=>setSelectedImage(null)}>Remove</button>
                 </div>
               )} */}
-            <input type="file" id="image" onChange={handleImages} />
-            {imageFiles.filepreview !== null ?
+            <input type="file" id="image" onChange={handleImages} multiple />
+            {/* {imageFiles.filepreview !== null ?
               <img className="previewimg" src={imageFiles.filepreview} style={{"width": "300px"}} alt="UploadImage" />
-              : null}
+              : null} */}
 
             {/* <input
                 type="file"
