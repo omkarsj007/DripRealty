@@ -228,6 +228,7 @@ const BecomeHost = () => {
       num_id = (Math.floor(Math.random() * 100) + 1).toString();
     }
     // console.log(num_id);
+    let newPaths = [];
     submitImages();
 
     console.log(inputFields);
