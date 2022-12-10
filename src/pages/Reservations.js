@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { Container, Row, Modal, Button } from "react-bootstrap";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -7,14 +7,11 @@ import "../components/styles/mystyles.css";
 
 const ReservationCard = (props) => {
   const [properties, setProperty] = useState({});
-  console.log(props.reservation.listing_id);
   useEffect(() => {
     fetch("http://localhost:3000/properties?id=" + props.reservation.listing_id)
       .then((res) => res.json())
       .then((data) => {
         setProperty(data[0]);
-        console.log(data[0]["images"][0]);
-        console.log(properties);
       })
       .catch(console.log);
   }, []);
@@ -33,7 +30,6 @@ const ReservationCard = (props) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          console.log(data.error);
           props.setErrorMessage(data.error);
           props.setError(true);
         } else {
@@ -41,16 +37,7 @@ const ReservationCard = (props) => {
         }
       })
       .catch(console.log);
-
-    // fetch("http://localhost:3000/reservations")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     let a = data.filter((r) => r.customer_id == props.reservation.customer_id)
-    //     props.setReservation(a);
-    //   })
-    //   .catch(console.log);
   };
-
   let property = properties["images"];
   if (property == null) {
     property = "";
@@ -66,12 +53,18 @@ const ReservationCard = (props) => {
           alt="background"
           loading="lazy"
         />
-        <p
-          className="centered font text-shadow fs-3 ps-5 "
-          style={{ color: "white" }}
+        <Link
+          className="nav-link"
+          to="/propertyInfo"
+          state={{ info: { property: properties } }}
         >
-          {properties.title}&nbsp;
-        </p>
+          <p
+            className="centered font text-shadow fs-3 ps-5 "
+            style={{ color: "white" }}
+          >
+            {properties.title}&nbsp;
+          </p>
+        </Link>
         <p
           className="right font text-shadow fs-3 ps-5"
           style={{ color: "white" }}
@@ -97,22 +90,9 @@ const Reservations = (props) => {
   const [showError, setError] = useState(false);
   const [show, setShow] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   const handleClose = () => {
     setShow(false);
     setError(false);
-  };
-
-  const fruits = ["Apple", "Mango", "Banana", "GFG"];
-
-  // Some styling for the items
-  const styles = {
-    backgroundColor: "white",
-    width: "50px",
-    marginBottom: "10px",
-    padding: "10px",
-    color: "green",
-    boxShadow: "rgb(0,0,0,0.44) 0px 5px 5px",
   };
 
   useEffect(() => {
@@ -124,14 +104,8 @@ const Reservations = (props) => {
       })
       .catch(console.log);
   }, [deleteRes]);
-  const navigate = useNavigate();
-  console.log(reservations);
-  console.log(info.id);
-  var list = reservations.map((x) => {});
 
   return (
-    // reservations.map(fruit => <div
-    //     style={styles}></div>)
     <Container>
       <div className="m-5">
         <p className="font fw-bold fs-1 m-5">Your Reservations</p>

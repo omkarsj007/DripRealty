@@ -212,7 +212,7 @@ const BecomeHost = () => {
               className="grow w-25"
               onClick={handleLogin}
             >
-              <span className="font fw-bold">Submit</span>
+              <span className="font fw-bold">Login</span>
             </Button>
           </div>
         </Row>

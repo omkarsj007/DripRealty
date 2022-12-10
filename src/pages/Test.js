@@ -2,31 +2,23 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 const Test = () => {
-  const [properties, setProperties] = useState([]);
+  // const [properties, setProperties] = useState([]);
   const [filterText, setFilterText] = useState("");
-  // handleSubmit() {
-  //     const requestOptions = {
-  //       method: "PUT",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ stri: "here" }),
-  //     };
-  //     fetch("http://localhost:3000/insert", requestOptions)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log();
-  //         setProperties(JSON.stringify(data, null, 2));
-  //       })
-  //       .catch(console.log);
-  //   }
-  //   useEffect(() => {
-  //     fetch("http://localhost:3000/properties?id={props.property.id}", requestOptions)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log();
-  //         setProperties(JSON.stringify(data, null, 2));
-  //       })
-  //       .catch(console.log);
-  //   }, []);
+  const [properties, setProperty] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/properties")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setProperty(data);
+        console.log({ properties });
+        if (properties == null) {
+          console.log(null);
+        }
+      })
+      .then(() => console.log(properties))
+      .catch(console.log);
+  }, []);
 
   return (
     <div className="">
@@ -39,7 +31,6 @@ const Test = () => {
           Submit
         </Button>
       </Form>
-      {properties}
     </div>
   );
 };
