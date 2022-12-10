@@ -20,7 +20,7 @@ const CommentCard = (props) => {
         <Row>
           <Col md={1}>
             <Image
-              src={"/img/" + profile.id + ".jpg"}
+              src={"/img/userImage.png"}
               roundedCircle
               style={{ height: "5rem" }}
               className="shadows"

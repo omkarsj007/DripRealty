@@ -11,9 +11,6 @@ const Profile = () => {
   const location = useLocation();
   // const [info] = useState(location.state.info);
   const [info, setInfo] = useState(JSON.parse(localStorage.getItem("user")));
-  useEffect(() => {
-    console.log("profile " + info.favorites);
-  }, [info]);
 
   const navigate = useNavigate();
   const [properties, setProperties] = useState([]);
@@ -58,6 +55,7 @@ const Profile = () => {
           <UserPropertyList user={info} property={properties} />
         </Col>
         <Col>
+          <hr />
           <UserFavoriteList
             user={info}
             property={properties}

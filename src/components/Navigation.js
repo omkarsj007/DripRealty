@@ -73,7 +73,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <header>
+    <header className="select-menu">
       <Navbar
         fixed="sticky"
         bg="dark"

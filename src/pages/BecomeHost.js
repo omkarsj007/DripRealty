@@ -14,7 +14,24 @@ import { useNavigate } from "react-router-dom";
 // import ImageUploading from "react-images-uploading";
 const BecomeHost = () => {
   const [properties, setProperties] = useState([]);
-
+  const [userInfo, setUserInfo] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+  const updateUser = (e) => {
+    userInfo.host = e.target.value == "on" ? true : false;
+  };
+  const handleHostSubmit = () => {
+    localStorage.setItem("user", JSON.stringify(userInfo));
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInfo),
+    };
+    fetch("http://localhost:3000/users?id=" + userInfo.id, requestOptions)
+      .then(() => console.log())
+      .catch(console.log);
+    navigate("/becomeHost");
+  };
   useEffect(() => {
     fetch("http://localhost:3000/properties")
       .then((res) => res.json())
@@ -28,13 +45,7 @@ const BecomeHost = () => {
     title: "",
     available: "yes",
     type: "",
-    images: [
-      // "img/house101.jpg",
-      // "img/house102.jpg",
-      // "img/house103.jpg",
-      // "img/house104.jpg",
-      // "img/house105.jpg",
-    ],
+    images: [],
     location: {
       address: "",
       city: "",
@@ -158,7 +169,9 @@ const BecomeHost = () => {
   };
 
   const navigate = useNavigate();
-
+  const handleLogin = () => {
+    navigate("/login");
+  };
   const handleSubmit = () => {
     // console.log(inputFields);
     var num_id = (Math.floor(Math.random() * 100) + 1).toString();
@@ -184,27 +197,58 @@ const BecomeHost = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let user = localStorage.getItem('user')
+  let user = localStorage.getItem("user");
   if (!user) {
     return (
       <Container className="mt-5 profile-content mb-5 p-5">
-        <Row >
-          <div className="m-3 fs-3 fw-bold font d-flex justify-content-center">Please log in to account first</div>
+        <Row>
+          <div className="m-3 fs-3 fw-bold font d-flex justify-content-center">
+            Please log in to account first
+          </div>
+          <div className="d-flex justify-content-center">
+            <Button
+              size="md"
+              variant="primary"
+              className="grow w-25"
+              onClick={handleLogin}
+            >
+              <span className="font fw-bold">Submit</span>
+            </Button>
+          </div>
         </Row>
       </Container>
-    )
-  }
-  else if(JSON.parse(user)["host"] == false)
-  {
+    );
+  } else if (JSON.parse(user)["host"] == false) {
     return (
       <Container className="mt-5 profile-content mb-5 p-5">
-        <Row>
-          <p className="m-3 fs-3 fw-bold font d-flex justify-content-center">You will need to sign up for a Host Account</p>
+        <Row className="d-flex justify-content-center">
+          <p className="fs-3 fw-bold font d-flex justify-content-center">
+            You will need to sign up for a Host Account
+          </p>
+          <Form className="fs-3 fw-bold font d-flex justify-content-center">
+            <Form.Label className="mt-3 fs-3 font">
+              Want to be a Host? &nbsp;{" "}
+              <input
+                type="checkbox"
+                name="host"
+                onChange={updateUser}
+                style={{ transform: "scale(1.5)" }}
+              />
+            </Form.Label>
+          </Form>
+          <Button
+            size="md"
+            variant="primary"
+            className="grow w-25"
+            onClick={handleHostSubmit}
+          >
+            <span className="font fw-bold">Submit</span>
+          </Button>
         </Row>
       </Container>
-    )
+    );
   }
-  
+
   return (
     <Container className="mt-5 profile-content mb-5 p-5">
       <div className="m-3 fs-1 fw-bold font d-flex justify-content-center">

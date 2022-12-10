@@ -102,7 +102,6 @@ const PropertyInfo = () => {
   };
 
   const handleInsert = () => {
-    console.log(userInfo);
     var num_id = (Math.floor(Math.random() * 100000) + 1).toString();
     let comments = {
       id: num_id,
@@ -136,12 +135,9 @@ const PropertyInfo = () => {
   const [clicked, setClicked] = useState(0);
   useEffect(() => {
     if (clicked != 0) {
-      console.log(clicked);
       if (favorite) {
-        console.log("set to true");
         userInfo.favorites.push(info.property.id);
       } else {
-        console.log("set to false");
         userInfo.favorites = userInfo.favorites.filter(
           (filter) => filter !== info.property.id
         );
