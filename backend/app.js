@@ -8,7 +8,7 @@ var ObjectId = require("mongodb").ObjectId;
 const mongoose = require("mongoose");
 var db = monk("localhost:27017/driprealty");
 const bp = require("body-parser");
-
+// const uuidv4 = require("uuid/v4");
 var indexRouter = require("./routes/index");
 const multer = require("multer");
 
@@ -59,13 +59,15 @@ app.use("/", indexRouter);
 app.post("/imageupload", upload.single("file"), (req, res) => {
   try {
     const file = req.file;
-    console.log(file.filename);
+    // console.log(file.filename);
+    console.log(req);
+
     if (!file) {
       const error = new Error("No File");
       error.httpStatusCode = 400;
       return next(error);
     }
-    res.send(file);
+    // res.send(file);
   } catch (error) {
     console.log(error);
   }
