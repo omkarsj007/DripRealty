@@ -8,7 +8,7 @@ import {
   Form,
   Modal,
 } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CardInfo from "../components/CardInfo";
 import CommentSection from "../components/CommentSection";
 import "../components/styles/mystyles.css";
@@ -17,6 +17,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import { set } from "mongoose";
+
+
 
 const FavoritePage = (props) => {
   const handleClick = (event) => {
@@ -52,7 +54,9 @@ const FavoritePage = (props) => {
 };
 const PropertyInfo = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [info] = useState(location.state.info);
+  console.log(info)
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
@@ -77,6 +81,31 @@ const PropertyInfo = () => {
   const handleCheckOutDate = (date) => {
     setCheckOutDate(date);
   };
+
+  const handleSubmit = () => {
+
+    var num_id = "R" + (Math.floor(Math.random() * 100) + 1).toString();
+    
+    let reservation = {
+      id: num_id,
+      dateReserved: new Date().toLocaleDateString(),
+      dateStart: checkInDate.toISOString().split('T')[0],
+      dateEnd: checkOutDate.toISOString().split('T')[0],
+      listing_id: info.property.id,
+      host_id: info.property.hostID,
+      customer_id:userInfo.id
+    };
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reservation),
+    };
+    fetch("http://localhost:3000/reservations?id=" + num_id,
+    requestOptions)
+      .then((res) => res.json())
+
+    navigate("/reservations")
+  }
 
   const money = (number) => {
     return new Intl.NumberFormat("en-US", {
@@ -358,7 +387,7 @@ const PropertyInfo = () => {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={handleSubmit}>
               Save Changes
             </Button>
           </Modal.Footer>

@@ -206,7 +206,7 @@ const BecomeHost = () => {
   // const handleImages = (e) => {
   //   setInputFields({
   //     ...inputFields,
-  //     images: [...inputFields.images, e.target.value],
+  //    images: [...inputFields.images, e.target.value],
   //   });
   // };
 
@@ -230,6 +230,7 @@ const BecomeHost = () => {
       num_id = (Math.floor(Math.random() * 100) + 1).toString();
     }
     // console.log(num_id);
+    let newPaths = []
     submitImages();
     const requestOptions = {
       method: "PUT",
@@ -240,7 +241,13 @@ const BecomeHost = () => {
       "http://localhost:3000/properties?id=P" + num_id.toString(),
       requestOptions
     )
-      .then(() => submitImages())
+      .then(() => {
+        newPaths = submitImages()
+        setInputFields({
+          ...inputFields,
+          images: newPaths,
+        });
+      })
       .then(() => console.log(inputFields))
       .catch(console.log);
     setShow(false);
