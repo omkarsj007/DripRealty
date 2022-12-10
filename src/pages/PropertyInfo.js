@@ -133,6 +133,7 @@ const PropertyInfo = () => {
   // Favorites
   const [favorite, setFavorite] = useState(false);
   const [clicked, setClicked] = useState(0);
+  // const [reservations, setReservations] = useState({});
   useEffect(() => {
     if (clicked != 0) {
       if (favorite) {
@@ -170,6 +171,34 @@ const PropertyInfo = () => {
       }
     }
   }, [clicked]);
+
+  var disableDates = []
+  useEffect(() => {
+    fetch("http://localhost:3000/reservations")
+      .then((res) => res.json())
+      .then((data) => {
+        let a = data.filter((r) => r.listing_id == info.property.id);
+        // console.log(data[0].listing_id)
+        // console.log(info.property.id)
+        // console.log(a)
+        return a
+      })
+      .then((reservations) => {
+        console.log(reservations)
+        for (let x of reservations) {
+          let startDate = new Date(x["dateStart"])
+          let endDate = new Date(x["dateEnd"])
+          let currDate = startDate
+          while (currDate <= endDate) {
+            disableDates.push(new Date(currDate));
+            currDate.setDate(currDate.getDate() + 1);
+          }
+        }
+        console.log(disableDates)
+      })
+      .catch(console.log);
+  })
+  console.log(disableDates)
   return (
     <Container fluid className="font pt-5 bg-tertiary-color">
       <Container className="">
@@ -312,6 +341,7 @@ const PropertyInfo = () => {
                   showYearDropdown
                   scrollableMonthYearDropdown
                   onChange={(date) => setCheckInDate(date)}
+                  excludeDates={disableDates}
                 />
               </div>
               <div>
@@ -322,6 +352,7 @@ const PropertyInfo = () => {
                   showYearDropdown
                   scrollableMonthYearDropdown
                   onChange={(date) => setCheckOutDate(date)}
+                  excludeDates={disableDates}
                 />
               </div>
             </Container>
