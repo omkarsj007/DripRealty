@@ -101,6 +101,7 @@ const Reservations = (props) => {
       .then((data) => {
         let a = data.filter((r) => r.customer_id == info.id);
         setReservations(a);
+        console.log(reservations);
       })
       .catch(console.log);
   }, [deleteRes]);

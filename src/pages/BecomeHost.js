@@ -82,7 +82,7 @@ const BecomeHost = () => {
     bedrooms: "",
     baths: "",
     description: "",
-    hostID: "U1",
+    hostID: userInfo.id,
   });
 
   const updateData = (e) => {

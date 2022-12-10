@@ -236,7 +236,7 @@ const EditProperties = () => {
             <Col>
               <FloatingLabel label="Cleaning Fee">
                 <Form.Control
-                  value={inputFields.nightly_fee.$numberDecimal}
+                  value={inputFields.cleaning_fee.$numberDecimal}
                   name="cleaning_fee"
                   onChange={updatePrice}
                 />
@@ -320,7 +320,7 @@ const EditProperties = () => {
       </Form>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add new property</Modal.Title>
+          <Modal.Title>Update property</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure the information is correct? </Modal.Body>
         <Modal.Footer>
@@ -328,7 +328,7 @@ const EditProperties = () => {
             Close
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Save Changes
+            Save updates
           </Button>
         </Modal.Footer>
       </Modal>
