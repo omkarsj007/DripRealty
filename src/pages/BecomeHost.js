@@ -10,8 +10,23 @@ import {
   Modal,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 // import ImageUploading from "react-images-uploading";
+
+const ImageUpload = (props) => {
+  return (
+    <div>
+      <input type="file" id={props.id} onChange={props.handleImages} />
+      {props.imageFiles.filepreview !== null ? (
+        <img
+          className="previewimg"
+          src={props.imageFiles.filepreview}
+          style={{ width: "300px" }}
+          alt="UploadImage"
+        />
+      ) : null}
+    </div>
+  );
+};
 const BecomeHost = () => {
   const [properties, setProperties] = useState([]);
   const [userInfo, setUserInfo] = useState(
@@ -162,10 +177,33 @@ const BecomeHost = () => {
   const propertyType = ["Mansion", "Adventurous", "Exotic", "Drip"];
   // PICTURE ////
 
-  const [imageFiles, setImageFiles] = useState({
-    file: [],
-    filepreview: null,
-  });
+  const [imageFiles, setImageFiles] = useState([
+    {
+      id: 1,
+      file: [],
+      filepreview: null,
+    },
+    {
+      id: 2,
+      file: [],
+      filepreview: null,
+    },
+    {
+      id: 3,
+      file: [],
+      filepreview: null,
+    },
+    {
+      id: 4,
+      file: [],
+      filepreview: null,
+    },
+    {
+      id: 5,
+      file: [],
+      filepreview: null,
+    },
+  ]);
 
   const handleImages = (event) => {
     setImageFiles({
@@ -173,24 +211,18 @@ const BecomeHost = () => {
       file: event.target.files[0],
       filepreview: URL.createObjectURL(event.target.files[0]),
     });
-
-  }
+  };
 
   const submitImages = async () => {
     const formdata = new FormData();
-    formdata.append('file', imageFiles.file);
-
-    // axios.post("http://localhost:3000/imageupload", formdata, {
-    //   headers: { "Content-Type": "multipart/form-data" }
-    // })
-    const response = await fetch('http://localhost:3000/imageupload', {
-      method: 'POST',
+    formdata.append("file", imageFiles.file);
+    const response = await fetch("http://localhost:3000/imageupload", {
+      method: "POST",
       body: formdata,
-    })
-      
-    console.log("SUCCESS")
-    
-  }
+    });
+
+    console.log("SUCCESS");
+  };
   // const handleImages = (e) => {
   //   setInputFields({
   //     ...inputFields,
@@ -218,7 +250,7 @@ const BecomeHost = () => {
       num_id = (Math.floor(Math.random() * 100) + 1).toString();
     }
     // console.log(num_id);
-    submitImages()
+    submitImages();
     // const requestOptions = {
     //   method: "PUT",
     //   headers: { "Content-Type": "application/json" },
@@ -514,40 +546,31 @@ const BecomeHost = () => {
             </Accordion.Item>
           </Accordion>
           <Form.Label className="mt-3 fs-3 font">Pictures</Form.Label>
-          <div>
-            {inputFields.images.map((item) => (
-              <div>
-                <p>
-                  {item}
-                  {/* <img alt="not fount" width={"250px"} src={URL.createObjectURL({item})} />
-                  <br /> */}
-                  <button onClick={() => setInputFields.images.item(null)}>
-                    Remove
-                  </button>
-                </p>
-              </div>
-            ))}
-            {/* {selectedImage && (
-                <div>
-                <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
-                <br />
-                <button onClick={()=>setSelectedImage(null)}>Remove</button>
-                </div>
-              )} */}
-            <input type="file" id="image" onChange={handleImages} />
-            {imageFiles.filepreview !== null ?
-              <img className="previewimg" src={imageFiles.filepreview} style={{"width": "300px"}} alt="UploadImage" />
-              : null}
-
-            {/* <input
-                type="file"
-                name="myImage"
-                onChange={(event) => {
-                  console.log(event.target.files[0]);
-                  setSelectedImage(event.target.files[0]);
-                }}
-              /> */}
-          </div>
+          <ImageUpload
+            imageFiles={imageFiles}
+            handleImages={handleImages}
+            id={imageFiles[0].id}
+          />
+          <ImageUpload
+            imageFiles={imageFiles}
+            handleImages={handleImages}
+            id={imageFiles[1].id}
+          />
+          <ImageUpload
+            imageFiles={imageFiles}
+            handleImages={handleImages}
+            id={imageFiles[2].id}
+          />
+          <ImageUpload
+            imageFiles={imageFiles}
+            handleImages={handleImages}
+            id={imageFiles[3].id}
+          />
+          <ImageUpload
+            imageFiles={imageFiles}
+            handleImages={handleImages}
+            id={imageFiles[4].id}
+          />
         </Form.Group>
         <hr />
         <div className="d-flex justify-content-center mb-5">
