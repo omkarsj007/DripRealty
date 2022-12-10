@@ -178,46 +178,44 @@ const BecomeHost = () => {
   // PICTURE ////
 
   const [imageFiles, setImageFiles] = useState(null);
-
+  const [newPaths] = useState([]);
   const handleImages = (event) => {
+    const files = event.currentTarget.files;
     setImageFiles(event.target.files);
+    // setInputFields({
+    //   ...inputFields,
+    //   images: [],
+    // });
+    console.log(event.target.files);
+    let arr = [];
+    Array.from(files).forEach((file) => {
+      arr.push("img/" + file.name);
+    });
+    setInputFields({
+      ...inputFields,
+      images: arr,
+    });
+    console.log(inputFields);
   };
   const submitImages = async () => {
     const formData = new FormData();
-
-    let newPaths = [];
     //********* HERE IS THE CHANGE ***********
     for (let i = 0; i < imageFiles.length; i++) {
       formData.append("imgFiles", imageFiles[i]);
       newPaths.push("img/" + imageFiles[i].name);
     }
-    setInputFields({
-      ...inputFields,
-      images: newPaths,
-    });
     console.log(newPaths);
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: formData,
+    // };
     const response = await fetch("http://localhost:3000/imageupload", {
       method: "POST",
       body: formData,
     });
-
     console.log("SUCCESS");
   };
-  // const handleImages = (e) => {
-  //   setInputFields({
-  //     ...inputFields,
-  //     images: [...inputFields.images, e.target.value],
-  //   });
-  // };
-
-  // const uploadFile = (event) => {
-  //   const data = new FormData() ;
-  //   data.append('file', event.target.files[0]);
-  //   axios.post("${apiUrl}/uploadFileAPI", data)
-  //       .then(res => { // then print response status
-  //         console.log(res.statusText)
-  //       })
-  // }
 
   const navigate = useNavigate();
   const handleLogin = () => {
@@ -231,6 +229,9 @@ const BecomeHost = () => {
     }
     // console.log(num_id);
     submitImages();
+
+    console.log(inputFields);
+    console.log(newPaths);
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -240,7 +241,6 @@ const BecomeHost = () => {
       "http://localhost:3000/properties?id=P" + num_id.toString(),
       requestOptions
     )
-      .then(() => submitImages())
       .then(() => console.log(inputFields))
       .catch(console.log);
     setShow(false);
@@ -528,38 +528,17 @@ const BecomeHost = () => {
           </Accordion>
           <Form.Label className="mt-3 fs-3 font">Pictures</Form.Label>
           <div>
-            {inputFields.images.map((item) => (
-              <div>
+            {inputFields.images.map((item, i) => (
+              <div key={i}>
                 <p>
                   {item}
-                  {/* <img alt="not fount" width={"250px"} src={URL.createObjectURL({item})} />
-                  <br /> */}
                   <button onClick={() => setInputFields.images.item(null)}>
                     Remove
                   </button>
                 </p>
               </div>
             ))}
-            {/* {selectedImage && (
-                <div>
-                <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
-                <br />
-                <button onClick={()=>setSelectedImage(null)}>Remove</button>
-                </div>
-              )} */}
             <input type="file" id="image" onChange={handleImages} multiple />
-            {/* {imageFiles.filepreview !== null ?
-              <img className="previewimg" src={imageFiles.filepreview} style={{"width": "300px"}} alt="UploadImage" />
-              : null} */}
-
-            {/* <input
-                type="file"
-                name="myImage"
-                onChange={(event) => {
-                  console.log(event.target.files[0]);
-                  setSelectedImage(event.target.files[0]);
-                }}
-              /> */}
           </div>
         </Form.Group>
         <hr />
