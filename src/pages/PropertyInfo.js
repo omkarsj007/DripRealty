@@ -188,6 +188,8 @@ const PropertyInfo = () => {
         for (let x of reservations) {
           let startDate = new Date(x["dateStart"])
           let endDate = new Date(x["dateEnd"])
+          startDate.setDate(startDate.getDate() + 1);
+          endDate.setDate(endDate.getDate() + 1);
           let currDate = startDate
           while (currDate <= endDate) {
             disableDates.push(new Date(currDate));
