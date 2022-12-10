@@ -178,19 +178,21 @@ const BecomeHost = () => {
 
   const submitImages = async () => {
     const formdata = new FormData();
-    formdata.append('avatar', imageFiles.file);
+    formdata.append('file', imageFiles.file);
 
-    axios.post("http://localhost:3000/imageupload", formdata, {
-      headers: { "Content-Type": "multipart/form-data" }
+    // axios.post("http://localhost:3000/imageupload", formdata, {
+    //   headers: { "Content-Type": "multipart/form-data" }
+    // })
+    const response = await fetch('http://localhost:3000/imageupload', {
+      method: 'POST',
+      body: formdata,
     })
-      .then(res => { // then print response status
-        console.warn(res);
-        if (res.data.success === 1) {
-          // setSuccess("Image upload successfully");
-          console.log("SUCCESS")
-        }
-
-      })
+      
+    if (response.data.success === 1) {
+      // setSuccess("Image upload successfully");
+      console.log("SUCCESS")
+    }
+    
   }
   // const handleImages = (e) => {
   //   setInputFields({
