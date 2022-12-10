@@ -1,16 +1,15 @@
 import React from "react";
 import { Card, ListGroup, Image } from "react-bootstrap";
 // import fs from 'fs'
-const fs = require('fs') 
+const fs = require("fs");
 
 const ProfileCard = (props) => {
-  
   return (
     <Card style={{ width: "12rem" }} border="light" className="shadows">
       <ListGroup variant="flush">
         <ListGroup.Item className="d-flex justify-content-center">
           <Image
-            src={"/img/" + props.user.id + ".jpg"}
+            src={"/img/userImage.png"}
             roundedCircle
             style={{ height: "10rem" }}
             className="shadows"
