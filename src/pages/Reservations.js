@@ -59,7 +59,7 @@ const ReservationCard = (props) => {
           state={{ info: { property: properties } }}
         >
           <p
-            className="centered font text-shadow fs-3 ps-5 "
+            className="centered edit-link font text-shadow fs-3 ps-5 "
             style={{ color: "white" }}
           >
             {properties.title}&nbsp;

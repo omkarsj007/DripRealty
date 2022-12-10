@@ -10,17 +10,17 @@ var db = monk("localhost:27017/driprealty");
 const bp = require("body-parser");
 
 var indexRouter = require("./routes/index");
-const multer = require('multer')
+const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../public/img/')
+    cb(null, "../public/img/");
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname)
+    cb(null, file.originalname);
   },
-})
-const upload = multer({ storage: storage })
+});
+const upload = multer({ storage: storage });
 
 // console.log(db.listCollections())
 var cors = require("cors");
@@ -55,23 +55,21 @@ app.use("/", indexRouter);
 //   next(createError(404));
 // });
 
-// error handler 
-app.post('/imageupload', upload.single('file'), (req, res, next) => {
-  try{
+// error handler
+app.post("/imageupload", upload.single("file"), (req, res, next) => {
+  try {
     const file = req.file;
-  console.log(file.filename);
-  if (!file) {
-    const error = new Error('No File')
-    error.httpStatusCode = 400
-    return next(error)
-  }
+    console.log(file.filename);
+    if (!file) {
+      const error = new Error("No File");
+      error.httpStatusCode = 400;
+      return next(error);
+    }
     res.send(file);
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error);
   }
-  
-})
+});
 
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
@@ -172,15 +170,17 @@ app.delete("/reservations", async (req, res) => {
       data = [];
     } else {
       data = await reservations.find({ id: req.query.id });
-      let start = new Date(data[0]["dateStart"])
+      let start = new Date(data[0]["dateStart"]);
       const today = new Date();
-      var Difference_In_Time = (start.getTime() - today.getTime())/(1000 * 3600);
-      console.log(data)
-      console.log(data[0]["dateStart"])
-      console.log(Difference_In_Time)
-      if(Difference_In_Time <= 48)
-      {
-        return res.json({ error: "Cannot cancel within 48 hours of Reservation" } )
+      var Difference_In_Time =
+        (start.getTime() - today.getTime()) / (1000 * 3600);
+      console.log(data);
+      console.log(data[0]["dateStart"]);
+      console.log(Difference_In_Time);
+      if (Difference_In_Time <= 48) {
+        return res.json({
+          error: "Cannot cancel within 48 hours of Reservation",
+        });
       }
       data = await reservations.remove({ id: req.query.id });
     }
