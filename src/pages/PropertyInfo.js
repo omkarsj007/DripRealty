@@ -125,7 +125,7 @@ const PropertyInfo = () => {
   };
 
   const handleInsert = () => {
-    var num_id = (Math.floor(Math.random() * 100000) + 1).toString();
+    var num_id = "C" + (Math.floor(Math.random() * 100000) + 1).toString();
     let comments = {
       id: num_id,
       dateCommented: new Date().toLocaleDateString(),

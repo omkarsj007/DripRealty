@@ -9,7 +9,7 @@ const CommentCard = (props) => {
       .then((res) => res.json())
       .then((data) => {
         setProfile(
-          data[data.findIndex((e) => e.id === props.user.reviewer_id)]
+          data[data.findIndex((e) => props.user.reviewer_id === e.id)]
         );
       })
       .catch(console.log);
