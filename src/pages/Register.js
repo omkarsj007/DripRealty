@@ -127,6 +127,12 @@ const Register = () => {
       setError(true);
       return;
     }
+    
+    if(Object.keys(fieldErrors).length != 0){
+      setErrorMessage("Resolve all errors");
+      setError(true);
+      return;
+    }
     delete inputFields["pwdConfirm"];
     inputFields["host"] = inputFields["host"] == "on" ? true : false;
     console.log(inputFields);

@@ -457,7 +457,7 @@ const PropertyInfo = () => {
               size="lg"
               onClick={handleInsert}
             >
-              Insert
+              Submit
             </Button>
           </Col>
         </Row>
